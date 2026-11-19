@@ -34,13 +34,13 @@
     <meta name="twitter:description" content="{{ description or site.description }}">
     <meta name="twitter:image" content="{{ site.ogImage }}">
     <script>try{var h=localStorage.getItem('hd2-theme');document.documentElement.setAttribute('data-theme',h==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}</script>
-    <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261119-info3">
-    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261119-info3" defer></script>
-    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261119-info3">
-    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261119-info3">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261119-info3">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261119-info3">
-    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | url }}?v=20261119-info3">
+    <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261119-info5">
+    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261119-info5" defer></script>
+    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261119-info5">
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261119-info5">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261119-info5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261119-info5">
+    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | url }}?v=20261119-info5">
 </head>
 <body class="page-{{ page.url | pageClass }}">
     <a class="skip-link" href="#main">{{ t.a11y.skip }}</a>
@@ -117,19 +117,6 @@
                 <a class="nav-tab" href="{{ site.nav.about }}">About</a>
             </nav>
             <div class="header-actions">
-                <div class="lang-toggle" role="group" aria-label="{{ t.a11y.language }}">
-                    {% if pageLang == 'ko' %}
-                    <span class="lang-option is-current" aria-current="true" lang="ko">KO</span>
-                    {% else %}
-                    <a class="lang-option" href="{{ koHref | url }}" hreflang="ko" lang="ko" data-lang-link="ko" aria-label="{{ i18n.ko.name }}" title="{{ i18n.ko.name }}">KO</a>
-                    {% endif %}
-                    <span class="lang-divider" aria-hidden="true"></span>
-                    {% if pageLang == 'en' %}
-                    <span class="lang-option is-current" aria-current="true" lang="en">EN</span>
-                    {% else %}
-                    <a class="lang-option" href="{{ enHref | url }}" hreflang="en" lang="en" data-lang-link="en" aria-label="{{ i18n.en.name }}" title="{{ i18n.en.name }}">EN</a>
-                    {% endif %}
-                </div>
                 <button class="menu-button" type="button" aria-label="{{ t.a11y.openMenu }}" aria-expanded="false" aria-controls="mobile-drawer">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -216,19 +203,6 @@
                 </div>
             </div>
             <a class="drawer-item" href="{{ site.nav.about }}">About</a>
-            <div class="drawer-lang lang-toggle" role="group" aria-label="{{ t.a11y.language }}">
-                {% if pageLang == 'ko' %}
-                <span class="lang-option is-current" aria-current="true" lang="ko">KO</span>
-                {% else %}
-                <a class="lang-option" href="{{ koHref | url }}" hreflang="ko" lang="ko" data-lang-link="ko" aria-label="{{ i18n.ko.name }}">KO</a>
-                {% endif %}
-                <span class="lang-divider" aria-hidden="true"></span>
-                {% if pageLang == 'en' %}
-                <span class="lang-option is-current" aria-current="true" lang="en">EN</span>
-                {% else %}
-                <a class="lang-option" href="{{ enHref | url }}" hreflang="en" lang="en" data-lang-link="en" aria-label="{{ i18n.en.name }}">EN</a>
-                {% endif %}
-            </div>
         </nav>
     </aside>
 
@@ -244,8 +218,8 @@
         </div>
     </footer>
     <script>window.INFO_HUB_BASE = "{{ ('/en/' if pageLang == 'en' else '/') | url }}";window.INFO_HUB_LANG = "{{ pageLang }}";</script>
-    {% if pageScript %}<script src="{{ pageScript | url }}?v=20261119-info3" defer></script>{% endif %}
-    <script src="{{ '/assets/info-lang.js' | url }}?v=20261119-info3" defer></script>
-    <script src="{{ '/assets/info-nav.js' | url }}?v=20261119-info3" defer></script>
+    {% if pageScript %}<script src="{{ pageScript | url }}?v=20261119-info5" defer></script>{% endif %}
+    <script src="{{ '/assets/info-lang.js' | url }}?v=20261119-info5" defer></script>
+    <script src="{{ '/assets/info-nav.js' | url }}?v=20261119-info5" defer></script>
 </body>
 </html>

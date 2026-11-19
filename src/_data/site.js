@@ -4,7 +4,7 @@ export default {
   title: "HD2Lab | InformationHub",
   tagline: "Daily reports on the markets and industries worth watching, filed in one calm place.",
   description:
-    "HD2Lab InformationHub — channel-by-channel daily briefings. The first desk publishes one report on 11 China AI semiconductor names every weekday evening at 19:00 KST.",
+    "HD2Lab InformationHub — channel-by-channel daily briefings. The China AI desk publishes one report on 11 China AI semiconductor names every weekday evening at 19:00 KST; the US Markets desk files one on the US close at 06:35 KST, Tuesday through Saturday.",
   url: "https://hyangdan2.github.io/InformationHub/",
   ogImage: "https://hyangdan2.github.io/InformationHub/og-image.png",
   repo: "HyangDan2/InformationHub",

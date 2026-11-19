@@ -3,6 +3,11 @@
 {% set c = t.us.channel %}
 {% set root = ('/en/' if lang == 'en' else '/') %}
 {% set channelUrl = (root ~ 'us-markets/') | url %}
+{% set pageLang = 'en' if lang == 'en' else 'ko' %}
+{% set altPath = page.url | alternateUrl %}
+{% set koHref = page.url if pageLang == 'ko' else altPath %}
+{% set enHref = altPath if pageLang == 'ko' else page.url %}
+{% import "parts/lang-switch.njk" as langSwitch %}
 {% if lang == 'en' %}
 {% set briefings = collections.briefingsEn | ofChannel("us-markets") %}
 {% set dailies = collections.dailiesEn | ofChannel("us-markets") %}
@@ -18,11 +23,14 @@
 {% set marketPost = briefings | firstWith("data.market") %}
 
 <section class="page-hero shell" aria-labelledby="channel-title">
-    <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="{{ root | url }}">{{ c.crumb }}</a>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">US Markets</span>
-    </nav>
+    <div class="page-top">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ root | url }}">{{ c.crumb }}</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">US Markets</span>
+        </nav>
+        {{ langSwitch.langSwitch(pageLang, koHref, enHref) }}
+    </div>
     <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>{{ c.eyebrow }}</p>
     <h1 id="channel-title"><span class="channel-h1-flag" aria-hidden="true">🇺🇸</span> US Markets</h1>
     <p class="page-hero-lede">{{ c.lede }}</p>

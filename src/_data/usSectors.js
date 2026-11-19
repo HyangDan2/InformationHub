@@ -29,7 +29,7 @@ export default [
     index: "03",
     nameKo: "오늘의 특징주",
     nameEn: "Session movers",
-    noteKo: "지수 밖에서 움직인 이름",
+    noteKo: "지수 밖에서 움직인 특징주",
     noteEn: "Names that moved off-index",
     codes: ["UNH", "DIS"],
   },

@@ -1,6 +1,11 @@
 {% set t = i18n[lang or 'ko'] %}
 {% set root = ('/en/' if lang == 'en' else '/') %}
 {% set channelUrl = (root ~ 'china-ai/') | url %}
+{% set pageLang = 'en' if lang == 'en' else 'ko' %}
+{% set altPath = page.url | alternateUrl %}
+{% set koHref = page.url if pageLang == 'ko' else altPath %}
+{% set enHref = altPath if pageLang == 'ko' else page.url %}
+{% import "parts/lang-switch.njk" as langSwitch %}
 {#- This shelf is China AI's own: US Markets reports live in their own archive. -#}
 {% if lang == 'en' %}
 {% set briefings = collections.briefingsEn | ofChannel("china-ai") %}
@@ -17,11 +22,14 @@
 {% set marketPost = briefings | firstWith("data.market") %}
 
 <section class="page-hero shell" aria-labelledby="channel-title">
-    <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">China AI</span>
-    </nav>
+    <div class="page-top">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">China AI</span>
+        </nav>
+        {{ langSwitch.langSwitch(pageLang, koHref, enHref) }}
+    </div>
     <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>{{ t.channel.eyebrow }}</p>
     <h1 id="channel-title"><span class="channel-h1-flag" aria-hidden="true">🇨🇳</span> China AI</h1>
     <p class="page-hero-lede">{{ t.channel.lede }}</p>

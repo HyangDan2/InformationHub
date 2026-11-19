@@ -1,12 +1,23 @@
 {% set t = i18n[lang or 'ko'] %}
 {% set root = ('/en/' if lang == 'en' else '/') %}
+{% set pageLang = 'en' if lang == 'en' else 'ko' %}
+{% set altPath = page.url | alternateUrl %}
+{% set koHref = page.url if pageLang == 'ko' else altPath %}
+{% set enHref = altPath if pageLang == 'ko' else page.url %}
+{% import "parts/lang-switch.njk" as langSwitch %}
 {% set channelUrl = (root ~ 'china-ai/') | url %}
+{% set usUrl = (root ~ 'us-markets/') | url %}
 {% if lang == 'en' %}{% set briefings = collections.briefingsEn %}{% else %}{% set briefings = collections.briefingsKo %}{% endif %}
 {% set live = channels | where("status", "live") %}
 {% set latest = briefings[0] or null %}
 {% set latestCh = channels | channelOf(latest.data.channel) if latest else null %}
 {% set recent = briefings | limit(8) %}
 {% set total = briefings | length %}
+
+<div class="page-top page-top--home shell">
+    <nav class="crumbs" aria-label="Breadcrumb"><span aria-current="page">InformationHub</span></nav>
+    {{ langSwitch.langSwitch(pageLang, koHref, enHref) }}
+</div>
 
 <section class="hero shell" aria-labelledby="hub-title">
     <div class="hero-copy">
@@ -15,7 +26,7 @@
         <p class="hero-description">{{ t.home.lede | safe }}</p>
         <div class="hero-actions">
             <a class="button button-primary" href="#feed">{{ t.home.ctaLatest }}</a>
-            <a class="button button-ghost" href="{{ channelUrl }}">{{ t.home.ctaChannel }}</a>
+            <a class="button button-ghost" href="#channels">{{ t.home.ctaChannel }}</a>
         </div>
         <dl class="hero-stats">
             <div><dt>{{ t.home.statChannels }}</dt><dd>{{ live | length }}</dd></div>
@@ -112,7 +123,7 @@
         {% include "parts/brief-card.njk" %}
         {% endfor %}
     </div>
-    <p class="feed-more" data-search-default><a href="{{ channelUrl }}">{{ t.home.everyReport }} <span aria-hidden="true">↗</span></a></p>
+    <p class="feed-more" data-search-default><a href="{{ channelUrl }}">{{ t.home.archiveChina }} <span aria-hidden="true">↗</span></a><span class="feed-more-sep" aria-hidden="true">·</span><a href="{{ usUrl }}">{{ t.home.archiveUs }} <span aria-hidden="true">↗</span></a></p>
     {% else %}
     <p class="empty-state">{{ t.home.feedEmpty }}</p>
     {% endif %}
@@ -123,5 +134,8 @@
         <h2>{{ t.home.ctaTitle1 }}<br><span>{{ t.home.ctaTitle2 }}</span></h2>
         <p>{{ t.home.ctaLede }}</p>
     </div>
-    <a class="button button-primary" href="{{ channelUrl }}">{{ t.home.ctaButton }} <span aria-hidden="true">↗</span></a>
+    <div class="cta-actions">
+        <a class="button button-primary" href="{{ channelUrl }}">{{ t.home.ctaChina }} <span aria-hidden="true">↗</span></a>
+        <a class="button button-ghost" href="{{ usUrl }}">{{ t.home.ctaUs }} <span aria-hidden="true">↗</span></a>
+    </div>
 </section>
