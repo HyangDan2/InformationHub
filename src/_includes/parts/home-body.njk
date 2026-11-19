@@ -4,6 +4,7 @@
 {% if lang == 'en' %}{% set briefings = collections.briefingsEn %}{% else %}{% set briefings = collections.briefingsKo %}{% endif %}
 {% set live = channels | where("status", "live") %}
 {% set latest = briefings[0] or null %}
+{% set latestCh = channels | channelOf(latest.data.channel) if latest else null %}
 {% set recent = briefings | limit(8) %}
 {% set total = briefings | length %}
 
@@ -26,10 +27,11 @@
         <div class="hero-terminal">
             <span class="terminal-bar"><i></i><i></i><i></i></span>
             <pre><code><span class="t-dim">$</span> infohub channels
-<span class="t-accent">china-ai</span>  <span class="t-text">{{ t.home.terminalChannels }}</span>
+<span class="t-accent">china-ai</span>   <span class="t-text">{{ t.home.terminalChannels }}</span>
+<span class="t-accent">us-markets</span> <span class="t-text">{{ t.home.terminalUs }}</span>
 
 <span class="t-dim">$</span> infohub latest
-<span class="t-text">{% if latest %}{{ latest.date | isoDate }} · China AI{% else %}{{ t.home.noBriefings }}{% endif %}</span>
+<span class="t-text">{% if latest %}{{ latest.date | isoDate }} · {{ (latestCh | pick("name", lang)) or "China AI" }}{% else %}{{ t.home.noBriefings }}{% endif %}</span>
 <span class="t-dim">$</span> <span class="t-cursor">▌</span></code></pre>
         </div>
         <p>{{ t.home.filed | safe }}</p>
@@ -46,6 +48,7 @@
     </div>
     <div class="channel-grid">
         {% for channel in channels %}
+        {% set chCount = briefings | ofChannel(channel.id) | length %}
         {% if channel.status == "live" %}
         <a class="channel-card" href="{{ (root ~ channel.url) | url }}">
             <span class="card-index">{{ channel.index }} / {{ channel.status | upper }}</span>
@@ -53,7 +56,7 @@
             <span class="channel-blurb">{{ channel | pick("blurb", lang) }}</span>
             <span class="channel-meta"><span>{{ channel | pick("cover", lang) }}</span><span>{{ channel | pick("cadence", lang) }}</span></span>
             <span class="channel-foot">
-                <span class="channel-count">{% if total == 1 %}{{ t.home.reportOne | fmt(total) }}{% else %}{{ t.home.reportMany | fmt(total) }}{% endif %}</span>
+                <span class="channel-count">{% if chCount == 1 %}{{ t.home.reportOne | fmt(chCount) }}{% else %}{{ t.home.reportMany | fmt(chCount) }}{% endif %}</span>
                 <span class="channel-open">{{ t.home.openChannel }} <span aria-hidden="true">↗</span></span>
             </span>
         </a>

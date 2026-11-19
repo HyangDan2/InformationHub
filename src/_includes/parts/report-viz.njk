@@ -1,29 +1,35 @@
 {% set t = i18n[lang or 'ko'] %}
+{#- One desk's report can look up its own watchlist and its own copy. -#}
+{% set channelId = channel or 'china-ai' %}
+{% set v = (t.us.viz if channelId == 'us-markets' else t.viz) %}
+{% set stocks = (usStocks if channelId == 'us-markets' else stocks) %}
 {% if market %}
-<section class="viz viz-market" aria-label="{{ t.viz.marketAria }}">
+<section class="viz viz-market" aria-label="{{ v.marketAria }}">
     <div class="kpi-grid">
         {% for index in market.indices %}
+        {% set digits = index.digits if index.digits is defined else 2 %}
+        {% set changeDigits = index.changeDigits if index.changeDigits is defined else 2 %}
         <div class="kpi-card is-{{ index.pct | pctTone }}">
             <span class="kpi-name">{{ index.name }}</span>
-            <strong class="kpi-value">{{ index.value | num(2) }}</strong>
+            <strong class="kpi-value">{{ index.value | num(digits) }}</strong>
             <span class="kpi-foot">
                 <span class="delta-badge is-{{ index.pct | pctTone }}">{{ index.pct | signedPct }}</span>
-                {% if index.change %}<span class="kpi-abs">{% if index.change > 0 %}+{% endif %}{{ index.change | num(2) }}</span>{% endif %}
+                {% if index.change %}<span class="kpi-abs">{% if index.change > 0 %}+{% endif %}{{ index.change | num(changeDigits) }}</span>{% endif %}
             </span>
         </div>
         {% endfor %}
         {% if market.turnover %}
         <div class="kpi-card kpi-card-wide" style="grid-column: span {{ 2 if market.semisInflow else 4 }}">
-            <span class="kpi-name">{{ t.viz.turnover }}</span>
+            <span class="kpi-name">{{ v.turnover }}</span>
             <strong class="kpi-value kpi-value-sm">{{ market.turnover }}</strong>
             {% if market.turnoverChange %}<span class="kpi-foot"><span class="kpi-abs">{{ market.turnoverChange }}</span></span>{% endif %}
         </div>
         {% endif %}
         {% if market.semisInflow %}
         <div class="kpi-card kpi-card-wide">
-            <span class="kpi-name">{{ t.viz.semis }}</span>
+            <span class="kpi-name">{{ v.semis }}</span>
             <strong class="kpi-value kpi-value-sm">{{ market.semisInflow }}</strong>
-            <span class="kpi-foot"><span class="kpi-abs">{{ market.semisNote or t.viz.semisFallback }}</span></span>
+            <span class="kpi-foot"><span class="kpi-abs">{{ market.semisNote or v.semisFallback }}</span></span>
         </div>
         {% endif %}
     </div>
@@ -31,8 +37,8 @@
     {% set indexMax = market.indices | spread("pct") %}
     <div class="viz-card">
         <div class="viz-card-head">
-            <h3>{{ t.viz.indices }}</h3>
-            <span class="viz-note">{{ t.viz.vsPrevClose }}</span>
+            <h3>{{ v.indices }}</h3>
+            <span class="viz-note">{{ v.vsPrevClose }}</span>
         </div>
         <ul class="div-bars">
             {% for index in market.indices %}
@@ -52,8 +58,8 @@
     {% set rowMax = watchlistStatus | spread("pct") %}
     <div class="viz-card">
         <div class="viz-card-head">
-            <h3>{{ t.viz.stocks }}</h3>
-            <span class="viz-note">{{ t.viz.stocksBasis }}</span>
+            <h3>{{ v.stocks }}</h3>
+            <span class="viz-note">{{ v.stocksBasis }}</span>
         </div>
         <ul class="div-bars div-bars-stock">
             {% for row in watchlistStatus %}
@@ -78,8 +84,8 @@
     {% set tradeMax = turnoverTop | spread("value") %}
     <div class="viz-card">
         <div class="viz-card-head">
-            <h3>{{ t.viz.turnoverTop }}</h3>
-            <span class="viz-note">{{ t.viz.unitEok }}</span>
+            <h3>{{ v.turnoverTop }}</h3>
+            <span class="viz-note">{{ v.unitEok }}</span>
         </div>
         <ul class="bars">
             {% for row in turnoverTop %}

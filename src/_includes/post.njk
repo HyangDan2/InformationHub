@@ -3,10 +3,16 @@ layout: base.njk
 ---
 {% set t = i18n[lang or 'ko'] %}
 {% set root = ('/en/' if lang == 'en' else '/') %}
-{% set channelUrl = (root ~ 'china-ai/') | url %}
+{#- Which desk filed this report: its own archive, its own name, its own watchlist. -#}
+{% set channelId = channel or 'china-ai' %}
+{% set ch = channels | channelOf(channelId) %}
+{% set channelName = ch | pick("name", lang) %}
+{% set channelUrl = (root ~ (ch.url or 'china-ai/')) | url %}
+{% set postStocks = (usStocks if channelId == 'us-markets' else stocks) %}
 {% if lang == 'en' %}{% set list = collections.briefingsEn %}{% set day = date | displayDate %}{% set wpm = 230 %}{% else %}{% set list = collections.briefingsKo %}{% set day = date | koreanDate %}{% set wpm = 350 %}{% endif %}
+{% set list = list | ofChannel(channelId) %}
 {% set pager = list | neighbors(page.url) %}
-{% set named = tickers | mentionedStocks(stocks) %}
+{% set named = tickers | mentionedStocks(postStocks) %}
 {% set kind = reportKind or "daily" %}
 {% set report = content | reportSections %}
 {% set minutes = content | readingTime(wpm) %}
@@ -14,14 +20,14 @@ layout: base.njk
     <nav class="crumbs" aria-label="Breadcrumb">
         <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
         <span aria-hidden="true">/</span>
-        <a href="{{ channelUrl }}">China AI</a>
+        <a href="{{ channelUrl }}">{{ channelName }}</a>
         <span aria-hidden="true">/</span>
         <span aria-current="page">{{ date | isoDate }}</span>
     </nav>
 
     <header class="post-header">
         <p class="eyebrow">
-            <span class="eyebrow-dot" aria-hidden="true"></span>China AI ·
+            <span class="eyebrow-dot" aria-hidden="true"></span>{{ channelName }} ·
             {% if kind == "spotlight" %}{{ t.post.kindSpotlight }}{% else %}{{ t.post.kindDaily }}{% endif %}
         </p>
         <h1>{{ title }}</h1>
@@ -67,7 +73,7 @@ layout: base.njk
     <nav class="post-nav" aria-label="{{ t.post.navAria }}">
         <a class="post-nav-item" href="{{ channelUrl }}">
             <span class="post-nav-label">{{ t.post.navChannelLabel }}</span>
-            <strong>{{ t.post.navChannelStrong }}</strong>
+            <strong>{{ t.post.navChannelAll | fmt(channelName) }}</strong>
         </a>
         <a class="post-nav-item" href="{{ root | url }}">
             <span class="post-nav-label">{{ t.post.navHubLabel }}</span>

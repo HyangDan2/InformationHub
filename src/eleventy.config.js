@@ -116,8 +116,12 @@ function mentionedStocks(tickers = [], stocks = []) {
 
 /** A ticker heading gets a stable anchor; everything else gets a Korean-safe slug. */
 function headingId(text = "") {
-  const code = String(text).match(/\b(\d{6})\b/);
+  const value = String(text).trim();
+  const code = value.match(/\b(\d{6})\b/);
   if (code) return `stock-${code[1]}`;
+  /* US names are headings like `NVDA · Nvidia` — the ticker leads the line. */
+  const ticker = value.match(/^([A-Z]{2,5})(?:\s|[·\-–—:|]|$)/);
+  if (ticker) return `stock-${ticker[1]}`;
   return String(text)
     .toLowerCase()
     .replace(/[()[\]{}·:：,.'"`~!?<>/\\|+&*%^$#@]/g, " ")
@@ -128,9 +132,9 @@ function headingId(text = "") {
 /* Korean and English section names both have to land on the same role, in this
    order — "Market Overview" must not be caught by the watchlist test. */
 const ROLE_TESTS = [
-  [/시황|장세|market/i, "market"],
-  [/항목별|종목별|watchlist|stock/i, "stocks"],
-  [/추후|체크|참고|checkpoint|what to watch|watch ?next|risks/i, "watch"],
+  [/시황|장세|session|market/i, "market"],
+  [/항목별|종목별|빅테크|특징주|반도체|watchlist|stock|mega-caps|semis|movers/i, "stocks"],
+  [/추후|체크|참고|체크포인트|checkpoint|what to (watch|check)|watch ?next|check ?next|risks/i, "watch"],
   [/출처|sources?/i, "sources"],
 ];
 
@@ -293,6 +297,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("pad2", pad2);
   eleventyConfig.addFilter("pctTone", pctTone);
   eleventyConfig.addFilter("firstWith", firstWith);
+  /** posts | ofChannel("us-markets") → only that desk's reports (a pager never crosses channels). */
+  eleventyConfig.addFilter("ofChannel", (list = [], id = "china-ai") =>
+    (list || []).filter((item) => (item?.data?.channel || "china-ai") === id),
+  );
+  /** channels | channelOf("us-markets") → that channel's entry, or null. */
+  eleventyConfig.addFilter("channelOf", (list = [], id = "") =>
+    (list || []).find((item) => item && item.id === id) || null,
+  );
   eleventyConfig.addFilter("where", (array = [], key, value) => array.filter((item) => item && item[key] === value));
   eleventyConfig.addFilter("limit", (array = [], count = array.length) => array.slice(0, count));
 

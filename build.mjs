@@ -23,7 +23,7 @@ const srcDir = join(root, "src");
 const outDir = join(srcDir, "_site");
 
 /** Everything in the repo root that is generated and may be replaced. */
-const GENERATED = ["index.html", "en", "china-ai", "posts", "assets", "search.json", "og-image.png", "favicon.ico"];
+const GENERATED = ["index.html", "en", "china-ai", "us-markets", "posts", "assets", "search.json", "og-image.png", "favicon.ico"];
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, { cwd, stdio: "inherit", shell: process.platform === "win32" });
