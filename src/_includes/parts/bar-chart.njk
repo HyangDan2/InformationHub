@@ -9,7 +9,7 @@
         <li class="bar-row{% if row.subject %} is-subject{% endif %}">
             <span class="bar-label">{{ row.label }}{% if row.sub %}<em>{{ row.sub }}</em>{% endif %}</span>
             <span class="bar-track"><span class="bar-fill" style="--w:{{ row.value | barWidth(cmax) }}"></span></span>
-            <span class="bar-value">{{ row.value | num(row.digits or 2) }}{% if row.note %}<em>{{ row.note }}</em>{% endif %}</span>
+            <span class="bar-value">{{ row.value | num(row.digits if row.digits is defined else 2) }}{% if row.note %}<em>{{ row.note }}</em>{% endif %}</span>
         </li>
         {% endfor %}
     </ul>
