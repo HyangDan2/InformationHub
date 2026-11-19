@@ -1,17 +1,19 @@
-{%- set channelName = "China AI" -%}
+{%- set t = i18n[lang or 'ko'] -%}
 {%- set kind = post.data.reportKind or "daily" -%}
 <article class="brief-card" data-briefing data-kind="{{ kind }}">
     <a class="brief-link" href="{{ post.url | url }}">
         <span class="brief-meta">
-            <span class="brief-channel">{{ channelName }}</span>
-            <span class="kind-badge kind-{{ kind }}">{% if kind == "spotlight" %}Spotlight{% else %}Daily{% endif %}</span>
-            <time datetime="{{ post.date | isoDate }}">{{ post.date | displayDate }}</time>
+            <span class="brief-channel">China AI</span>
+            <span class="kind-badge kind-{{ kind }}">{% if kind == "spotlight" %}{{ t.kind.spotlight }}{% else %}{{ t.kind.daily }}{% endif %}</span>
+            <time datetime="{{ post.date | isoDate }}">{{ post.date | shortDate(lang) }}</time>
         </span>
         <span class="brief-title">{{ post.data.title }}</span>
         <span class="brief-summary">{{ post.data.summary }}</span>
         <span class="brief-foot">
-            <span>{{ post.data.tickers | length }} stock{% if post.data.tickers | length != 1 %}s{% endif %}</span>
-            <span>{{ post.data.sources | length }} sources</span>
+            {% set nStocks = post.data.tickers | length %}
+            {% set nSources = post.data.sources | length %}
+            <span>{{ (t.channel.stocksOne if nStocks == 1 else t.channel.stocksMany) | fmt(nStocks) }}</span>
+            <span>{{ (t.channel.sourcesOne if nSources == 1 else t.channel.sourcesMany) | fmt(nSources) }}</span>
             <span class="brief-arrow" aria-hidden="true">↗</span>
         </span>
     </a>

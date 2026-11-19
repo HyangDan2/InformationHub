@@ -1,6 +1,9 @@
 {#- InformationHub — the same header, drawer, and theme chrome as Web-HQ / the three hubs / Diary -#}
-{%- set pageLang = lang or 'en' -%}
+{%- set pageLang = lang or 'ko' -%}
+{%- set t = i18n[pageLang] -%}
 {%- set pageTitle = (title + ' · ' if title else '') + site.title -%}
+{%- set altUrl = page.url | alternateUrl -%}
+{%- if pageLang == 'en' -%}{%- set koHref = altUrl -%}{%- set enHref = page.url -%}{%- else -%}{%- set koHref = page.url -%}{%- set enHref = altUrl -%}{%- endif -%}
 <!DOCTYPE html>
 <html lang="{{ pageLang }}">
 <head>
@@ -10,8 +13,13 @@
     <title>{{ pageTitle }}</title>
     <meta name="description" content="{{ description or site.description }}">
     <link rel="canonical" href="{{ site.url | canonical(page.url) }}">
+    <link rel="alternate" hreflang="ko" href="{{ site.url | canonical(koHref) }}">
+    <link rel="alternate" hreflang="en" href="{{ site.url | canonical(enHref) }}">
+    <link rel="alternate" hreflang="x-default" href="{{ site.url | canonical(koHref) }}">
     <meta property="og:type" content="{% if page.url.includes('/posts/') %}article{% else %}website{% endif %}">
     <meta property="og:site_name" content="HD2Lab · InformationHub">
+    <meta property="og:locale" content="{{ t.locale }}">
+    <meta property="og:locale:alternate" content="{{ i18n[pageLang | otherLang].locale }}">
     <meta property="og:title" content="{{ pageTitle }}">
     <meta property="og:description" content="{{ description or site.description }}">
     <meta property="og:url" content="{{ site.url | canonical(page.url) }}">
@@ -26,26 +34,28 @@
     <meta name="twitter:description" content="{{ description or site.description }}">
     <meta name="twitter:image" content="{{ site.ogImage }}">
     <script>try{var h=localStorage.getItem('hd2-theme');document.documentElement.setAttribute('data-theme',h==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}</script>
-    <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261119-info2">
-    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261119-info2" defer></script>
-    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261119-info2">
-    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261119-info2">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261119-info2">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261119-info2">
-    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | url }}?v=20261119-info2">
+    <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261119-info3">
+    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261119-info3" defer></script>
+    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261119-info3">
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261119-info3">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261119-info3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261119-info3">
+    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | url }}?v=20261119-info3">
 </head>
 <body class="page-{{ page.url | pageClass }}">
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{{ t.a11y.skip }}</a>
     {% set chinaCurrent = navSection == 'china-ai' %}
     {% set infoCurrent = navSection == 'info-top' %}
+    {% set chinaUrl = ('/en/china-ai/' if pageLang == 'en' else '/china-ai/') | url %}
+    {% set homeUrl = ('/en/' if pageLang == 'en' else '/') | url %}
     <header class="site-header">
         <div class="header-inner">
-            <a class="brand" href="{{ '/' | url }}" aria-label="HD2Lab InformationHub home">
+            <a class="brand" href="{{ homeUrl }}" aria-label="{{ t.a11y.home }}">
                 <span class="mark" aria-hidden="true"></span>
                 <span class="brand-name">{{ site.brand }}</span>
                 <em>InformationHub</em>
             </a>
-            <nav class="header-nav" aria-label="Hub categories">
+            <nav class="header-nav" aria-label="{{ t.a11y.nav }}">
                 <a class="nav-tab" href="{{ site.nav.webHq }}">Web-HQ</a>
                 <div class="nav-dropdown" data-nav-group="apps">
                     <a class="nav-tab nav-dropdown-trigger" href="{{ site.nav.apps }}">Apps
@@ -92,19 +102,32 @@
                     </div>
                 </div>
                 <div class="nav-dropdown{% if infoCurrent or chinaCurrent %} is-active{% endif %}" data-nav-group="info">
-                    <a class="nav-tab nav-dropdown-trigger{% if infoCurrent or chinaCurrent %} is-current{% endif %}" href="{{ '/' | url }}"{% if infoCurrent %} aria-current="page"{% endif %}>Info
+                    <a class="nav-tab nav-dropdown-trigger{% if infoCurrent or chinaCurrent %} is-current{% endif %}" href="{{ homeUrl }}"{% if infoCurrent %} aria-current="page"{% endif %}>Info
                         <span class="nav-caret" aria-hidden="true">
                             <svg width="10" height="10" viewBox="0 0 10 10" focusable="false"><path d="M1.8 3.5 5 6.7l3.2-3.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </span>
                     </a>
                     <div class="nav-dropdown-panel">
-                        <a class="nav-dropdown-link{% if chinaCurrent %} is-current{% endif %}" href="{{ '/china-ai/' | url }}"{% if chinaCurrent %} aria-current="page"{% endif %}>China AI</a>
+                        <a class="nav-dropdown-link{% if chinaCurrent %} is-current{% endif %}" href="{{ chinaUrl }}"{% if chinaCurrent %} aria-current="page"{% endif %}>China AI</a>
                     </div>
                 </div>
                 <a class="nav-tab" href="{{ site.nav.about }}">About</a>
             </nav>
             <div class="header-actions">
-                <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+                <div class="lang-toggle" role="group" aria-label="{{ t.a11y.language }}">
+                    {% if pageLang == 'ko' %}
+                    <span class="lang-option is-current" aria-current="true" lang="ko">KO</span>
+                    {% else %}
+                    <a class="lang-option" href="{{ koHref | url }}" hreflang="ko" lang="ko" data-lang-link="ko" aria-label="{{ i18n.ko.name }}" title="{{ i18n.ko.name }}">KO</a>
+                    {% endif %}
+                    <span class="lang-divider" aria-hidden="true"></span>
+                    {% if pageLang == 'en' %}
+                    <span class="lang-option is-current" aria-current="true" lang="en">EN</span>
+                    {% else %}
+                    <a class="lang-option" href="{{ enHref | url }}" hreflang="en" lang="en" data-lang-link="en" aria-label="{{ i18n.en.name }}" title="{{ i18n.en.name }}">EN</a>
+                    {% endif %}
+                </div>
+                <button class="menu-button" type="button" aria-label="{{ t.a11y.openMenu }}" aria-expanded="false" aria-controls="mobile-drawer">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                     </svg>
@@ -114,17 +137,17 @@
     </header>
 
     <div class="drawer-backdrop" hidden></div>
-    <aside id="mobile-drawer" class="mobile-drawer" aria-label="Hub navigation" aria-hidden="true">
+    <aside id="mobile-drawer" class="mobile-drawer" aria-label="{{ t.a11y.drawer }}" aria-hidden="true">
         <div class="drawer-head">
-            <span class="drawer-title"><span class="mark mark-sm" aria-hidden="true"></span><span>Navigation</span></span>
-            <button class="drawer-close" type="button" aria-label="Close menu">&times;</button>
+            <span class="drawer-title"><span class="mark mark-sm" aria-hidden="true"></span><span>{{ t.a11y.drawerTitle }}</span></span>
+            <button class="drawer-close" type="button" aria-label="{{ t.a11y.closeMenu }}">&times;</button>
         </div>
-        <nav class="drawer-list" aria-label="Hub categories">
+        <nav class="drawer-list" aria-label="{{ t.a11y.nav }}">
             <a class="drawer-item" href="{{ site.nav.webHq }}">Web-HQ</a>
             <div class="drawer-group" data-drawer-group="apps">
                 <div class="drawer-row">
                     <a class="drawer-item" href="{{ site.nav.apps }}">Apps</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-apps-sub" aria-label="Apps sections">
+                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-apps-sub" aria-label="{{ t.a11y.appsSections }}">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -144,7 +167,7 @@
             <div class="drawer-group" data-drawer-group="play">
                 <div class="drawer-row">
                     <a class="drawer-item" href="{{ site.nav.play }}">Play</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-play-sub" aria-label="Play sections">
+                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-play-sub" aria-label="{{ t.a11y.playSections }}">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -161,7 +184,7 @@
             <div class="drawer-group" data-drawer-group="diary">
                 <div class="drawer-row">
                     <a class="drawer-item" href="{{ site.nav.diary }}">Diary</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-diary-sub" aria-label="Diary sections">
+                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-diary-sub" aria-label="{{ t.a11y.diarySections }}">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -177,18 +200,31 @@
             {# the Info group starts open on every InformationHub page #}
             <div class="drawer-group is-open" data-drawer-group="info">
                 <div class="drawer-row">
-                    <a class="drawer-item{% if infoCurrent %} is-current{% endif %}" href="{{ '/' | url }}"{% if infoCurrent %} aria-current="page"{% endif %}>Info</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="true" aria-controls="drawer-info-sub" aria-label="Info channels">
+                    <a class="drawer-item{% if infoCurrent %} is-current{% endif %}" href="{{ homeUrl }}"{% if infoCurrent %} aria-current="page"{% endif %}>Info</a>
+                    <button class="drawer-toggle" type="button" aria-expanded="true" aria-controls="drawer-info-sub" aria-label="{{ t.a11y.infoSections }}">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
                 <div class="drawer-sub" id="drawer-info-sub">
                     <div class="drawer-sub-inner">
-                        <a class="drawer-subitem{% if chinaCurrent %} is-current{% endif %}" href="{{ '/china-ai/' | url }}"{% if chinaCurrent %} aria-current="page"{% endif %}>China AI</a>
+                        <a class="drawer-subitem{% if chinaCurrent %} is-current{% endif %}" href="{{ chinaUrl }}"{% if chinaCurrent %} aria-current="page"{% endif %}>China AI</a>
                     </div>
                 </div>
             </div>
             <a class="drawer-item" href="{{ site.nav.about }}">About</a>
+            <div class="drawer-lang lang-toggle" role="group" aria-label="{{ t.a11y.language }}">
+                {% if pageLang == 'ko' %}
+                <span class="lang-option is-current" aria-current="true" lang="ko">KO</span>
+                {% else %}
+                <a class="lang-option" href="{{ koHref | url }}" hreflang="ko" lang="ko" data-lang-link="ko" aria-label="{{ i18n.ko.name }}">KO</a>
+                {% endif %}
+                <span class="lang-divider" aria-hidden="true"></span>
+                {% if pageLang == 'en' %}
+                <span class="lang-option is-current" aria-current="true" lang="en">EN</span>
+                {% else %}
+                <a class="lang-option" href="{{ enHref | url }}" hreflang="en" lang="en" data-lang-link="en" aria-label="{{ i18n.en.name }}">EN</a>
+                {% endif %}
+            </div>
         </nav>
     </aside>
 
@@ -203,8 +239,9 @@
             <a href="https://github.com/{{ site.repo }}">GitHub <span aria-hidden="true">↗</span></a>
         </div>
     </footer>
-    <script>window.INFO_HUB_BASE = "{{ '/' | url }}";</script>
-    {% if pageScript %}<script src="{{ pageScript | url }}?v=20261119-info2" defer></script>{% endif %}
-    <script src="{{ '/assets/info-nav.js' | url }}?v=20261119-info2" defer></script>
+    <script>window.INFO_HUB_BASE = "{{ ('/en/' if pageLang == 'en' else '/') | url }}";window.INFO_HUB_LANG = "{{ pageLang }}";</script>
+    {% if pageScript %}<script src="{{ pageScript | url }}?v=20261119-info3" defer></script>{% endif %}
+    <script src="{{ '/assets/info-lang.js' | url }}?v=20261119-info3" defer></script>
+    <script src="{{ '/assets/info-nav.js' | url }}?v=20261119-info3" defer></script>
 </body>
 </html>

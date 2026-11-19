@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#FAFAFD">
     <title>HD2Lab | InformationHub</title>
-    <meta name="description" content="HD2Lab InformationHub — channel-by-channel daily briefings. The China AI desk publishes one report on 11 semiconductor names every weekday evening at 19:00 KST.">
+    <meta name="description" content="HD2Lab InformationHub — 채널별 데일리 브리핑. China AI 데스크가 매주 평일 저녁 19:00 KST에 중국 AI 반도체 11종목 리포트를 한 편씩 발행합니다.">
     <link rel="canonical" href="https://hyangdan2.github.io/InformationHub/">
+    <link rel="alternate" hreflang="ko" href="https://hyangdan2.github.io/InformationHub/">
+    <link rel="alternate" hreflang="en" href="https://hyangdan2.github.io/InformationHub/en/">
+    <link rel="alternate" hreflang="x-default" href="https://hyangdan2.github.io/InformationHub/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="HD2Lab · InformationHub">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:title" content="HD2Lab | InformationHub">
-    <meta property="og:description" content="HD2Lab InformationHub — channel-by-channel daily briefings. The China AI desk publishes one report on 11 semiconductor names every weekday evening at 19:00 KST.">
+    <meta property="og:description" content="HD2Lab InformationHub — 채널별 데일리 브리핑. China AI 데스크가 매주 평일 저녁 19:00 KST에 중국 AI 반도체 11종목 리포트를 한 편씩 발행합니다.">
     <meta property="og:url" content="https://hyangdan2.github.io/InformationHub/">
     <meta property="og:image" content="https://hyangdan2.github.io/InformationHub/og-image.png">
     <meta property="og:image:secure_url" content="https://hyangdan2.github.io/InformationHub/og-image.png">
@@ -20,29 +25,31 @@
     <meta property="og:image:alt" content="HD2Lab | InformationHub — daily reports, one calm place.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="HD2Lab | InformationHub">
-    <meta name="twitter:description" content="HD2Lab InformationHub — channel-by-channel daily briefings. The China AI desk publishes one report on 11 semiconductor names every weekday evening at 19:00 KST.">
+    <meta name="twitter:description" content="HD2Lab InformationHub — 채널별 데일리 브리핑. China AI 데스크가 매주 평일 저녁 19:00 KST에 중국 AI 반도체 11종목 리포트를 한 편씩 발행합니다.">
     <meta name="twitter:image" content="https://hyangdan2.github.io/InformationHub/og-image.png">
     <script>try{var h=localStorage.getItem('hd2-theme');document.documentElement.setAttribute('data-theme',h==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}</script>
-    <link rel="stylesheet" href="/InformationHub/assets/hd2-theme.css?v=20261119-info2">
-    <script src="/InformationHub/assets/hd2-theme.js?v=20261119-info2" defer></script>
-    <link rel="stylesheet" href="/InformationHub/assets/style.css?v=20261119-info2">
-    <link rel="icon" type="image/svg+xml" href="/InformationHub/assets/favicon.svg?v=20261119-info2">
-    <link rel="icon" type="image/png" sizes="32x32" href="/InformationHub/assets/favicon-32x32.png?v=20261119-info2">
-    <link rel="apple-touch-icon" sizes="180x180" href="/InformationHub/assets/apple-touch-icon.png?v=20261119-info2">
-    <link rel="shortcut icon" href="/InformationHub/assets/favicon.ico?v=20261119-info2">
+    <link rel="stylesheet" href="/InformationHub/assets/hd2-theme.css?v=20261119-info3">
+    <script src="/InformationHub/assets/hd2-theme.js?v=20261119-info3" defer></script>
+    <link rel="stylesheet" href="/InformationHub/assets/style.css?v=20261119-info3">
+    <link rel="icon" type="image/svg+xml" href="/InformationHub/assets/favicon.svg?v=20261119-info3">
+    <link rel="icon" type="image/png" sizes="32x32" href="/InformationHub/assets/favicon-32x32.png?v=20261119-info3">
+    <link rel="apple-touch-icon" sizes="180x180" href="/InformationHub/assets/apple-touch-icon.png?v=20261119-info3">
+    <link rel="shortcut icon" href="/InformationHub/assets/favicon.ico?v=20261119-info3">
 </head>
 <body class="page-home">
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">본문으로 이동</a>
+    
+    
     
     
     <header class="site-header">
         <div class="header-inner">
-            <a class="brand" href="/InformationHub/" aria-label="HD2Lab InformationHub home">
+            <a class="brand" href="/InformationHub/" aria-label="HD2Lab InformationHub 홈">
                 <span class="mark" aria-hidden="true"></span>
                 <span class="brand-name">HD2Lab</span>
                 <em>InformationHub</em>
             </a>
-            <nav class="header-nav" aria-label="Hub categories">
+            <nav class="header-nav" aria-label="허브 카테고리">
                 <a class="nav-tab" href="https://hyangdan2.github.io/">Web-HQ</a>
                 <div class="nav-dropdown" data-nav-group="apps">
                     <a class="nav-tab nav-dropdown-trigger" href="https://hyangdan2.github.io/ApplicationHub/">Apps
@@ -101,7 +108,16 @@
                 <a class="nav-tab" href="https://hyangdan2.github.io/about/">About</a>
             </nav>
             <div class="header-actions">
-                <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+                <div class="lang-toggle" role="group" aria-label="언어">
+                    
+                    <span class="lang-option is-current" aria-current="true" lang="ko">KO</span>
+                    
+                    <span class="lang-divider" aria-hidden="true"></span>
+                    
+                    <a class="lang-option" href="/InformationHub/en/" hreflang="en" lang="en" data-lang-link="en" aria-label="English" title="English">EN</a>
+                    
+                </div>
+                <button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-drawer">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                     </svg>
@@ -111,17 +127,17 @@
     </header>
 
     <div class="drawer-backdrop" hidden></div>
-    <aside id="mobile-drawer" class="mobile-drawer" aria-label="Hub navigation" aria-hidden="true">
+    <aside id="mobile-drawer" class="mobile-drawer" aria-label="허브 내비게이션" aria-hidden="true">
         <div class="drawer-head">
-            <span class="drawer-title"><span class="mark mark-sm" aria-hidden="true"></span><span>Navigation</span></span>
-            <button class="drawer-close" type="button" aria-label="Close menu">&times;</button>
+            <span class="drawer-title"><span class="mark mark-sm" aria-hidden="true"></span><span>내비게이션</span></span>
+            <button class="drawer-close" type="button" aria-label="메뉴 닫기">&times;</button>
         </div>
-        <nav class="drawer-list" aria-label="Hub categories">
+        <nav class="drawer-list" aria-label="허브 카테고리">
             <a class="drawer-item" href="https://hyangdan2.github.io/">Web-HQ</a>
             <div class="drawer-group" data-drawer-group="apps">
                 <div class="drawer-row">
                     <a class="drawer-item" href="https://hyangdan2.github.io/ApplicationHub/">Apps</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-apps-sub" aria-label="Apps sections">
+                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-apps-sub" aria-label="Apps 하위 메뉴">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -141,7 +157,7 @@
             <div class="drawer-group" data-drawer-group="play">
                 <div class="drawer-row">
                     <a class="drawer-item" href="https://hyangdan2.github.io/GameHub/">Play</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-play-sub" aria-label="Play sections">
+                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-play-sub" aria-label="Play 하위 메뉴">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -158,7 +174,7 @@
             <div class="drawer-group" data-drawer-group="diary">
                 <div class="drawer-row">
                     <a class="drawer-item" href="https://hyangdan2.github.io/diary/">Diary</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-diary-sub" aria-label="Diary sections">
+                    <button class="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer-diary-sub" aria-label="Diary 하위 메뉴">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -175,7 +191,7 @@
             <div class="drawer-group is-open" data-drawer-group="info">
                 <div class="drawer-row">
                     <a class="drawer-item is-current" href="/InformationHub/" aria-current="page">Info</a>
-                    <button class="drawer-toggle" type="button" aria-expanded="true" aria-controls="drawer-info-sub" aria-label="Info channels">
+                    <button class="drawer-toggle" type="button" aria-expanded="true" aria-controls="drawer-info-sub" aria-label="Info 채널">
                         <svg class="drawer-caret" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3.5 5.75 8 10.25l4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
                 </div>
@@ -186,6 +202,15 @@
                 </div>
             </div>
             <a class="drawer-item" href="https://hyangdan2.github.io/about/">About</a>
+            <div class="drawer-lang lang-toggle" role="group" aria-label="언어">
+                
+                <span class="lang-option is-current" aria-current="true" lang="ko">KO</span>
+                
+                <span class="lang-divider" aria-hidden="true"></span>
+                
+                <a class="lang-option" href="/InformationHub/en/" hreflang="en" lang="en" data-lang-link="en" aria-label="English">EN</a>
+                
+            </div>
         </nav>
     </aside>
 
@@ -195,42 +220,46 @@
 
 
 
+
+
+
+
 <section class="hero shell" aria-labelledby="hub-title">
     <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>HD2Lab / InformationHub</p>
-        <h1 id="hub-title">Read the day.<br><span>Skip the noise.</span></h1>
-        <p class="hero-description">Channel-by-channel reports on the markets worth watching.<br>One report a day, filed after the close —<br>one calm place, no feed to keep up with.</p>
+        <h1 id="hub-title">하루를 읽고,<br><span>잡음은 건너뜁니다.</span></h1>
+        <p class="hero-description">지켜볼 시장을 채널별로 정리합니다.<br>장이 끝난 뒤 하루 한 편,<br>따라가야 할 피드 없이 한 곳에서.</p>
         <div class="hero-actions">
-            <a class="button button-primary" href="#feed">Read the latest</a>
-            <a class="button button-ghost" href="/InformationHub/china-ai/">Open China AI</a>
+            <a class="button button-primary" href="#feed">최신 리포트 읽기</a>
+            <a class="button button-ghost" href="/InformationHub/china-ai/">China AI 열기</a>
         </div>
         <dl class="hero-stats">
-            <div><dt>Channels</dt><dd>1</dd></div>
-            <div><dt>Reports</dt><dd>3</dd></div>
-            <div><dt>Last update</dt><dd>Nov 19, 2026</dd></div>
+            <div><dt>채널</dt><dd>1</dd></div>
+            <div><dt>리포트</dt><dd>3</dd></div>
+            <div><dt>최근 업데이트</dt><dd>2026. 11. 19.</dd></div>
         </dl>
     </div>
     <div class="hero-visual" aria-hidden="true">
         <div class="hero-terminal">
             <span class="terminal-bar"><i></i><i></i><i></i></span>
             <pre><code><span class="t-dim">$</span> infohub channels
-<span class="t-accent">china-ai</span>  <span class="t-text">11 stocks · 19:00 KST</span>
+<span class="t-accent">china-ai</span>  <span class="t-text">11종목 · 19:00 KST</span>
 
 <span class="t-dim">$</span> infohub latest
 <span class="t-text">2026-11-19 · China AI</span>
 <span class="t-dim">$</span> <span class="t-cursor">▌</span></code></pre>
         </div>
-        <p>Filed <span>+</span> Read <span>+</span> Repeat</p>
+        <p>발행 <span>+</span> 읽기 <span>+</span> 반복</p>
     </div>
 </section>
 
 <section class="channels shell" id="channels" aria-labelledby="channels-title">
     <div class="section-heading">
         <div>
-            <p class="eyebrow">Channels</p>
-            <h2 id="channels-title">One hub, a shelf of desks.</h2>
+            <p class="eyebrow">채널</p>
+            <h2 id="channels-title">허브 하나, 데스크 여러 개.</h2>
         </div>
-        <p>Each channel keeps its own watchlist, cadence, and archive. Open one to read its reports.</p>
+        <p>채널마다 관심종목과 발행 주기, 아카이브를 따로 가집니다. 하나를 열어 리포트를 읽으세요.</p>
     </div>
     <div class="channel-grid">
         
@@ -238,19 +267,22 @@
         <a class="channel-card" href="/InformationHub/china-ai/">
             <span class="card-index">01 / LIVE</span>
             <span class="channel-head"><span class="channel-flag" aria-hidden="true">🇨🇳</span><span class="channel-name">China AI</span></span>
-            <span class="channel-blurb">Eleven China AI semiconductor names — chips, foundry, optics, memory — in one report every weekday evening.</span>
-            <span class="channel-meta"><span>11-Stock Watchlist</span><span>Daily 19:00 KST · Mon–Fri</span></span>
-            <span class="channel-foot"><span class="channel-count">3 reports</span><span class="channel-open">Open channel <span aria-hidden="true">↗</span></span></span>
+            <span class="channel-blurb">AI 칩·파운드리·광모듈·메모리 11개 종목을 매주 평일 저녁 한 편으로 정리합니다.</span>
+            <span class="channel-meta"><span>11종목 관심목록</span><span>월~금 19:00 KST 발행</span></span>
+            <span class="channel-foot">
+                <span class="channel-count">리포트 3편</span>
+                <span class="channel-open">채널 열기 <span aria-hidden="true">↗</span></span>
+            </span>
         </a>
         
         
         
         <div class="channel-card is-planned">
             <span class="card-index">02 / PLANNED</span>
-            <span class="channel-head"><span class="channel-flag" aria-hidden="true">＋</span><span class="channel-name">Next desk</span></span>
-            <span class="channel-blurb">A second desk is being prepared. The shelf is built to hold it without a redesign.</span>
-            <span class="channel-meta"><span>Open slot</span><span>Being prepared</span></span>
-            <span class="channel-foot"><span class="channel-count">Not open yet</span><span class="channel-open">Reserved</span></span>
+            <span class="channel-head"><span class="channel-flag" aria-hidden="true">＋</span><span class="channel-name">다음 채널</span></span>
+            <span class="channel-blurb">두 번째 채널을 준비하고 있습니다. 같은 구조로 바로 얹을 수 있게 만들어 두었습니다.</span>
+            <span class="channel-meta"><span>빈 자리</span><span>준비 중</span></span>
+            <span class="channel-foot"><span class="channel-count">아직 준비 중</span><span class="channel-open">예약됨</span></span>
         </div>
         
         
@@ -260,26 +292,34 @@
 <section class="recent shell" id="feed" aria-labelledby="feed-title">
     <div class="section-heading">
         <div>
-            <p class="eyebrow">Latest reports</p>
-            <h2 id="feed-title">Everything, newest first.</h2>
+            <p class="eyebrow">최신 리포트</p>
+            <h2 id="feed-title">전부, 최신순으로.</h2>
         </div>
-        <p>3 reports across every channel</p>
+        <p>모든 채널 3편</p>
     </div>
     
-    <form class="hub-search" role="search" data-hub-search>
+    <form class="hub-search" role="search" data-hub-search
+          data-no-match="“%s%”에 맞는 리포트가 없습니다. 티커나 회사명, 날짜로 다시 찾아보세요."
+          data-match-one="%s%편이 “%s%”와 일치합니다"
+          data-match-many="%s%편이 “%s%”와 일치합니다"
+          data-none="“%s%”와 맞는 리포트가 없습니다"
+          data-stocks-one="%s%종목"
+          data-stocks-many="%s%종목"
+          data-sources-one="출처 %s%"
+          data-sources-many="출처 %s%">
         <label class="search-field" for="hub-search-input">
             <span class="search-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
             </span>
-            <span class="sr-only">Search briefings</span>
-            <input class="search-input" id="hub-search-input" type="search" autocomplete="off" placeholder="Search reports · tickers · names (try: 688256, 광모듈, CXMT)" data-search-input>
-            <button class="search-clear" type="button" aria-label="Clear search" data-search-clear hidden>
+            <span class="sr-only">리포트 검색</span>
+            <input class="search-input" id="hub-search-input" type="search" autocomplete="off" placeholder="리포트·티커·종목명 검색 (예: 688256, 광모듈, CXMT)" data-search-input>
+            <button class="search-clear" type="button" aria-label="검색어 지우기" data-search-clear hidden>
                 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg>
             </button>
         </label>
         <div class="search-foot">
-            <p class="search-status" role="status" data-search-status>Search titles, summaries, tickers and stock names.</p>
-            <span class="search-scopes"><span class="scope-chip">All channels</span></span>
+            <p class="search-status" role="status" data-search-status>제목·요약·티커·종목명에서 찾습니다.</p>
+            <span class="search-scopes"><span class="scope-chip">모든 채널</span></span>
         </div>
     </form>
     <div class="briefing-grid" data-search-results hidden></div>
@@ -289,14 +329,16 @@
     <a class="brief-link" href="/InformationHub/posts/2026-11-19-spotlight-hygon/">
         <span class="brief-meta">
             <span class="brief-channel">China AI</span>
-            <span class="kind-badge kind-spotlight">Spotlight</span>
-            <time datetime="2026-11-19">Nov 19, 2026</time>
+            <span class="kind-badge kind-spotlight">스포트라이트</span>
+            <time datetime="2026-11-19">2026. 11. 19.</time>
         </span>
         <span class="brief-title">China AI 스포트라이트 · 하이광(Hygon) — 장중 -17%가 남긴 세 가지</span>
         <span class="brief-summary">삼성 파운드리 실사 루머로 장중 156.05위안까지 밀렸다가 180.00위안(-4.81%)으로 되돌아온 하이광. x86 CPU와 DCU를 함께 가진 국산 연산의 축을 실적·점유율·경쟁 구도로 정리했습니다.</span>
         <span class="brief-foot">
-            <span>1 stock</span>
-            <span>7 sources</span>
+            
+            
+            <span>1종목</span>
+            <span>출처 7</span>
             <span class="brief-arrow" aria-hidden="true">↗</span>
         </span>
     </a>
@@ -307,14 +349,16 @@
     <a class="brief-link" href="/InformationHub/posts/2026-11-19-chinaai-daily/">
         <span class="brief-meta">
             <span class="brief-channel">China AI</span>
-            <span class="kind-badge kind-daily">Daily</span>
-            <time datetime="2026-11-19">Nov 19, 2026</time>
+            <span class="kind-badge kind-daily">데일리</span>
+            <time datetime="2026-11-19">2026. 11. 19.</time>
         </span>
         <span class="brief-title">China AI 데일리 리포트 · 11월 19일</span>
         <span class="brief-summary">상하이 -0.28% 속에서 과창판50은 +1.83%(1,270.78)로 홀로 강세. BIS 규제 발효와 &#39;삼성 파운드리 실사&#39; 루머가 장중 변동성을 키운 하루였습니다.</span>
         <span class="brief-foot">
-            <span>11 stocks</span>
-            <span>19 sources</span>
+            
+            
+            <span>11종목</span>
+            <span>출처 19</span>
             <span class="brief-arrow" aria-hidden="true">↗</span>
         </span>
     </a>
@@ -325,14 +369,16 @@
     <a class="brief-link" href="/InformationHub/posts/2026-11-18-chinaai-daily/">
         <span class="brief-meta">
             <span class="brief-channel">China AI</span>
-            <span class="kind-badge kind-daily">Daily</span>
-            <time datetime="2026-11-18">Nov 18, 2026</time>
+            <span class="kind-badge kind-daily">데일리</span>
+            <time datetime="2026-11-18">2026. 11. 18.</time>
         </span>
         <span class="brief-title">China AI 데일리 리포트 · 11월 18일</span>
         <span class="brief-summary">과창판50 +2.19%(1,247.99) 마감. 엔비디아 호실적에도 미국 규제 기조는 이어졌고, 매수세는 국산 AI 칩·장비·연산 인프라로 쏠렸습니다.</span>
         <span class="brief-foot">
-            <span>11 stocks</span>
-            <span>5 sources</span>
+            
+            
+            <span>11종목</span>
+            <span>출처 5</span>
             <span class="brief-arrow" aria-hidden="true">↗</span>
         </span>
     </a>
@@ -340,17 +386,18 @@
 
         
     </div>
-    <p class="feed-more" data-search-default><a href="/InformationHub/china-ai/">Every China AI report <span aria-hidden="true">↗</span></a></p>
+    <p class="feed-more" data-search-default><a href="/InformationHub/china-ai/">China AI 리포트 전체 <span aria-hidden="true">↗</span></a></p>
     
 </section>
 
 <section class="cta-band shell">
     <div>
-        <h2>Eleven names.<br><span>One report a day.</span></h2>
-        <p>The China AI desk files one report each weekday evening, after the close.</p>
+        <h2>열한 개 종목,<br><span>하루 한 편.</span></h2>
+        <p>China AI 데스크는 평일 저녁, 장이 끝난 뒤 하루 한 편을 발행합니다.</p>
     </div>
-    <a class="button button-primary" href="/InformationHub/china-ai/">Open the watchlist <span aria-hidden="true">↗</span></a>
+    <a class="button button-primary" href="/InformationHub/china-ai/">관심종목 열기 <span aria-hidden="true">↗</span></a>
 </section>
+
 
     </main>
 
@@ -361,8 +408,9 @@
             <a href="https://github.com/HyangDan2/InformationHub">GitHub <span aria-hidden="true">↗</span></a>
         </div>
     </footer>
-    <script>window.INFO_HUB_BASE = "/InformationHub/";</script>
-    <script src="/InformationHub/assets/info-search.js?v=20261119-info2" defer></script>
-    <script src="/InformationHub/assets/info-nav.js?v=20261119-info2" defer></script>
+    <script>window.INFO_HUB_BASE = "/InformationHub/";window.INFO_HUB_LANG = "ko";</script>
+    <script src="/InformationHub/assets/info-search.js?v=20261119-info3" defer></script>
+    <script src="/InformationHub/assets/info-lang.js?v=20261119-info3" defer></script>
+    <script src="/InformationHub/assets/info-nav.js?v=20261119-info3" defer></script>
 </body>
 </html>

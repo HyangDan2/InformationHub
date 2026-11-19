@@ -1,16 +1,17 @@
+{% set t = i18n[lang or 'ko'] %}
 {% if watchlistStatus and watchlistStatus.length %}
-<section class="sector-map" aria-label="11종목 밸류체인 상태 맵">
+<section class="sector-map" aria-label="{{ t.viz.sectorAria }}">
     <div class="sector-map-head">
-        <p class="viz-kicker">Value-chain map</p>
-        <p class="viz-lede">카드를 누르면 아래 해당 종목 리포트로 이동합니다.</p>
+        <p class="viz-kicker">{{ t.viz.sectorKicker }}</p>
+        <p class="viz-lede">{{ t.viz.sectorLede }}</p>
     </div>
     <div class="sector-grid">
         {% for sector in sectors %}
         <section class="sector-group" aria-labelledby="sector-{{ sector.id }}">
             <header class="sector-head">
                 <span class="sector-index">{{ sector.index }}</span>
-                <h3 id="sector-{{ sector.id }}">{{ sector.name }}</h3>
-                <span class="sector-en">{{ sector.note }}</span>
+                <h3 id="sector-{{ sector.id }}">{{ sector | pick("name", lang) }}</h3>
+                <span class="sector-en">{{ sector | pick("note", lang) }}</span>
             </header>
             <ul class="sector-cards">
                 {% for code in sector.codes %}
@@ -22,8 +23,8 @@
                             <code>{{ code }}</code>
                             <span class="stock-badge tone-{{ state.tone }}">{{ state.status }}</span>
                         </span>
-                        <span class="stock-name">{{ stock.en if stock else code }}</span>
-                        <span class="stock-ko">{% if stock and stock.ko != stock.en %}{{ stock.ko }} · {% endif %}{{ stock.field if stock else "" }}</span>
+                        <span class="stock-name">{{ stock | pick("name", "en") }}</span>
+                        <span class="stock-ko">{% if stock and stock.nameKo != stock.nameEn %}{{ stock.nameKo }} · {% endif %}{% if stock %}{{ stock | pick("field", lang) }}{% endif %}</span>
                         {% if state.note %}<span class="stock-note">{{ state.note }}</span>{% endif %}
                         <span class="stock-price">
                             {% if state.close %}<span class="stock-close">{{ state.close | num(2) }}</span>{% endif %}

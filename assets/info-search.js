@@ -1,4 +1,6 @@
-/* InformationHub — landing page search over /search.json (client side, no server) */
+/* InformationHub — landing page search over /search.json (client side, no server).
+   Every phrase comes from data-* attributes on the form, so the same file serves
+   the Korean (search.json) and English (/en/search.json) editions. */
 (function () {
   'use strict';
 
@@ -14,6 +16,27 @@
   var idleStatus = status ? status.textContent : '';
   var entries = null;
   var loading = null;
+
+  var copy = {
+    noMatch: form.getAttribute('data-no-match') || 'No report matches “%s%”.',
+    matchOne: form.getAttribute('data-match-one') || '%s% report matches “%s%”',
+    matchMany: form.getAttribute('data-match-many') || '%s% reports match “%s%”',
+    none: form.getAttribute('data-none') || 'No reports match “%s%”',
+    stocks: form.getAttribute('data-stocks-many') || '%s% stocks',
+    stocksOne: form.getAttribute('data-stocks-one') || '%s% stock',
+    sources: form.getAttribute('data-sources-many') || '%s% sources',
+    sourcesOne: form.getAttribute('data-sources-one') || '%s% source',
+  };
+
+  /** "리포트 %s%편" + [3] → "리포트 3편"; placeholders fill in argument order. */
+  function fmt(text, values) {
+    var index = 0;
+    return String(text).replace(/%s%/g, function () {
+      var value = values[index];
+      index += 1;
+      return value == null ? '' : String(value);
+    });
+  }
 
   function load() {
     if (entries) return Promise.resolve(entries);
@@ -43,6 +66,8 @@
   }
 
   function card(item) {
+    var stocks = (item.tickers || []).length;
+    var sources = item.sources || 0;
     return (
       '<article class="brief-card" data-briefing>' +
         '<a class="brief-link" href="' + base + String(item.url).replace(/^\//, '') + '">' +
@@ -54,7 +79,8 @@
           '<span class="brief-title">' + escapeHtml(item.title) + '</span>' +
           '<span class="brief-summary">' + escapeHtml(item.summary) + '</span>' +
           '<span class="brief-foot">' +
-            '<span>' + item.tickers.length + ' stocks</span>' +
+            '<span>' + escapeHtml(fmt(stocks === 1 ? copy.stocksOne : copy.stocks, [stocks])) + '</span>' +
+            '<span>' + escapeHtml(fmt(sources === 1 ? copy.sourcesOne : copy.sources, [sources])) + '</span>' +
             '<span class="brief-arrow" aria-hidden="true">↗</span>' +
           '</span>' +
         '</a>' +
@@ -91,11 +117,11 @@
       results.hidden = false;
       results.innerHTML = found.length
         ? found.map(card).join('')
-        : '<p class="empty-state">No report matches “' + escapeHtml(query) + '”. Try a ticker, a company name, or a date.</p>';
+        : '<p class="empty-state">' + escapeHtml(fmt(copy.noMatch, [query])) + '</p>';
       if (status) {
         status.textContent = found.length
-          ? found.length + (found.length === 1 ? ' report matches' : ' reports match') + ' “' + query + '”'
-          : 'No reports match “' + query + '”';
+          ? fmt(found.length === 1 ? copy.matchOne : copy.matchMany, [found.length, query])
+          : fmt(copy.none, [query]);
       }
     });
   }

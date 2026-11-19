@@ -63,16 +63,39 @@ function weekday(value) {
   return new Intl.DateTimeFormat("en-US", { timeZone: KST, weekday: "long" }).format(date);
 }
 
+/** 2026. 11. 19. (ko) / Nov 19, 2026 (en) — the compact stamp on cards and archives. */
+function shortDate(value, lang = "ko") {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  if (lang === "en") return displayDate(date);
+  return new Intl.DateTimeFormat("ko-KR", {
+    timeZone: KST,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+}
+
+/** 목 (ko) / Thursday (en) */
+function weekdayName(value, lang = "ko") {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat(lang === "en" ? "en-US" : "ko-KR", {
+    timeZone: KST,
+    weekday: lang === "en" ? "long" : "short",
+  }).format(date);
+}
+
 /** 17:25 */
 function timeLabel(value) {
   const p = parts(value);
   return p ? `${p.hour}:${p.minute}` : "";
 }
 
-function readingTime(html = "") {
+function readingTime(html = "", wpm = 350) {
   const text = String(html).replace(/<[^>]+>/g, " ");
   const words = text.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / 350));
+  return Math.max(1, Math.round(words / (Number(wpm) || 350)));
 }
 
 function neighbors(posts = [], url) {
@@ -83,7 +106,7 @@ function neighbors(posts = [], url) {
   };
 }
 
-/** [{code, name, en, zh, ko, field}] → the stocks named in one briefing. */
+/** [{code, nameEn, zh, nameKo, fieldEn, fieldKo}] → the stocks named in one briefing. */
 function mentionedStocks(tickers = [], stocks = []) {
   if (!Array.isArray(tickers) || !tickers.length) return [];
   return tickers.map((code) => stocks.find((stock) => stock.code === code)).filter(Boolean);
@@ -102,10 +125,12 @@ function headingId(text = "") {
     .replace(/\s+/g, "-");
 }
 
+/* Korean and English section names both have to land on the same role, in this
+   order — "Market Overview" must not be caught by the watchlist test. */
 const ROLE_TESTS = [
   [/시황|장세|market/i, "market"],
   [/항목별|종목별|watchlist|stock/i, "stocks"],
-  [/추후|체크|참고|watch ?next|checkpoint/i, "watch"],
+  [/추후|체크|참고|checkpoint|what to watch|watch ?next|risks/i, "watch"],
   [/출처|sources?/i, "sources"],
 ];
 
@@ -251,6 +276,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("displayDate", displayDate);
   eleventyConfig.addFilter("koreanDate", koreanDate);
   eleventyConfig.addFilter("weekday", weekday);
+  eleventyConfig.addFilter("shortDate", shortDate);
+  eleventyConfig.addFilter("weekdayName", weekdayName);
   eleventyConfig.addFilter("timeLabel", timeLabel);
   eleventyConfig.addFilter("readingTime", readingTime);
   eleventyConfig.addFilter("neighbors", neighbors);
@@ -269,29 +296,49 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("where", (array = [], key, value) => array.filter((item) => item && item[key] === value));
   eleventyConfig.addFilter("limit", (array = [], count = array.length) => array.slice(0, count));
 
-  const postGlob = "./posts/*.md";
+  /* ---------- bilingual helpers ---------- */
 
-  eleventyConfig.addCollection("briefings", (collectionApi) =>
-    collectionApi.getFilteredByGlob(postGlob).sort((a, b) => b.date - a.date),
-  );
+  /** stocks | pick("name", "en") → stock.nameEn (falls back to the bare key). */
+  eleventyConfig.addFilter("pick", (item, key, lang = "ko") => {
+    if (!item) return "";
+    const suffix = lang === "en" ? "En" : "Ko";
+    const value = item[`${key}${suffix}`];
+    return value == null ? (item[key] ?? "") : value;
+  });
 
-  /** The two report kinds travel in separate collections as well as together. */
-  eleventyConfig.addCollection("dailies", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob(postGlob)
-      .filter((post) => (post.data.reportKind || "daily") === "daily")
-      .sort((a, b) => b.date - a.date),
-  );
-  eleventyConfig.addCollection("spotlights", (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob(postGlob)
-      .filter((post) => post.data.reportKind === "spotlight")
-      .sort((a, b) => b.date - a.date),
-  );
+  /** "리포트 %s%편" | fmt(3) → "리포트 3편" (one placeholder per argument, in order). */
+  eleventyConfig.addFilter("fmt", (text = "", ...values) => {
+    let index = 0;
+    return String(text).replace(/%s%/g, () => String(values[index++] ?? ""));
+  });
 
-  /** One group per day, newest first — the daily archive on the channel page. */
-  eleventyConfig.addCollection("briefingDays", (collectionApi) => {
-    const posts = collectionApi.getFilteredByGlob(postGlob).sort((a, b) => b.date - a.date);
+  /**
+   * The counterpart page in the other language.
+   *   /                  ↔ /en/
+   *   /china-ai/         ↔ /en/china-ai/
+   *   /posts/<slug>/     ↔ /en/posts/<slug>/
+   */
+  eleventyConfig.addFilter("alternateUrl", (url = "/") => {
+    const path = String(url || "/");
+    if (path === "/en/") return "/";
+    if (path.startsWith("/en/")) return path.slice(3) || "/";
+    if (path === "/" || path === "") return "/en/";
+    return `/en${path}`;
+  });
+
+  /** "ko" → "en", "en" → "ko" */
+  eleventyConfig.addFilter("otherLang", (lang = "ko") => (lang === "en" ? "ko" : "en"));
+
+  /* Each language is its own shelf: a Korean page must never list an English
+     report, and the pager inside a report must stay in that report's language. */
+  const postGlobKo = "./posts/*.md";
+  const postGlobEn = "./en/posts/*.md";
+
+  const newestFirst = (posts) => posts.sort((a, b) => b.date - a.date);
+  const ofKind = (posts, kind) => posts.filter((post) => (post.data.reportKind || "daily") === kind);
+
+  /** One group per day, newest first — the archive on the channel page. */
+  const byDay = (posts) => {
     const days = new Map();
     posts.forEach((post) => {
       const key = isoDate(post.date);
@@ -302,7 +349,30 @@ export default function (eleventyConfig) {
       ...day,
       posts: day.posts.sort((a, b) => a.date - b.date),
     }));
-  });
+  };
+
+  const register = (suffix, glob) => {
+    eleventyConfig.addCollection(`briefings${suffix}`, (collectionApi) =>
+      newestFirst(collectionApi.getFilteredByGlob(glob)),
+    );
+    eleventyConfig.addCollection(`dailies${suffix}`, (collectionApi) =>
+      newestFirst(ofKind(collectionApi.getFilteredByGlob(glob), "daily")),
+    );
+    eleventyConfig.addCollection(`spotlights${suffix}`, (collectionApi) =>
+      newestFirst(ofKind(collectionApi.getFilteredByGlob(glob), "spotlight")),
+    );
+    eleventyConfig.addCollection(`briefingDays${suffix}`, (collectionApi) =>
+      byDay(newestFirst(collectionApi.getFilteredByGlob(glob))),
+    );
+  };
+
+  register("Ko", postGlobKo);
+  register("En", postGlobEn);
+
+  /** Both editions together — used only where a combined list is the point. */
+  eleventyConfig.addCollection("briefings", (collectionApi) =>
+    newestFirst(collectionApi.getFilteredByGlob([postGlobKo, postGlobEn])),
+  );
 
   return {
     pathPrefix: "/InformationHub/",
