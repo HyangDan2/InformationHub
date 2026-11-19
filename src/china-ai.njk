@@ -56,7 +56,7 @@ pageScript: "/assets/info-channel.js"
                     <td class="td-ticker" data-label="Ticker"><code>{{ stock.code }}</code></td>
                     <td class="td-company" data-label="Company">
                         <strong>{{ stock.en }}</strong>
-                        <span class="stock-alt">{{ stock.zh }} · {{ stock.ko }}</span>
+                        <span class="stock-alt">{{ stock.zh }}{% if stock.ko != stock.en %} · {{ stock.ko }}{% endif %}</span>
                     </td>
                     <td class="td-field" data-label="Field">{{ stock.field }}</td>
                 </tr>
