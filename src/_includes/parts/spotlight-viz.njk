@@ -1,5 +1,6 @@
+{% set t = i18n[lang or 'ko'] %}
 {% if spotlight %}
-<section class="viz viz-spotlight" aria-label="종목 스냅샷">
+<section class="viz viz-spotlight" aria-label="{{ t.viz.spotlightAria }}">
     <div class="kpi-grid kpi-grid-spot">
         {% for item in spotlight.snapshot %}
         <div class="kpi-card{% if item.tone %} is-{{ item.tone }}{% endif %}">

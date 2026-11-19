@@ -1,0 +1,170 @@
+{% set t = i18n[lang or 'ko'] %}
+{% set root = ('/en/' if lang == 'en' else '/') %}
+{% set channelUrl = (root ~ 'china-ai/') | url %}
+{% if lang == 'en' %}
+{% set briefings = collections.briefingsEn %}
+{% set days = collections.briefingDaysEn %}
+{% set dailies = collections.dailiesEn %}
+{% set spotlights = collections.spotlightsEn %}
+{% else %}
+{% set briefings = collections.briefingsKo %}
+{% set days = collections.briefingDaysKo %}
+{% set dailies = collections.dailiesKo %}
+{% set spotlights = collections.spotlightsKo %}
+{% endif %}
+{% set latest = briefings[0] or null %}
+{% set marketPost = briefings | firstWith("data.market") %}
+
+<section class="page-hero shell" aria-labelledby="channel-title">
+    <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">China AI</span>
+    </nav>
+    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>{{ t.channel.eyebrow }}</p>
+    <h1 id="channel-title"><span class="channel-h1-flag" aria-hidden="true">🇨🇳</span> China AI</h1>
+    <p class="page-hero-lede">{{ t.channel.lede }}</p>
+    <p class="channel-note">{{ t.channel.note }}</p>
+    <div class="page-hero-meta">
+        <span class="badge">{{ t.channel.badgeWatchlist }}</span>
+        <span class="badge">{{ t.channel.badgeCadence }}</span>
+        <span>{% if dailies | length == 1 %}{{ t.channel.dailyOne | fmt(dailies | length) }}{% else %}{{ t.channel.dailyMany | fmt(dailies | length) }}{% endif %}</span>
+        <span>{% if spotlights | length == 1 %}{{ t.channel.spotlightOne | fmt(spotlights | length) }}{% else %}{{ t.channel.spotlightMany | fmt(spotlights | length) }}{% endif %}</span>
+        <span>{% if latest %}{{ t.channel.lastUpdate | fmt(latest.date | shortDate(lang)) }}{% endif %}</span>
+    </div>
+</section>
+
+{% if marketPost %}
+<section class="channel-glance shell" aria-label="{{ t.channel.glanceTitle | fmt(marketPost.date | shortDate(lang)) }}">
+    <div class="glance-card">
+        <div class="glance-head">
+            <h2>{{ t.channel.glanceTitle | fmt(marketPost.date | shortDate(lang)) }}</h2>
+            <a href="{{ marketPost.url | url }}">{{ t.channel.glanceRead }} <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="glance-index-grid">
+            {% for index in marketPost.data.market.indices %}
+            <div class="glance-index">
+                <span>{{ index.name }}</span>
+                <strong>{{ index.value | num(2) }}</strong>
+                <em class="is-{{ index.pct | pctTone }}">{{ index.pct | signedPct }}</em>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="glance-foot">
+            {% if marketPost.data.market.turnover %}<span>{{ t.channel.turnoverLabel }} <strong>{{ marketPost.data.market.turnover }}</strong></span>{% endif %}
+            {% if marketPost.data.market.semisInflow %}<span>{{ t.channel.semisLabel }} <strong>{{ marketPost.data.market.semisInflow }}</strong></span>{% endif %}
+        </div>
+    </div>
+    <div class="glance-card">
+        <div class="glance-head">
+            <h2>{{ t.channel.glanceSectors }}</h2>
+            <a href="#watchlist">{{ t.channel.glanceWatchlist }} <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="glance-sectors">
+            {% for sector in sectors %}
+            <div class="glance-sector">
+                <span class="glance-sector-name"><strong>{{ sector | pick("name", lang) }}</strong><span>{{ sector | pick("note", lang) }}</span></span>
+                {% set nCodes = sector.codes | length %}
+                <span class="glance-sector-count">{{ (t.channel.stocksOne if nCodes == 1 else t.channel.stocksMany) | fmt(nCodes) }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="watchlist-section shell" id="watchlist" aria-labelledby="watchlist-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">{{ t.channel.watchlistEyebrow }}</p>
+            <h2 id="watchlist-title">{{ t.channel.watchlistTitle }}</h2>
+        </div>
+        <p>{{ t.channel.watchlistLede }}</p>
+    </div>
+    <div class="watchlist-wrap">
+        <table class="watchlist">
+            <caption class="sr-only">{{ t.channel.tableCaption }}</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="th-index">{{ t.channel.thIndex }}</th>
+                    <th scope="col">{{ t.channel.thTicker }}</th>
+                    <th scope="col">{{ t.channel.thCompany }}</th>
+                    <th scope="col">{{ t.channel.thField }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                <tr>
+                    <td class="td-index" data-label="{{ t.channel.thIndex }}">{{ loop.index }}</td>
+                    <td class="td-ticker" data-label="{{ t.channel.thTicker }}"><code>{{ stock.code }}</code></td>
+                    <td class="td-company" data-label="{{ t.channel.thCompany }}">
+                        <strong>{{ stock | pick("name", "en") }}</strong>
+                        <span class="stock-alt">{{ stock.zh }}{% if stock.nameKo != stock.nameEn %} · {{ stock.nameKo }}{% endif %}</span>
+                    </td>
+                    <td class="td-field" data-label="{{ t.channel.thField }}">{{ stock | pick("field", lang) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="briefings-shell shell" id="briefings" aria-labelledby="briefings-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">{{ t.channel.archiveEyebrow }}</p>
+            <h2 id="briefings-title">{{ t.channel.archiveTitle }}</h2>
+        </div>
+        <p>{{ t.channel.archiveLede }}</p>
+    </div>
+
+    {% if briefings | length %}
+    <div class="kind-filter" data-kind-filter role="group" aria-label="{{ t.channel.archiveTitle }}">
+        <button type="button" data-kind="all" aria-pressed="true">{{ t.kind.all }} · {{ briefings | length }}</button>
+        <button type="button" data-kind="daily" aria-pressed="false">{{ t.kind.dailyLong }} · {{ dailies | length }}</button>
+        <button type="button" data-kind="spotlight" aria-pressed="false">{{ t.kind.spotlightLong }} · {{ spotlights | length }}</button>
+        <span class="filter-note">{{ t.channel.filterNote }}</span>
+    </div>
+    <div class="archive" data-archive>
+        {% for day in days %}
+        <section class="archive-day" data-day-group="{{ day.key }}">
+            <h3 class="archive-date">
+                <time datetime="{{ day.key }}">{{ day.date | shortDate(lang) }}</time>
+                <span>{{ day.date | weekdayName(lang) }}</span>
+            </h3>
+            <ul class="brief-rows">
+                {% for post in day.posts %}
+                {% set kind = post.data.reportKind or "daily" %}
+                <li class="brief-row" data-kind="{{ kind }}">
+                    <a href="{{ post.url | url }}">
+                        <span class="brief-row-time"><time datetime="{{ post.date | isoDate }}">{{ post.date | timeLabel }} {{ t.post.timezone }}</time></span>
+                        <span class="brief-row-body">
+                            <span class="brief-row-titlerow">
+                                <span class="kind-badge kind-{{ kind }}">{% if kind == "spotlight" %}{{ t.kind.spotlight }}{% else %}{{ t.kind.daily }}{% endif %}</span>
+                                <span class="brief-row-title">{{ post.data.title }}</span>
+                            </span>
+                            <span class="brief-row-summary">{{ post.data.summary }}</span>
+                        </span>
+                        {% set nSources = post.data.sources | length %}
+                        <span class="brief-row-meta">{{ (t.channel.sourcesOne if nSources == 1 else t.channel.sourcesMany) | fmt(nSources) }}</span>
+                        <span class="brief-row-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endfor %}
+    </div>
+    <p class="archive-empty" data-kind-empty hidden>{{ t.channel.filterEmpty }}</p>
+    {% else %}
+    <p class="empty-state">{{ t.home.feedEmpty }}</p>
+    {% endif %}
+</section>
+
+<section class="cta-band shell">
+    <div>
+        <h2>{{ t.channel.ctaTitle1 }}<br><span>{{ t.channel.ctaTitle2 }}</span></h2>
+        <p>{{ t.channel.ctaLede }}</p>
+    </div>
+    <a class="button button-primary" href="{{ root | url }}">{{ t.channel.ctaButton }} <span aria-hidden="true">↗</span></a>
+</section>

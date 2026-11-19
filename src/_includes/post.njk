@@ -1,16 +1,20 @@
 ---
 layout: base.njk
 ---
-{% set pager = collections.briefings | neighbors(page.url) %}
-{% set day = date | koreanDate %}
+{% set t = i18n[lang or 'ko'] %}
+{% set root = ('/en/' if lang == 'en' else '/') %}
+{% set channelUrl = (root ~ 'china-ai/') | url %}
+{% if lang == 'en' %}{% set list = collections.briefingsEn %}{% set day = date | displayDate %}{% set wpm = 230 %}{% else %}{% set list = collections.briefingsKo %}{% set day = date | koreanDate %}{% set wpm = 350 %}{% endif %}
+{% set pager = list | neighbors(page.url) %}
 {% set named = tickers | mentionedStocks(stocks) %}
 {% set kind = reportKind or "daily" %}
 {% set report = content | reportSections %}
+{% set minutes = content | readingTime(wpm) %}
 <article class="post shell post-kind-{{ kind }}">
     <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="{{ '/' | url }}">InformationHub</a>
+        <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
         <span aria-hidden="true">/</span>
-        <a href="{{ '/china-ai/' | url }}">China AI</a>
+        <a href="{{ channelUrl }}">China AI</a>
         <span aria-hidden="true">/</span>
         <span aria-current="page">{{ date | isoDate }}</span>
     </nav>
@@ -18,23 +22,23 @@ layout: base.njk
     <header class="post-header">
         <p class="eyebrow">
             <span class="eyebrow-dot" aria-hidden="true"></span>China AI ·
-            {% if kind == "spotlight" %}종목 스포트라이트{% else %}데일리 리포트{% endif %}
+            {% if kind == "spotlight" %}{{ t.post.kindSpotlight }}{% else %}{{ t.post.kindDaily }}{% endif %}
         </p>
         <h1>{{ title }}</h1>
         {% if summary %}<p class="post-summary">{{ summary }}</p>{% endif %}
         <div class="post-meta">
-            <span class="kind-badge kind-{{ kind }}">{% if kind == "spotlight" %}Spotlight{% else %}Daily report{% endif %}</span>
+            <span class="kind-badge kind-{{ kind }}">{% if kind == "spotlight" %}{{ t.kind.spotlight }}{% else %}{{ t.kind.daily }}{% endif %}</span>
             <time datetime="{{ date | isoDate }}">{{ day }}</time>
-            <span>{{ date | timeLabel }} KST</span>
-            <span>{{ content | readingTime }}분 읽기</span>
-            {% if sources and sources.length %}<span>{{ sources | length }} sources</span>{% endif %}
+            <span>{{ date | timeLabel }} {{ t.post.timezone }}</span>
+            <span>{{ t.post.readTime | fmt(minutes) }}</span>
+            {% if sources and sources.length %}<span>{{ t.post.sources | fmt(sources | length) }}</span>{% endif %}
         </div>
     </header>
 
     {% if named.length %}
-    <div class="post-tickers" aria-label="Stocks covered">
+    <div class="post-tickers" aria-label="{{ t.post.tickersAria }}">
         {% for stock in named %}
-        <span class="ticker-chip"><code>{{ stock.code }}</code> {{ stock.en }}{% if stock.ko != stock.en %}<span class="ticker-ko">{{ stock.ko }}</span>{% endif %}</span>
+        <span class="ticker-chip"><code>{{ stock.code }}</code> {{ stock | pick("name", "en") }}{% if stock.nameKo != stock.nameEn %}<span class="ticker-ko">{{ stock.nameKo }}</span>{% endif %}</span>
         {% endfor %}
     </div>
     {% endif %}
@@ -60,28 +64,28 @@ layout: base.njk
         {% endfor %}
     </div>
 
-    <nav class="post-nav" aria-label="Report navigation">
-        <a class="post-nav-item" href="{{ '/china-ai/' | url }}">
-            <span class="post-nav-label">Channel</span>
-            <strong>All China AI briefings</strong>
+    <nav class="post-nav" aria-label="{{ t.post.navAria }}">
+        <a class="post-nav-item" href="{{ channelUrl }}">
+            <span class="post-nav-label">{{ t.post.navChannelLabel }}</span>
+            <strong>{{ t.post.navChannelStrong }}</strong>
         </a>
-        <a class="post-nav-item" href="{{ '/' | url }}">
-            <span class="post-nav-label">Hub</span>
-            <strong>Every channel</strong>
+        <a class="post-nav-item" href="{{ root | url }}">
+            <span class="post-nav-label">{{ t.post.navHubLabel }}</span>
+            <strong>{{ t.post.navHubStrong }}</strong>
         </a>
     </nav>
 
     {% if pager.newer or pager.older %}
-    <nav class="post-pager" aria-label="Previous and next reports">
+    <nav class="post-pager" aria-label="{{ t.post.pagerAria }}">
         {% if pager.newer %}
         <a class="pager-item pager-newer" href="{{ pager.newer.url | url }}">
-            <span>← Newer</span>
+            <span>{{ t.post.newer }}</span>
             <strong>{{ pager.newer.data.title }}</strong>
         </a>
         {% else %}<span class="pager-item pager-empty" aria-hidden="true"></span>{% endif %}
         {% if pager.older %}
         <a class="pager-item pager-older" href="{{ pager.older.url | url }}">
-            <span>Older →</span>
+            <span>{{ t.post.older }}</span>
             <strong>{{ pager.older.data.title }}</strong>
         </a>
         {% else %}<span class="pager-item pager-empty" aria-hidden="true"></span>{% endif %}
