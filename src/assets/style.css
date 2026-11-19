@@ -1101,3 +1101,5 @@ a.channel-card:hover .channel-open { color: var(--accent-hover); }
 .md-body .stock-card:focus-visible { text-decoration: none; }
 /* groups keep their own height instead of stretching to the tallest in the row */
 .sector-grid { align-items: start; }
+/* an odd number of spotlight charts: let the last one use the full row */
+.viz-chart-grid > .viz-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
