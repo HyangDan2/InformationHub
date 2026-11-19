@@ -550,6 +550,9 @@ body.drawer-open .hd2-theme-toggle { opacity: 0; pointer-events: none; }
     .pager-older { text-align: left; align-items: flex-start; }
 }
 @media (max-width: 720px) {
+    /* the switch keeps the top-right corner even when a report's crumbs run long */
+    .page-top { flex-wrap: nowrap; align-items: flex-start; }
+    .page-top .crumbs { flex: 1 1 auto; }
     .header-inner { min-height: 68px; gap: 12px; }
     .brand { font-size: 21px; letter-spacing: -1.2px; }
     .brand-name { font-size: 21px; letter-spacing: -1.2px; }
