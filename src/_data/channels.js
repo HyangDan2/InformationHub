@@ -14,7 +14,7 @@ export default [
     url: "china-ai/",
     nameKo: "China AI",
     nameEn: "China AI",
-    cadenceKo: "월~금 19:00 KST 발행",
+    cadenceKo: "월~금 저녁 19:00 KST 발행",
     cadenceEn: "Daily 19:00 KST · Mon–Fri",
     blurbKo: "AI 칩·파운드리·광모듈·메모리 11개 종목을 평일 저녁마다 한 편으로 정리합니다.",
     blurbEn:
@@ -52,11 +52,11 @@ export default [
     nameEn: "Next desk",
     cadenceKo: "준비 중",
     cadenceEn: "Being prepared",
-    blurbKo: "세 번째 채널도 같은 구조로 준비하고 있습니다.",
+    blurbKo: "새 채널이 준비되는 대로 이 자리에 바로 올라옵니다.",
     blurbEn: "A third desk is being prepared. The shelf is built to hold it without a redesign.",
     topicsKo: "다음 채널 자리",
     topicsEn: "Room for the next channel",
-    coverKo: "빈 자리",
+    coverKo: "새 채널 자리",
     coverEn: "Open slot",
   },
 ];

@@ -15,14 +15,14 @@
 {% set total = briefings | length %}
 
 <div class="page-top page-top--home shell">
-    <nav class="crumbs" aria-label="Breadcrumb"><span aria-current="page">InformationHub</span></nav>
+    <nav class="crumbs" aria-label="현재 위치"><span aria-current="page">InformationHub</span></nav>
     {{ langSwitch.langSwitch(pageLang, koHref, enHref) }}
 </div>
 
 <section class="hero shell" aria-labelledby="hub-title">
     <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>{{ site.brand }} / InformationHub</p>
-        <h1 id="hub-title">{{ t.home.h1a }}<br><span>{{ t.home.h1b }}</span></h1>
+        <h1 id="hub-title">{{ t.home.h1a }}<br><span>{{ t.home.h1b | safe }}</span></h1>
         <p class="hero-description">{{ t.home.lede | safe }}</p>
         <div class="hero-actions">
             <a class="button button-primary" href="#feed">{{ t.home.ctaLatest }}</a>
@@ -77,7 +77,7 @@
             <span class="channel-head"><span class="channel-flag" aria-hidden="true">{{ channel.flag }}</span><span class="channel-name">{{ channel | pick("name", lang) }}</span></span>
             <span class="channel-blurb">{{ channel | pick("blurb", lang) }}</span>
             <span class="channel-meta"><span>{{ channel | pick("cover", lang) }}</span><span>{{ channel | pick("cadence", lang) }}</span></span>
-            <span class="channel-foot"><span class="channel-count">{{ t.home.notOpen }}</span><span class="channel-open">{{ t.home.reserved }}</span></span>
+            <span class="channel-foot"><span class="channel-count">{% if chCount == 1 %}{{ t.home.reportOne | fmt(chCount) }}{% else %}{{ t.home.reportMany | fmt(chCount) }}{% endif %}</span><span class="channel-open">{{ t.home.reserved }}</span></span>
         </div>
         {% endif %}
         {% endfor %}
