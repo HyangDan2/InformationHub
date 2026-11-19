@@ -2,6 +2,11 @@
 layout: base.njk
 ---
 {% set t = i18n[lang or 'ko'] %}
+{% set pageLang = 'en' if lang == 'en' else 'ko' %}
+{% set altPath = page.url | alternateUrl %}
+{% set koHref = page.url if pageLang == 'ko' else altPath %}
+{% set enHref = altPath if pageLang == 'ko' else page.url %}
+{% import "parts/lang-switch.njk" as langSwitch %}
 {% set root = ('/en/' if lang == 'en' else '/') %}
 {#- Which desk filed this report: its own archive, its own name, its own watchlist. -#}
 {% set channelId = channel or 'china-ai' %}
@@ -17,13 +22,16 @@ layout: base.njk
 {% set report = content | reportSections %}
 {% set minutes = content | readingTime(wpm) %}
 <article class="post shell post-kind-{{ kind }}">
-    <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
-        <span aria-hidden="true">/</span>
-        <a href="{{ channelUrl }}">{{ channelName }}</a>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">{{ date | isoDate }}</span>
-    </nav>
+    <div class="page-top">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
+            <span aria-hidden="true">/</span>
+            <a href="{{ channelUrl }}">{{ channelName }}</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{{ date | isoDate }}</span>
+        </nav>
+        {{ langSwitch.langSwitch(pageLang, koHref, enHref) }}
+    </div>
 
     <header class="post-header">
         <p class="eyebrow">

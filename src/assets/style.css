@@ -147,40 +147,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* ---------- mobile drawer: one-line list ---------- */
 .header-actions { display: flex; align-items: center; gap: 10px; }
 
-/* ---------- KO | EN language toggle (header, and once more in the drawer) ---------- */
-.lang-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 1px;
-    flex: none;
-    padding: 3px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--surface);
-}
-.lang-option {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 32px;
-    height: 28px;
-    padding: 0 7px;
-    border-radius: 999px;
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-decoration: none;
-    transition: color .16s, background-color .16s;
-}
-a.lang-option:hover,
-a.lang-option:focus-visible { background: var(--accent-soft); color: var(--accent-text); }
-.lang-option.is-current { background: var(--accent); color: #FFFFFF; }
-.lang-divider { flex: none; width: 1px; height: 12px; background: var(--line-strong); }
-[data-theme="dark"] .lang-option.is-current { background: #344472; color: #EEF2FF; }
-.drawer-lang { margin: 14px 0 4px; align-self: flex-start; }
-.drawer-lang .lang-option { height: 32px; min-width: 38px; }
+/* ---------- KO | EN switch — the Diary's control, in the page's own top row ---------- */
+.page-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 26px; }
+.page-top .crumbs { margin-bottom: 0; min-width: 0; }
+.page-top--home { padding-top: 46px; margin-bottom: 0; }
+.page-top--home + .hero { padding-block: 24px 66px; }
+.lang-switch { display: inline-flex; flex: none; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); }
+.lang-switch-item { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; padding: 6px 11px; border-radius: 999px; color: var(--text-secondary); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .1em; line-height: 1.15; text-decoration: none; transition: background-color .18s, color .18s; }
+.lang-switch-item:hover { color: var(--accent-text); }
+.lang-switch-item.is-active { background: var(--accent-soft); color: var(--accent-text); }
+[data-theme="dark"] .lang-switch-item.is-active { color: var(--text); }
 .menu-button {
     display: none;
     align-items: center;
@@ -464,6 +440,7 @@ body.drawer-open .hd2-theme-toggle { opacity: 0; pointer-events: none; }
 .cta-band h2 { margin: 0; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.2; letter-spacing: -.05em; word-break: keep-all; overflow-wrap: break-word; }
 .cta-band h2 span { color: var(--accent); }
 .cta-band p { margin: 12px 0 0; color: var(--text-body); font-size: 13.5px; word-break: keep-all; overflow-wrap: break-word; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* ---------- page hero (category) ---------- */
 .page-hero { padding-block: 46px 42px; border-bottom: 1px solid var(--border); }
@@ -594,6 +571,7 @@ body.drawer-open .hd2-theme-toggle { opacity: 0; pointer-events: none; }
     .post-row-link:hover { padding-inline: 12px; }
     .post-row-arrow { display: none; }
     .cta-band { padding: 28px 22px; }
+    .cta-actions { width: 100%; flex-direction: column; }
     .cta-band .button { width: 100%; }
     .category-switch { grid-template-columns: 1fr; }
     .post { padding-block: 30px 54px; }
@@ -721,6 +699,7 @@ a.channel-card:hover .channel-open { color: var(--accent-hover); }
 .feed-more { margin: 22px 0 0; text-align: right; }
 .feed-more a { color: var(--accent-hover); font-size: 13px; font-weight: 650; text-decoration: none; }
 .feed-more a:hover { color: var(--accent); }
+.feed-more-sep { margin: 0 8px; color: var(--muted); font-size: 13px; }
 .briefing-grid .empty-state { grid-column: 1 / -1; }
 
 /* ---------- channel page ---------- */

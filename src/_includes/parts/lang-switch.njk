@@ -1,0 +1,9 @@
+{#- KO | EN segment, the same control the Diary uses: each side links to the same page
+    in the other language, the side you are reading is marked, and the pair sits in the
+    page's own top row (`.page-top`), never in the header. -#}
+{% macro langSwitch(pageLang, koUrl, enUrl) %}
+<nav class="lang-switch" aria-label="{{ 'Language' if pageLang == 'en' else '언어' }}">
+    <a class="lang-switch-item{% if pageLang != 'en' %} is-active{% endif %}" href="{{ koUrl | url }}" hreflang="ko" lang="ko" data-lang-link="ko"{% if pageLang != 'en' %} aria-current="true"{% endif %}>KO</a>
+    <a class="lang-switch-item{% if pageLang == 'en' %} is-active{% endif %}" href="{{ enUrl | url }}" hreflang="en" lang="en" data-lang-link="en"{% if pageLang == 'en' %} aria-current="true"{% endif %}>EN</a>
+</nav>
+{% endmacro %}
