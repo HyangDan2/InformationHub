@@ -23,7 +23,7 @@ layout: base.njk
 {% set minutes = content | readingTime(wpm) %}
 <article class="post shell post-kind-{{ kind }}">
     <div class="page-top">
-        <nav class="crumbs" aria-label="Breadcrumb">
+        <nav class="crumbs" aria-label="현재 위치">
             <a href="{{ root | url }}">{{ t.channel.crumb }}</a>
             <span aria-hidden="true">/</span>
             <a href="{{ channelUrl }}">{{ channelName }}</a>

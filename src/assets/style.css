@@ -354,7 +354,7 @@ body.drawer-open .hd2-theme-toggle { opacity: 0; pointer-events: none; }
 /* ---------- hero ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); align-items: center; gap: 40px; padding-block: 76px 66px; }
 .hero-copy, .hero-visual { min-width: 0; }
-.hero h1 { margin: 30px 0 24px; font-size: clamp(44px, 5.2vw, 76px); line-height: 1.04; font-weight: 800; letter-spacing: -.06em; }
+.hero h1 { margin: 30px 0 24px; font-size: clamp(44px, 5.2vw, 76px); line-height: 1.16; font-weight: 800; letter-spacing: -.06em; word-break: keep-all; overflow-wrap: break-word; }
 .hero h1 span { color: var(--accent); }
 .hero-description { margin: 0; color: var(--text-body); font-size: 16px; line-height: 1.85; word-break: keep-all; overflow-wrap: break-word; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }

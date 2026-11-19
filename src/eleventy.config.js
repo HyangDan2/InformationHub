@@ -134,7 +134,7 @@ function headingId(text = "") {
 const ROLE_TESTS = [
   [/시황|장세|session|market/i, "market"],
   [/항목별|종목별|빅테크|특징주|반도체|watchlist|stock|mega-caps|semis|movers/i, "stocks"],
-  [/추후|체크|참고|체크포인트|checkpoint|what to (watch|check)|watch ?next|check ?next|risks/i, "watch"],
+  [/추후|체크|참고|체크포인트|지켜볼|checkpoint|what to (watch|check)|watch ?next|check ?next|risks/i, "watch"],
   [/출처|sources?/i, "sources"],
 ];
 
