@@ -44,11 +44,10 @@
 
   function card(item) {
     return (
-      '<article class="brief-card" data-briefing data-session="' + escapeHtml(item.session) + '">' +
+      '<article class="brief-card" data-briefing>' +
         '<a class="brief-link" href="' + base + String(item.url).replace(/^\//, '') + '">' +
           '<span class="brief-meta">' +
             '<span class="brief-channel">' + escapeHtml(item.channel) + '</span>' +
-            '<span class="session-badge is-' + escapeHtml(item.session) + '">' + escapeHtml(item.sessionLabel) + '</span>' +
             '<time datetime="' + escapeHtml(item.date) + '">' + escapeHtml(item.dateLabel) + '</time>' +
           '</span>' +
           '<span class="brief-title">' + escapeHtml(item.title) + '</span>' +
@@ -63,7 +62,7 @@
   }
 
   function haystack(item) {
-    return [item.title, item.summary, item.date, item.dateLabel, item.sessionLabel, item.sessionKorean, item.channel]
+    return [item.title, item.summary, item.date, item.dateLabel, item.channel]
       .concat(item.tickers || [])
       .concat([item.text || ''])
       .join(' ')
@@ -91,11 +90,11 @@
       results.hidden = false;
       results.innerHTML = found.length
         ? found.map(card).join('')
-        : '<p class="empty-state">No briefing matches “' + escapeHtml(query) + '”. Try a ticker, a company name, or a date.</p>';
+        : '<p class="empty-state">No report matches “' + escapeHtml(query) + '”. Try a ticker, a company name, or a date.</p>';
       if (status) {
         status.textContent = found.length
-          ? found.length + (found.length === 1 ? ' briefing matches' : ' briefings match') + ' “' + query + '”'
-          : 'No briefings match “' + query + '”';
+          ? found.length + (found.length === 1 ? ' report matches' : ' reports match') + ' “' + query + '”'
+          : 'No reports match “' + query + '”';
       }
     });
   }

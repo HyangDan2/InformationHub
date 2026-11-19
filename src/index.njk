@@ -3,7 +3,7 @@ layout: base.njk
 title: ""
 lang: en
 navSection: info-top
-description: "HD2Lab InformationHub — channel-by-channel daily briefings. The China AI desk covers 11 semiconductor names before the open (08:35) and after the close (17:25)."
+description: "HD2Lab InformationHub — channel-by-channel daily briefings. The China AI desk publishes one report on 11 semiconductor names every weekday evening at 19:00 KST."
 pageScript: "/assets/info-search.js"
 ---
 {% set briefings = collections.briefings %}
@@ -15,14 +15,14 @@ pageScript: "/assets/info-search.js"
     <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>{{ site.brand }} / InformationHub</p>
         <h1 id="hub-title">Read the day.<br><span>Skip the noise.</span></h1>
-        <p class="hero-description">Channel-by-channel briefings on the markets worth watching.<br>Filed before the open, settled after the close —<br>one calm place, no feed to keep up with.</p>
+        <p class="hero-description">Channel-by-channel briefings on the markets worth watching.<br>One report a day, filed after the close —<br>one calm place, no feed to keep up with.</p>
         <div class="hero-actions">
             <a class="button button-primary" href="#feed">Read the latest</a>
             <a class="button button-ghost" href="{{ '/china-ai/' | url }}">Open China AI</a>
         </div>
         <dl class="hero-stats">
             <div><dt>Channels</dt><dd>{{ live | length }}</dd></div>
-            <div><dt>Briefings</dt><dd>{{ briefings | length }}</dd></div>
+            <div><dt>Reports</dt><dd>{{ briefings | length }}</dd></div>
             <div><dt>Last update</dt><dd>{% if latest %}{{ latest.date | displayDate }}{% else %}—{% endif %}</dd></div>
         </dl>
     </div>
@@ -30,10 +30,10 @@ pageScript: "/assets/info-search.js"
         <div class="hero-terminal">
             <span class="terminal-bar"><i></i><i></i><i></i></span>
             <pre><code><span class="t-dim">$</span> infohub channels
-<span class="t-accent">china-ai</span>  <span class="t-text">11 stocks · 08:35 / 17:25</span>
+<span class="t-accent">china-ai</span>  <span class="t-text">11 stocks · 19:00 KST</span>
 
 <span class="t-dim">$</span> infohub latest
-<span class="t-text">{% if latest %}{{ latest.date | isoDate }} · {{ latest.data.session | sessionLabel }}{% else %}No briefings yet.{% endif %}</span>
+<span class="t-text">{% if latest %}{{ latest.date | isoDate }} · China AI{% else %}No briefings yet.{% endif %}</span>
 <span class="t-dim">$</span> <span class="t-cursor">▌</span></code></pre>
         </div>
         <p>Filed <span>+</span> Read <span>+</span> Repeat</p>
@@ -46,7 +46,7 @@ pageScript: "/assets/info-search.js"
             <p class="eyebrow">Channels</p>
             <h2 id="channels-title">One hub, a shelf of desks.</h2>
         </div>
-        <p>Each channel keeps its own watchlist, cadence, and archive. Open one to read its briefings.</p>
+        <p>Each channel keeps its own watchlist, cadence, and archive. Open one to read its reports.</p>
     </div>
     <div class="channel-grid">
         {% for channel in channels %}
@@ -56,7 +56,7 @@ pageScript: "/assets/info-search.js"
             <span class="channel-head"><span class="channel-flag" aria-hidden="true">{{ channel.flag }}</span><span class="channel-name">{{ channel.name }}</span></span>
             <span class="channel-blurb">{{ channel.blurb }}</span>
             <span class="channel-meta"><span>{{ channel.cover }}</span><span>{{ channel.cadence }}</span></span>
-            <span class="channel-foot"><span class="channel-count">{{ briefings | length }} briefing{% if briefings | length != 1 %}s{% endif %}</span><span class="channel-open">Open channel <span aria-hidden="true">↗</span></span></span>
+            <span class="channel-foot"><span class="channel-count">{{ briefings | length }} report{% if briefings | length != 1 %}s{% endif %}</span><span class="channel-open">Open channel <span aria-hidden="true">↗</span></span></span>
         </a>
         {% else %}
         <div class="channel-card is-planned">
@@ -74,10 +74,10 @@ pageScript: "/assets/info-search.js"
 <section class="recent shell" id="feed" aria-labelledby="feed-title">
     <div class="section-heading">
         <div>
-            <p class="eyebrow">Latest briefings</p>
+            <p class="eyebrow">Latest reports</p>
             <h2 id="feed-title">Everything, newest first.</h2>
         </div>
-        <p>{% if briefings | length %}{{ briefings | length }} briefing{% if briefings | length != 1 %}s{% endif %} across every channel{% else %}Waiting for the first briefing{% endif %}</p>
+        <p>{% if briefings | length %}{{ briefings | length }} report{% if briefings | length != 1 %}s{% endif %} across every channel{% else %}Waiting for the first report{% endif %}</p>
     </div>
     {% if briefings | length %}
     <form class="hub-search" role="search" data-hub-search>
@@ -86,7 +86,7 @@ pageScript: "/assets/info-search.js"
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
             </span>
             <span class="sr-only">Search briefings</span>
-            <input class="search-input" id="hub-search-input" type="search" autocomplete="off" placeholder="Search briefings · tickers · names (try: 688256, 광모듈, CXMT)" data-search-input>
+            <input class="search-input" id="hub-search-input" type="search" autocomplete="off" placeholder="Search reports · tickers · names (try: 688256, 광모듈, CXMT)" data-search-input>
             <button class="search-clear" type="button" aria-label="Clear search" data-search-clear hidden>
                 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg>
             </button>
@@ -102,16 +102,16 @@ pageScript: "/assets/info-search.js"
         {% include "parts/brief-card.njk" %}
         {% endfor %}
     </div>
-    <p class="feed-more" data-search-default><a href="{{ '/china-ai/' | url }}">Every China AI briefing <span aria-hidden="true">↗</span></a></p>
+    <p class="feed-more" data-search-default><a href="{{ '/china-ai/' | url }}">Every China AI report <span aria-hidden="true">↗</span></a></p>
     {% else %}
-    <p class="empty-state">The first briefing will land here after the next scheduled run.</p>
+    <p class="empty-state">The first report will land here after the next scheduled run.</p>
     {% endif %}
 </section>
 
 <section class="cta-band shell">
     <div>
-        <h2>Eleven names.<br><span>Two moments a day.</span></h2>
-        <p>The China AI desk files before the open and after the close, every trading day.</p>
+        <h2>Eleven names.<br><span>One report a day.</span></h2>
+        <p>The China AI desk files one report each weekday evening, after the close.</p>
     </div>
     <a class="button button-primary" href="{{ '/china-ai/' | url }}">Open the watchlist <span aria-hidden="true">↗</span></a>
 </section>

@@ -2,9 +2,9 @@ export default {
   name: "InformationHub",
   brand: "HD2Lab",
   title: "HD2Lab | InformationHub",
-  tagline: "Daily briefings on the markets and industries worth watching, filed in one calm place.",
+  tagline: "Daily reports on the markets and industries worth watching, filed in one calm place.",
   description:
-    "HD2Lab InformationHub — channel-by-channel daily briefings. The first desk tracks 11 China AI semiconductor names before the open and after the close.",
+    "HD2Lab InformationHub — channel-by-channel daily briefings. The first desk publishes one report on 11 China AI semiconductor names every weekday evening at 19:00 KST.",
   url: "https://hyangdan2.github.io/InformationHub/",
   ogImage: "https://hyangdan2.github.io/InformationHub/og-image.png",
   repo: "HyangDan2/InformationHub",

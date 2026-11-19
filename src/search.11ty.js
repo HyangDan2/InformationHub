@@ -31,9 +31,6 @@ export default class {
         summary: data.summary || "",
         date: iso(post.date),
         dateLabel: label(post.date),
-        session: data.session,
-        sessionLabel: data.session === "open" ? "Pre-market" : "Close",
-        sessionKorean: data.session === "open" ? "개장 전" : "장 마감",
         channel: "China AI",
         tickers: (data.tickers || []).map((code) => {
           const stock = watchlist.find((entry) => entry.code === code);

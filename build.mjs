@@ -59,6 +59,10 @@ if (!(await exists(join(srcDir, "node_modules")))) {
   }
 }
 
+/* Eleventy leaves output from earlier builds in _site, which would then be copied
+   to the root as stale pages. Start from an empty output directory. */
+await rm(outDir, { recursive: true, force: true });
+
 console.log("• building src with Eleventy…");
 run("npm", ["run", "build"], srcDir);
 
@@ -89,5 +93,5 @@ if (!gitignore.includes("src/_site/")) {
 }
 
 const posts = (await readdir(join(root, "posts"), { withFileTypes: true })).filter((d) => d.isDirectory()).length;
-console.log(`\n✔ done — ${posts} briefings published at the repo root`);
+console.log(`\n✔ done — ${posts} daily reports published at the repo root`);
 console.log("  https://hyangdan2.github.io/InformationHub/");

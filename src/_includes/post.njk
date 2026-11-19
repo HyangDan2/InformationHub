@@ -14,11 +14,10 @@ layout: base.njk
     </nav>
 
     <header class="post-header">
-        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>China AI · {{ session | sessionKorean }}</p>
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>China AI · 데일리 리포트</p>
         <h1>{{ title }}</h1>
         {% if summary %}<p class="post-summary">{{ summary }}</p>{% endif %}
         <div class="post-meta">
-            <span class="session-badge is-{{ session }}">{{ session | sessionLabel }}</span>
             <time datetime="{{ date | isoDate }}">{{ day }}</time>
             <span>{{ date | timeLabel }} KST</span>
             <span>{{ content | readingTime }}분 읽기</span>
@@ -38,21 +37,7 @@ layout: base.njk
         {{ content | safe }}
     </div>
 
-    {% if sources and sources.length %}
-    <section class="post-sources" aria-labelledby="sources-title">
-        <h2 id="sources-title">Sources</h2>
-        <ol class="source-list">
-            {% for source in sources %}
-            <li>
-                <a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.label }}</a>
-                <span class="source-host">{{ source.url | host }}</span>
-            </li>
-            {% endfor %}
-        </ol>
-    </section>
-    {% endif %}
-
-    <nav class="post-nav" aria-label="Briefing navigation">
+    <nav class="post-nav" aria-label="Report navigation">
         <a class="post-nav-item" href="{{ '/china-ai/' | url }}">
             <span class="post-nav-label">Channel</span>
             <strong>All China AI briefings</strong>
@@ -64,7 +49,7 @@ layout: base.njk
     </nav>
 
     {% if pager.newer or pager.older %}
-    <nav class="post-pager" aria-label="Previous and next briefings">
+    <nav class="post-pager" aria-label="Previous and next reports">
         {% if pager.newer %}
         <a class="pager-item pager-newer" href="{{ pager.newer.url | url }}">
             <span>← Newer</span>

@@ -69,14 +69,6 @@ function timeLabel(value) {
   return p ? `${p.hour}:${p.minute}` : "";
 }
 
-function sessionLabel(session) {
-  return session === "open" ? "Pre-market" : "Close";
-}
-
-function sessionKorean(session) {
-  return session === "open" ? "개장 전" : "장 마감";
-}
-
 function readingTime(html = "") {
   const text = String(html).replace(/<[^>]+>/g, " ");
   const words = text.trim().split(/\s+/).filter(Boolean).length;
@@ -147,13 +139,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("koreanDate", koreanDate);
   eleventyConfig.addFilter("weekday", weekday);
   eleventyConfig.addFilter("timeLabel", timeLabel);
-  eleventyConfig.addFilter("sessionLabel", sessionLabel);
-  eleventyConfig.addFilter("sessionKorean", sessionKorean);
   eleventyConfig.addFilter("readingTime", readingTime);
   eleventyConfig.addFilter("neighbors", neighbors);
   eleventyConfig.addFilter("mentionedStocks", mentionedStocks);
   eleventyConfig.addFilter("where", (array = [], key, value) => array.filter((item) => item && item[key] === value));
-  eleventyConfig.addFilter("countSession", (posts = [], session) => posts.filter((post) => post.data && post.data.session === session).length);
   eleventyConfig.addFilter("limit", (array = [], count = array.length) => array.slice(0, count));
 
   const postGlob = "./posts/*.md";
@@ -173,7 +162,7 @@ export default function (eleventyConfig) {
     });
     return [...days.values()].map((day) => ({
       ...day,
-      posts: day.posts.sort((a, b) => (a.data.session === "open" ? -1 : 1) - (b.data.session === "open" ? -1 : 1)),
+      posts: day.posts.sort((a, b) => a.date - b.date),
     }));
   });
 
