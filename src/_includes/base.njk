@@ -34,13 +34,13 @@
     <meta name="twitter:description" content="{{ description or site.description }}">
     <meta name="twitter:image" content="{{ site.ogImage }}">
     <script>try{var h=localStorage.getItem('hd2-theme');document.documentElement.setAttribute('data-theme',h==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}</script>
-    <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261119-info5">
-    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261119-info5" defer></script>
-    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261119-info5">
-    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261119-info5">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261119-info5">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261119-info5">
-    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | url }}?v=20261119-info5">
+    <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261119-info6">
+    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261119-info6" defer></script>
+    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261119-info6">
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261119-info6">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261119-info6">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261119-info6">
+    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | url }}?v=20261119-info6">
 </head>
 <body class="page-{{ page.url | pageClass }}">
     <a class="skip-link" href="#main">{{ t.a11y.skip }}</a>
@@ -218,8 +218,8 @@
         </div>
     </footer>
     <script>window.INFO_HUB_BASE = "{{ ('/en/' if pageLang == 'en' else '/') | url }}";window.INFO_HUB_LANG = "{{ pageLang }}";</script>
-    {% if pageScript %}<script src="{{ pageScript | url }}?v=20261119-info5" defer></script>{% endif %}
-    <script src="{{ '/assets/info-lang.js' | url }}?v=20261119-info5" defer></script>
-    <script src="{{ '/assets/info-nav.js' | url }}?v=20261119-info5" defer></script>
+    {% if pageScript %}<script src="{{ pageScript | url }}?v=20261119-info6" defer></script>{% endif %}
+    <script src="{{ '/assets/info-lang.js' | url }}?v=20261119-info6" defer></script>
+    <script src="{{ '/assets/info-nav.js' | url }}?v=20261119-info6" defer></script>
 </body>
 </html>
