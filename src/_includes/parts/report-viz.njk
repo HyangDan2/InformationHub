@@ -1,0 +1,96 @@
+{% if market %}
+<section class="viz viz-market" aria-label="마감 시황 요약">
+    <div class="kpi-grid">
+        {% for index in market.indices %}
+        <div class="kpi-card is-{{ index.pct | pctTone }}">
+            <span class="kpi-name">{{ index.name }}</span>
+            <strong class="kpi-value">{{ index.value | num(2) }}</strong>
+            <span class="kpi-foot">
+                <span class="delta-badge is-{{ index.pct | pctTone }}">{{ index.pct | signedPct }}</span>
+                {% if index.change %}<span class="kpi-abs">{% if index.change > 0 %}+{% endif %}{{ index.change | num(2) }}</span>{% endif %}
+            </span>
+        </div>
+        {% endfor %}
+        {% if market.turnover %}
+        <div class="kpi-card kpi-card-wide" style="grid-column: span {{ 2 if market.semisInflow else 4 }}">
+            <span class="kpi-name">시장 거래대금</span>
+            <strong class="kpi-value kpi-value-sm">{{ market.turnover }}</strong>
+            {% if market.turnoverChange %}<span class="kpi-foot"><span class="kpi-abs">{{ market.turnoverChange }}</span></span>{% endif %}
+        </div>
+        {% endif %}
+        {% if market.semisInflow %}
+        <div class="kpi-card kpi-card-wide">
+            <span class="kpi-name">반도체 순유입</span>
+            <strong class="kpi-value kpi-value-sm">{{ market.semisInflow }}</strong>
+            <span class="kpi-foot"><span class="kpi-abs">{{ market.semisNote or "업종 기준" }}</span></span>
+        </div>
+        {% endif %}
+    </div>
+
+    {% set indexMax = market.indices | spread("pct") %}
+    <div class="viz-card">
+        <div class="viz-card-head">
+            <h3>지수 등락률</h3>
+            <span class="viz-note">전일 종가 대비</span>
+        </div>
+        <ul class="div-bars">
+            {% for index in market.indices %}
+            <li class="div-row">
+                <span class="div-label">{{ index.name }}</span>
+                <span class="div-track">
+                    <span class="div-zero" aria-hidden="true"></span>
+                    <span class="div-fill is-{{ index.pct | pctTone }}" style="--w:{{ index.pct | barWidth(indexMax) }}"></span>
+                </span>
+                <span class="div-value is-{{ index.pct | pctTone }}">{{ index.pct | signedPct }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if watchlistStatus and watchlistStatus.length %}
+    {% set rowMax = watchlistStatus | spread("pct") %}
+    <div class="viz-card">
+        <div class="viz-card-head">
+            <h3>11종목 등락률</h3>
+            <span class="viz-note">종가 기준 · 위안</span>
+        </div>
+        <ul class="div-bars div-bars-stock">
+            {% for row in watchlistStatus %}
+            {% set stock = stocks | findByCode(row.code) %}
+            <li class="div-row">
+                <span class="div-label">
+                    <code>{{ row.code }}</code>
+                    <span class="div-label-name">{{ stock.ko if stock else row.code }}</span>
+                </span>
+                <span class="div-track">
+                    <span class="div-zero" aria-hidden="true"></span>
+                    <span class="div-fill is-{{ row.pct | pctTone }}" style="--w:{{ row.pct | barWidth(rowMax) }}"></span>
+                </span>
+                <span class="div-value is-{{ row.pct | pctTone }}">{{ row.pct | signedPct }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if turnoverTop and turnoverTop.length %}
+    {% set tradeMax = turnoverTop | spread("value") %}
+    <div class="viz-card">
+        <div class="viz-card-head">
+            <h3>거래대금 상위</h3>
+            <span class="viz-note">억 위안</span>
+        </div>
+        <ul class="bars">
+            {% for row in turnoverTop %}
+            <li class="bar-row">
+                <span class="bar-label">{{ row.name }}</span>
+                <span class="bar-track"><span class="bar-fill" style="--w:{{ row.value | barWidth(tradeMax) }}"></span></span>
+                <span class="bar-value">{{ row.value | num(1) }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% if market.turnoverNote %}<p class="viz-caption">{{ market.turnoverNote }}</p>{% endif %}
+    </div>
+    {% endif %}
+</section>
+{% endif %}

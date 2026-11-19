@@ -4,7 +4,9 @@ layout: base.njk
 {% set pager = collections.briefings | neighbors(page.url) %}
 {% set day = date | koreanDate %}
 {% set named = tickers | mentionedStocks(stocks) %}
-<article class="post shell">
+{% set kind = reportKind or "daily" %}
+{% set report = content | reportSections %}
+<article class="post shell post-kind-{{ kind }}">
     <nav class="crumbs" aria-label="Breadcrumb">
         <a href="{{ '/' | url }}">InformationHub</a>
         <span aria-hidden="true">/</span>
@@ -14,10 +16,14 @@ layout: base.njk
     </nav>
 
     <header class="post-header">
-        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>China AI · 데일리 리포트</p>
+        <p class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>China AI ·
+            {% if kind == "spotlight" %}종목 스포트라이트{% else %}데일리 리포트{% endif %}
+        </p>
         <h1>{{ title }}</h1>
         {% if summary %}<p class="post-summary">{{ summary }}</p>{% endif %}
         <div class="post-meta">
+            <span class="kind-badge kind-{{ kind }}">{% if kind == "spotlight" %}Spotlight{% else %}Daily report{% endif %}</span>
             <time datetime="{{ date | isoDate }}">{{ day }}</time>
             <span>{{ date | timeLabel }} KST</span>
             <span>{{ content | readingTime }}분 읽기</span>
@@ -34,7 +40,24 @@ layout: base.njk
     {% endif %}
 
     <div class="md-body post-content">
-        {{ content | safe }}
+        {{ report.intro | safe }}
+
+        {% if kind == "spotlight" %}
+        {% include "parts/spotlight-viz.njk" %}
+        {% endif %}
+
+        {% for section in report.sections %}
+        <section class="report-section report-section-{{ section.role }}" aria-labelledby="{{ section.title | headingId }}">
+            {{ section.heading | safe }}
+            {% if section.role == "market" %}{% include "parts/report-viz.njk" %}{% endif %}
+            {% if section.role == "stocks" %}{% include "parts/report-sectors.njk" %}{% endif %}
+            {% if section.role == "watch" and watchItems and watchItems.length %}
+            {% include "parts/report-watch.njk" %}
+            {% elif section.html %}
+            {{ section.html | safe }}
+            {% endif %}
+        </section>
+        {% endfor %}
     </div>
 
     <nav class="post-nav" aria-label="Report navigation">
