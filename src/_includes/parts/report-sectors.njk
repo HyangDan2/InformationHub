@@ -1,9 +1,13 @@
 {% set t = i18n[lang or 'ko'] %}
+{% set channelId = channel or 'china-ai' %}
+{% set v = (t.us.viz if channelId == 'us-markets' else t.viz) %}
+{% set stocks = (usStocks if channelId == 'us-markets' else stocks) %}
+{% set sectors = (usSectors if channelId == 'us-markets' else sectors) %}
 {% if watchlistStatus and watchlistStatus.length %}
-<section class="sector-map" aria-label="{{ t.viz.sectorAria }}">
+<section class="sector-map" aria-label="{{ v.sectorAria }}">
     <div class="sector-map-head">
-        <p class="viz-kicker">{{ t.viz.sectorKicker }}</p>
-        <p class="viz-lede">{{ t.viz.sectorLede }}</p>
+        <p class="viz-kicker">{{ v.sectorKicker }}</p>
+        <p class="viz-lede">{{ v.sectorLede }}</p>
     </div>
     <div class="sector-grid">
         {% for sector in sectors %}

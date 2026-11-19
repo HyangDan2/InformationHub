@@ -24,9 +24,12 @@ export default class {
     return { permalink: "/en/search.json", eleventyExcludeFromCollections: true };
   }
 
-  render({ collections, stocks = [] }) {
+  render({ collections, stocks = [], usStocks = [], channels = [] }) {
     const posts = collections.briefingsEn || [];
-    const watchlist = stocks;
+    /* Both desks share one index: a US ticker has to find its report too. */
+    const watchlist = [...stocks, ...usStocks];
+    const channelName = (id) =>
+      (channels.find((channel) => channel.id === (id || "china-ai")) || {}).nameEn || "China AI";
     const items = posts.map((post) => {
       const data = post.data;
       const find = (code) => watchlist.find((stock) => stock.code === code);
@@ -38,13 +41,13 @@ export default class {
         summary: data.summary || "",
         date: iso(post.date),
         dateLabel: label(post.date),
-        channel: "China AI",
+        channel: channelName(data.channel),
         kind,
         kindLabel: kind === "spotlight" ? "Spotlight" : "Daily",
         sources: (data.sources || []).length,
         tickers: (data.tickers || []).map((code) => {
           const stock = find(code);
-          return stock ? `${code} ${stock.nameEn} ${stock.nameKo}` : code;
+          return stock ? `${code} ${stock.nameEn} ${stock.nameKo}`.trim() : code;
         }),
         text: named.map((stock) => `${stock.nameEn} ${stock.nameKo} ${stock.zh}`).join(" "),
       };
@@ -54,7 +57,7 @@ export default class {
       {
         generated: new Date().toISOString(),
         lang: "en",
-        channels: ["China AI"],
+        channels: channels.filter((channel) => channel.status === "live").map((channel) => channel.nameKo),
         count: items.length,
         items,
       },

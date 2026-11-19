@@ -1,16 +1,17 @@
 {% set t = i18n[lang or 'ko'] %}
 {% set root = ('/en/' if lang == 'en' else '/') %}
 {% set channelUrl = (root ~ 'china-ai/') | url %}
+{#- This shelf is China AI's own: US Markets reports live in their own archive. -#}
 {% if lang == 'en' %}
-{% set briefings = collections.briefingsEn %}
+{% set briefings = collections.briefingsEn | ofChannel("china-ai") %}
 {% set days = collections.briefingDaysEn %}
-{% set dailies = collections.dailiesEn %}
-{% set spotlights = collections.spotlightsEn %}
+{% set dailies = collections.dailiesEn | ofChannel("china-ai") %}
+{% set spotlights = collections.spotlightsEn | ofChannel("china-ai") %}
 {% else %}
-{% set briefings = collections.briefingsKo %}
+{% set briefings = collections.briefingsKo | ofChannel("china-ai") %}
 {% set days = collections.briefingDaysKo %}
-{% set dailies = collections.dailiesKo %}
-{% set spotlights = collections.spotlightsKo %}
+{% set dailies = collections.dailiesKo | ofChannel("china-ai") %}
+{% set spotlights = collections.spotlightsKo | ofChannel("china-ai") %}
 {% endif %}
 {% set latest = briefings[0] or null %}
 {% set marketPost = briefings | firstWith("data.market") %}
@@ -127,13 +128,15 @@
     </div>
     <div class="archive" data-archive>
         {% for day in days %}
+        {% set dayPosts = day.posts | ofChannel("china-ai") %}
+        {% if dayPosts | length %}
         <section class="archive-day" data-day-group="{{ day.key }}">
             <h3 class="archive-date">
                 <time datetime="{{ day.key }}">{{ day.date | shortDate(lang) }}</time>
                 <span>{{ day.date | weekdayName(lang) }}</span>
             </h3>
             <ul class="brief-rows">
-                {% for post in day.posts %}
+                {% for post in dayPosts %}
                 {% set kind = post.data.reportKind or "daily" %}
                 <li class="brief-row" data-kind="{{ kind }}">
                     <a href="{{ post.url | url }}">
@@ -153,6 +156,7 @@
                 {% endfor %}
             </ul>
         </section>
+        {% endif %}
         {% endfor %}
     </div>
     <p class="archive-empty" data-kind-empty hidden>{{ t.channel.filterEmpty }}</p>
