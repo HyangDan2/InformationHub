@@ -1,0 +1,125 @@
+---
+layout: base.njk
+title: "China AI"
+lang: ko
+navSection: china-ai
+description: "China AI — 11 China AI semiconductor names, briefed before the open (08:35) and after the close (17:25) every trading day at HD2Lab InformationHub."
+pageScript: "/assets/info-channel.js"
+---
+{% set briefings = collections.briefings %}
+{% set days = collections.briefingDays %}
+{% set latest = briefings[0] or null %}
+{% set openCount = briefings | countSession('open') %}
+{% set closeCount = briefings | countSession('close') %}
+
+<section class="page-hero shell" aria-labelledby="channel-title">
+    <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="{{ '/' | url }}">InformationHub</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">China AI</span>
+    </nav>
+    <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Channel 01 · Live</p>
+    <h1 id="channel-title"><span class="channel-h1-flag" aria-hidden="true">🇨🇳</span> China AI</h1>
+    <p class="page-hero-lede">Eleven names across AI chips, foundry, optics, memory and the materials in between. Each trading day is read twice — before the open for what is coming, after the close for what actually moved.</p>
+    <p class="channel-note">매일 08:35 개장 전, 17:25 장 마감 후 11개 종목의 주요 소식을 한국어로 정리합니다.</p>
+    <div class="page-hero-meta">
+        <span class="badge">11-Stock Watchlist</span>
+        <span class="badge">Daily 08:35 · 17:25 KST</span>
+        <span>{{ briefings | length }} briefing{% if briefings | length != 1 %}s{% endif %}</span>
+        <span>{% if latest %}Last update {{ latest.date | displayDate }}{% endif %}</span>
+    </div>
+</section>
+
+<section class="watchlist-section shell" id="watchlist" aria-labelledby="watchlist-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Watchlist</p>
+            <h2 id="watchlist-title">The eleven.</h2>
+        </div>
+        <p>Ticker, company, and the part of the supply chain each one sits in.</p>
+    </div>
+    <div class="watchlist-wrap">
+        <table class="watchlist">
+            <caption class="sr-only">China AI watchlist — 11 tickers</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="th-index">#</th>
+                    <th scope="col">Ticker</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Field</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                <tr>
+                    <td class="td-index" data-label="#">{{ loop.index }}</td>
+                    <td class="td-ticker" data-label="Ticker"><code>{{ stock.code }}</code></td>
+                    <td class="td-company" data-label="Company">
+                        <strong>{{ stock.en }}</strong>
+                        <span class="stock-alt">{{ stock.zh }} · {{ stock.ko }}</span>
+                    </td>
+                    <td class="td-field" data-label="Field">{{ stock.field }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="briefings-shell shell" id="briefings" aria-labelledby="briefings-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Archive</p>
+            <h2 id="briefings-title">Daily briefings.</h2>
+        </div>
+        <p>Two reads a day, kept in order. Filter by the moment you are looking for.</p>
+    </div>
+
+    {% if briefings | length %}
+    <div class="filter-bar" role="group" aria-label="Filter briefings">
+        <button class="filter-tab is-active" type="button" data-filter="all" aria-pressed="true">All <span class="filter-count">{{ briefings | length }}</span></button>
+        <button class="filter-tab" type="button" data-filter="open" aria-pressed="false">Pre-market <span class="filter-count">{{ openCount }}</span></button>
+        <button class="filter-tab" type="button" data-filter="close" aria-pressed="false">Close <span class="filter-count">{{ closeCount }}</span></button>
+        <p class="filter-status" role="status" data-filter-status>{{ briefings | length }} briefings</p>
+    </div>
+
+    <div class="archive" data-archive>
+        {% for day in days %}
+        <section class="archive-day" data-day-group="{{ day.key }}">
+            <h3 class="archive-date">
+                <time datetime="{{ day.key }}">{{ day.date | displayDate }}</time>
+                <span>{{ day.date | weekday }}</span>
+            </h3>
+            <ul class="brief-rows">
+                {% for post in day.posts %}
+                <li class="brief-row" data-session="{{ post.data.session }}">
+                    <a href="{{ post.url | url }}">
+                        <span class="brief-row-time">
+                            <span class="session-badge is-{{ post.data.session }}">{{ post.data.session | sessionLabel }}</span>
+                            <time datetime="{{ post.date | isoDate }}">{{ post.date | timeLabel }}</time>
+                        </span>
+                        <span class="brief-row-body">
+                            <span class="brief-row-title">{{ post.data.title }}</span>
+                            <span class="brief-row-summary">{{ post.data.summary }}</span>
+                        </span>
+                        <span class="brief-row-meta">{{ post.data.tickers | length }} stocks</span>
+                        <span class="brief-row-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">The first briefing will land here after the next scheduled run.</p>
+    {% endif %}
+</section>
+
+<section class="cta-band shell">
+    <div>
+        <h2>Follow the desk<br><span>from the top page.</span></h2>
+        <p>Every channel’s newest briefing is on the landing page, with search across all of them.</p>
+    </div>
+    <a class="button button-primary" href="{{ '/' | url }}">Back to InformationHub <span aria-hidden="true">↗</span></a>
+</section>

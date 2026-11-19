@@ -1,0 +1,82 @@
+---
+layout: base.njk
+---
+{% set pager = collections.briefings | neighbors(page.url) %}
+{% set day = date | koreanDate %}
+{% set named = tickers | mentionedStocks(stocks) %}
+<article class="post shell">
+    <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="{{ '/' | url }}">InformationHub</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{ '/china-ai/' | url }}">China AI</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ date | isoDate }}</span>
+    </nav>
+
+    <header class="post-header">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>China AI · {{ session | sessionKorean }}</p>
+        <h1>{{ title }}</h1>
+        {% if summary %}<p class="post-summary">{{ summary }}</p>{% endif %}
+        <div class="post-meta">
+            <span class="session-badge is-{{ session }}">{{ session | sessionLabel }}</span>
+            <time datetime="{{ date | isoDate }}">{{ day }}</time>
+            <span>{{ date | timeLabel }} KST</span>
+            <span>{{ content | readingTime }}분 읽기</span>
+            {% if sources and sources.length %}<span>{{ sources | length }} sources</span>{% endif %}
+        </div>
+    </header>
+
+    {% if named.length %}
+    <div class="post-tickers" aria-label="Stocks covered">
+        {% for stock in named %}
+        <span class="ticker-chip"><code>{{ stock.code }}</code> {{ stock.en }}{% if stock.ko != stock.en %}<span class="ticker-ko">{{ stock.ko }}</span>{% endif %}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="md-body post-content">
+        {{ content | safe }}
+    </div>
+
+    {% if sources and sources.length %}
+    <section class="post-sources" aria-labelledby="sources-title">
+        <h2 id="sources-title">Sources</h2>
+        <ol class="source-list">
+            {% for source in sources %}
+            <li>
+                <a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.label }}</a>
+                <span class="source-host">{{ source.url | host }}</span>
+            </li>
+            {% endfor %}
+        </ol>
+    </section>
+    {% endif %}
+
+    <nav class="post-nav" aria-label="Briefing navigation">
+        <a class="post-nav-item" href="{{ '/china-ai/' | url }}">
+            <span class="post-nav-label">Channel</span>
+            <strong>All China AI briefings</strong>
+        </a>
+        <a class="post-nav-item" href="{{ '/' | url }}">
+            <span class="post-nav-label">Hub</span>
+            <strong>Every channel</strong>
+        </a>
+    </nav>
+
+    {% if pager.newer or pager.older %}
+    <nav class="post-pager" aria-label="Previous and next briefings">
+        {% if pager.newer %}
+        <a class="pager-item pager-newer" href="{{ pager.newer.url | url }}">
+            <span>← Newer</span>
+            <strong>{{ pager.newer.data.title }}</strong>
+        </a>
+        {% else %}<span class="pager-item pager-empty" aria-hidden="true"></span>{% endif %}
+        {% if pager.older %}
+        <a class="pager-item pager-older" href="{{ pager.older.url | url }}">
+            <span>Older →</span>
+            <strong>{{ pager.older.data.title }}</strong>
+        </a>
+        {% else %}<span class="pager-item pager-empty" aria-hidden="true"></span>{% endif %}
+    </nav>
+    {% endif %}
+</article>

@@ -1,0 +1,17 @@
+{%- set channelName = "China AI" -%}
+<article class="brief-card" data-briefing data-session="{{ post.data.session }}">
+    <a class="brief-link" href="{{ post.url | url }}">
+        <span class="brief-meta">
+            <span class="brief-channel">{{ channelName }}</span>
+            <span class="session-badge is-{{ post.data.session }}">{{ post.data.session | sessionLabel }}</span>
+            <time datetime="{{ post.date | isoDate }}">{{ post.date | displayDate }}</time>
+        </span>
+        <span class="brief-title">{{ post.data.title }}</span>
+        <span class="brief-summary">{{ post.data.summary }}</span>
+        <span class="brief-foot">
+            <span>{{ post.data.tickers | length }} stocks</span>
+            <span>{{ post.data.sources | length }} sources</span>
+            <span class="brief-arrow" aria-hidden="true">↗</span>
+        </span>
+    </a>
+</article>
