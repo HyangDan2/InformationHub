@@ -130,10 +130,12 @@ function headingId(text = "") {
 }
 
 /* Korean and English section names both have to land on the same role, in this
-   order — "Market Overview" must not be caught by the watchlist test. */
+   order. The watchlist test runs before the market test because a US desk section
+   is titled "US Markets 항목별 리포트" — the desk name contains "Market" but the
+   section is the per-name report, not the session recap. */
 const ROLE_TESTS = [
-  [/시황|장세|session|market/i, "market"],
   [/항목별|종목별|빅테크|특징주|반도체|watchlist|stock|mega-caps|semis|movers/i, "stocks"],
+  [/시황|장세|session|market/i, "market"],
   [/추후|체크|참고|체크포인트|지켜볼|checkpoint|what to (watch|check)|watch ?next|check ?next|risks/i, "watch"],
   [/출처|sources?/i, "sources"],
 ];
