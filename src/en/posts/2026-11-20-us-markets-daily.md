@@ -252,11 +252,11 @@ Rates eased along the long end: the 10-year <strong>5.046% (-2bp)</strong>, the 
 
 ### CRWV · CoreWeave / NBIS · Nebius
 
-CoreWeave closed at <strong>$44.91 (-6.10%)</strong> and Nebius at <strong>96.92 (-9.39%)</strong>. Both opened higher on Texas resuming air permits for data centres and on Anthropic enthusiasm, then gave it all back. A blockbuster AI listing should help the neoclouds; they were sold because the money to buy the new stock had to come from somewhere.
+CoreWeave closed at <strong>$44.91 (-6.10%)</strong> and Nebius at <strong>$96.92 (-9.39%)</strong>. Both opened higher on Texas resuming air permits for data centres and on Anthropic enthusiasm, then gave it all back. A blockbuster AI listing should help the neoclouds; they were sold because the money to buy the new stock had to come from somewhere.
 
 ### PANW · Palo Alto Networks
 
-<strong>$361.73 (+6.42%)</strong>. Fiscal first-quarter adjusted EPS of $1.05 beat the $0.97 consensus on revenue of $3.44bn ($3.31bn expected), and the company raised full-year guidance to $14.52–14.57bn. It also announced a $4.5bn deal for AI startup Applied Compute. It reached $369.26 before trimming gains, one of the few double-digit-ish winners on a down day.
+<strong>$361.73 (+6.42%)</strong>. Fiscal first-quarter adjusted EPS of $1.05 beat the $0.97 consensus on revenue of $3.44bn ($3.31bn expected), and the company raised full-year guidance to $14.52–14.57bn. It also announced a $4.5bn deal for AI startup Applied Compute. It reached $369.26 before trimming gains, one of the few winners on a down day.
 
 ### WMT · Walmart
 
