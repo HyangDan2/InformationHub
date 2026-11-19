@@ -93,5 +93,5 @@ if (!gitignore.includes("src/_site/")) {
 }
 
 const posts = (await readdir(join(root, "posts"), { withFileTypes: true })).filter((d) => d.isDirectory()).length;
-console.log(`\n✔ done — ${posts} daily reports published at the repo root`);
+console.log(`\n✔ done — ${posts} reports published at the repo root`);
 console.log("  https://hyangdan2.github.io/InformationHub/");

@@ -1,0 +1,17 @@
+{% set cmax = chart.rows | spread("value") %}
+<figure class="viz-card bar-chart">
+    <figcaption class="viz-card-head">
+        <h3>{{ chart.title }}</h3>
+        {% if chart.unit %}<span class="viz-note">{{ chart.unit }}</span>{% endif %}
+    </figcaption>
+    <ul class="bars">
+        {% for row in chart.rows %}
+        <li class="bar-row{% if row.subject %} is-subject{% endif %}">
+            <span class="bar-label">{{ row.label }}{% if row.sub %}<em>{{ row.sub }}</em>{% endif %}</span>
+            <span class="bar-track"><span class="bar-fill" style="--w:{{ row.value | barWidth(cmax) }}"></span></span>
+            <span class="bar-value">{{ row.value | num(row.digits or 2) }}{% if row.note %}<em>{{ row.note }}</em>{% endif %}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if chart.caption %}<p class="viz-caption">{{ chart.caption }}</p>{% endif %}
+</figure>

@@ -48,6 +48,7 @@
         '<a class="brief-link" href="' + base + String(item.url).replace(/^\//, '') + '">' +
           '<span class="brief-meta">' +
             '<span class="brief-channel">' + escapeHtml(item.channel) + '</span>' +
+            '<span class="kind-badge kind-' + escapeHtml(item.kind || 'daily') + '">' + escapeHtml(item.kindLabel || 'Daily') + '</span>' +
             '<time datetime="' + escapeHtml(item.date) + '">' + escapeHtml(item.dateLabel) + '</time>' +
           '</span>' +
           '<span class="brief-title">' + escapeHtml(item.title) + '</span>' +
@@ -62,7 +63,7 @@
   }
 
   function haystack(item) {
-    return [item.title, item.summary, item.date, item.dateLabel, item.channel]
+    return [item.title, item.summary, item.date, item.dateLabel, item.channel, item.kindLabel]
       .concat(item.tickers || [])
       .concat([item.text || ''])
       .join(' ')

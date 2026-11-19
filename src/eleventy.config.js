@@ -89,6 +89,111 @@ function mentionedStocks(tickers = [], stocks = []) {
   return tickers.map((code) => stocks.find((stock) => stock.code === code)).filter(Boolean);
 }
 
+/* ---------- report scaffolding (heading ids + section split) ---------- */
+
+/** A ticker heading gets a stable anchor; everything else gets a Korean-safe slug. */
+function headingId(text = "") {
+  const code = String(text).match(/\b(\d{6})\b/);
+  if (code) return `stock-${code[1]}`;
+  return String(text)
+    .toLowerCase()
+    .replace(/[()[\]{}·:：,.'"`~!?<>/\\|+&*%^$#@]/g, " ")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+const ROLE_TESTS = [
+  [/시황|장세|market/i, "market"],
+  [/항목별|종목별|watchlist|stock/i, "stocks"],
+  [/추후|체크|참고|watch ?next|checkpoint/i, "watch"],
+  [/출처|sources?/i, "sources"],
+];
+
+/**
+ * Split a rendered report into its `##` sections so the layout can drop the
+ * visual blocks in the right place. Returns the intro (anything before the first
+ * h2) and one entry per section, each keeping its rendered heading.
+ */
+function reportSections(html = "") {
+  /* A lookahead split cannot cut at index 0, so mark each h2 first. */
+  const marked = String(html).replace(/<h2([\s>])/gi, "\u0000<h2$1");
+  const chunks = marked.split("\u0000");
+  const intro = (chunks.shift() || "").replace(/^\u0000/, "");
+  const sections = chunks.map((chunk) => {
+    const match = chunk.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+    const heading = match ? match[0] : "";
+    const title = match ? match[1].replace(/<[^>]+>/g, "").trim() : "";
+    const body = chunk.slice(heading.length).trim();
+    const role = (ROLE_TESTS.find(([test]) => test.test(title)) || [null, "other"])[1];
+    return { title, heading, html: body, role };
+  });
+  return { intro, sections };
+}
+
+/** 3577.62 → 3,577.62 */
+function num(value, digits = 2) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "";
+  return n.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+}
+
+/** 1.83 → +1.83% */
+function signedPct(value, digits = 2) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "";
+  const sign = n > 0 ? "+" : n < 0 ? "−" : "";
+  return `${sign}${Math.abs(n).toFixed(digits)}%`;
+}
+
+/** The widest absolute number in a set — the scale for a bar chart. */
+function spread(items = [], key = "pct") {  const values = items.map((item) => Math.abs(Number(item[key]) || 0));
+  return Math.max(...values, 0.01);
+}
+
+function barWidth(value, max) {
+  const v = Math.abs(Number(value) || 0);
+  return `${Math.min(100, (v / (max || 1)) * 100).toFixed(1)}%`;
+}
+
+/** stocks | findByCode("688041") */
+function findByCode(list = [], code) {
+  return (list || []).find((item) => item && item.code === code) || null;
+}
+
+/** watchlistStatus | statusOf("688041") → that ticker's row, or a quiet fallback. */
+function statusOf(list = [], code) {
+  const found = (list || []).find((item) => item && item.code === code);
+  return found || { code, status: "—", tone: "flat", note: "", pct: null, close: null };
+}
+
+/** 3 → 03 */
+function pad2(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? String(n).padStart(2, "0") : "";
+}
+
+/** "+3.05%" / "−1.58%" for a row's own sign. */
+function pctTone(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n) || n === 0) return "flat";
+  return n > 0 ? "up" : "down";
+}
+
+/** posts | firstWith("data.market") → the newest briefing that carries that data. */
+function firstWith(list = [], path = "") {
+  const keys = String(path).split(".");
+  return (
+    (list || []).find((item) => {
+      let value = item;
+      for (const key of keys) {
+        if (!value) return false;
+        value = value[key];
+      }
+      return Boolean(value);
+    }) || null
+  );
+}
+
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ assets: "assets" });
   eleventyConfig.addPassthroughCopy({ "og-image.png": "og-image.png" });
@@ -98,6 +203,14 @@ export default function (eleventyConfig) {
   eleventyConfig.amendLibrary("md", (lib) => {
     lib.renderer.rules.table_open = () => '<div class="table-wrap"><table>';
     lib.renderer.rules.table_close = () => "</table></div>";
+    /* Every heading gets an id: ticker headings become stock-688041 so the sector
+       map can jump straight to that name; Korean headings become readable slugs. */
+    lib.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+      const inline = tokens[idx + 1];
+      const text = inline && inline.type === "inline" ? inline.content : "";
+      tokens[idx].attrSet("id", headingId(text.replace(/[*_`]/g, "")));
+      return self.renderToken(tokens, idx, options);
+    };
     lib.renderer.rules.footnote_block_open = lib.renderer.rules.footnote_block_open || null;
     const defaultLinkOpen = lib.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
     lib.renderer.rules.link_open = (tokens, idx, options, env, self) => {
@@ -142,6 +255,17 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("readingTime", readingTime);
   eleventyConfig.addFilter("neighbors", neighbors);
   eleventyConfig.addFilter("mentionedStocks", mentionedStocks);
+  eleventyConfig.addFilter("reportSections", reportSections);
+  eleventyConfig.addFilter("headingId", headingId);
+  eleventyConfig.addFilter("num", num);
+  eleventyConfig.addFilter("signedPct", signedPct);
+  eleventyConfig.addFilter("spread", spread);
+  eleventyConfig.addFilter("barWidth", barWidth);
+  eleventyConfig.addFilter("findByCode", findByCode);
+  eleventyConfig.addFilter("statusOf", statusOf);
+  eleventyConfig.addFilter("pad2", pad2);
+  eleventyConfig.addFilter("pctTone", pctTone);
+  eleventyConfig.addFilter("firstWith", firstWith);
   eleventyConfig.addFilter("where", (array = [], key, value) => array.filter((item) => item && item[key] === value));
   eleventyConfig.addFilter("limit", (array = [], count = array.length) => array.slice(0, count));
 
@@ -149,6 +273,20 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addCollection("briefings", (collectionApi) =>
     collectionApi.getFilteredByGlob(postGlob).sort((a, b) => b.date - a.date),
+  );
+
+  /** The two report kinds travel in separate collections as well as together. */
+  eleventyConfig.addCollection("dailies", (collectionApi) =>
+    collectionApi
+      .getFilteredByGlob(postGlob)
+      .filter((post) => (post.data.reportKind || "daily") === "daily")
+      .sort((a, b) => b.date - a.date),
+  );
+  eleventyConfig.addCollection("spotlights", (collectionApi) =>
+    collectionApi
+      .getFilteredByGlob(postGlob)
+      .filter((post) => post.data.reportKind === "spotlight")
+      .sort((a, b) => b.date - a.date),
   );
 
   /** One group per day, newest first — the daily archive on the channel page. */

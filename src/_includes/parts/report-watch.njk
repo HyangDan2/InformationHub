@@ -1,0 +1,15 @@
+{% if watchItems and watchItems.length %}
+<ol class="watch-timeline">
+    {% for item in watchItems %}
+    <li class="watch-card tone-{{ item.tone or 'next' }}">
+        <span class="watch-step">{{ loop.index | pad2 }}</span>
+        <div class="watch-body">
+            {% if item.tag %}<span class="watch-tag">{{ item.tag }}</span>{% endif %}
+            <h3 class="watch-title">{{ item.title }}</h3>
+            {% if item.detail %}<p class="watch-detail">{{ item.detail }}</p>{% endif %}
+            {% if item.when %}<span class="watch-when">{{ item.when }}</span>{% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ol>
+{% endif %}

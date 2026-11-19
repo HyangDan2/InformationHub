@@ -1,0 +1,18 @@
+{% if spotlight %}
+<section class="viz viz-spotlight" aria-label="종목 스냅샷">
+    <div class="kpi-grid kpi-grid-spot">
+        {% for item in spotlight.snapshot %}
+        <div class="kpi-card{% if item.tone %} is-{{ item.tone }}{% endif %}">
+            <span class="kpi-name">{{ item.label }}</span>
+            <strong class="kpi-value kpi-value-sm">{{ item.value }}</strong>
+            {% if item.note %}<span class="kpi-foot"><span class="kpi-abs">{{ item.note }}</span></span>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="viz-chart-grid">
+        {% for chart in spotlight.charts %}
+        {% include "parts/bar-chart.njk" %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

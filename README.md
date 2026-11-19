@@ -73,6 +73,46 @@ The body keeps four sections, in this order:
 
 Then `npm run build` and commit the source plus the regenerated root files. The URL is `/posts/<file name without .md>/`.
 
+### Report visuals (frontmatter)
+
+The charts are rendered from structured frontmatter, so the layout stays identical from day to day and no numbers are typed into the body twice. Every key is optional: a missing block simply renders nothing.
+
+```yaml
+reportKind: "daily"            # "daily" (default) or "spotlight"
+market:
+  indices:                     # KPI strip + diverging bar chart
+    - { name: "상하이종합", value: 3577.62, change: -10.21, pct: -0.28 }
+  turnover: "1조 3,146억 위안"
+  turnoverChange: "전일 대비 -654억 위안"
+  semisInflow: "30.51억 위안"  # optional summary card
+turnoverTop:                   # proportional bars, 억 위안
+  - { name: "중지이노라이트", code: "300308", value: 166.1 }
+watchlistStatus:               # one row per ticker: close, move, one-line note
+  - { code: "688041", status: "급락·반등", tone: "down", pct: -4.81, close: 180.00, note: "…" }
+watchItems:                    # timeline cards under `## 추후 참고해야할 사항`
+  - { tag: "정책", tone: "event", title: "…", detail: "…", when: "…" }
+```
+
+`tone` picks the colour of a badge or card: `up`, `down`, `flat`, `rebound`, `event` (badges); `up`, `down`, `event`, `next` (watch cards). The value map on the value-chain grid comes from `src/_data/sectors.js` plus each row of `watchlistStatus`; a card links to `#stock-<code>`, which is the id every `###` ticker heading receives automatically.
+
+### Spotlights
+
+A single-name feature is the same Markdown file with `reportKind: "spotlight"`, one entry in `tickers`, and a `spotlight:` block for its snapshot cards and bar charts:
+
+```yaml
+reportKind: "spotlight"
+spotlight:
+  snapshot:
+    - { label: "종가", value: "180.00위안", note: "-4.81%", tone: "down" }
+  charts:
+    - title: "2026년 상반기 매출 비교"
+      unit: "억 위안"
+      rows:
+        - { label: "하이광", value: 90.99, digits: 2, note: "+66.5%", subject: true }
+```
+
+Its five sections are 기업과 밸류체인 포지션 → 최근 실적·재무·핵심 동력 → 오늘의 이슈 & 경쟁 구도 → 추후 체크포인트 & 리스크 (`watchItems` cards) → 출처. The archive, the landing feed and the search index mark the two kinds with a `Daily` / `Spotlight` badge, and `/china-ai/` filters them.
+
 ### Add a channel
 
 1. Add an entry to `src/_data/channels.js` (`status: "live"` renders the card as a link).

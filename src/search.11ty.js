@@ -25,6 +25,7 @@ export default class {
       const named = (data.tickers || [])
         .map((code) => watchlist.find((stock) => stock.code === code))
         .filter(Boolean);
+      const kind = data.reportKind || "daily";
       return {
         url: post.url,
         title: data.title,
@@ -32,6 +33,8 @@ export default class {
         date: iso(post.date),
         dateLabel: label(post.date),
         channel: "China AI",
+        kind,
+        kindLabel: kind === "spotlight" ? "Spotlight" : "Daily",
         tickers: (data.tickers || []).map((code) => {
           const stock = watchlist.find((entry) => entry.code === code);
           return stock ? `${code} ${stock.en} ${stock.ko}` : code;

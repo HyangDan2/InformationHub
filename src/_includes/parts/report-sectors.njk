@@ -1,0 +1,40 @@
+{% if watchlistStatus and watchlistStatus.length %}
+<section class="sector-map" aria-label="11종목 밸류체인 상태 맵">
+    <div class="sector-map-head">
+        <p class="viz-kicker">Value-chain map</p>
+        <p class="viz-lede">카드를 누르면 아래 해당 종목 리포트로 이동합니다.</p>
+    </div>
+    <div class="sector-grid">
+        {% for sector in sectors %}
+        <section class="sector-group" aria-labelledby="sector-{{ sector.id }}">
+            <header class="sector-head">
+                <span class="sector-index">{{ sector.index }}</span>
+                <h3 id="sector-{{ sector.id }}">{{ sector.name }}</h3>
+                <span class="sector-en">{{ sector.note }}</span>
+            </header>
+            <ul class="sector-cards">
+                {% for code in sector.codes %}
+                {% set stock = stocks | findByCode(code) %}
+                {% set state = watchlistStatus | statusOf(code) %}
+                <li>
+                    <a class="stock-card" href="#stock-{{ code }}">
+                        <span class="stock-top">
+                            <code>{{ code }}</code>
+                            <span class="stock-badge tone-{{ state.tone }}">{{ state.status }}</span>
+                        </span>
+                        <span class="stock-name">{{ stock.en if stock else code }}</span>
+                        <span class="stock-ko">{{ stock.ko if stock else "" }}{% if stock and stock.ko != stock.en %} · {% endif %}{{ stock.field if stock else "" }}</span>
+                        {% if state.note %}<span class="stock-note">{{ state.note }}</span>{% endif %}
+                        <span class="stock-price">
+                            {% if state.close %}<span class="stock-close">{{ state.close | num(2) }}</span>{% endif %}
+                            {% if state.pct is not null %}<span class="stock-pct is-{{ state.pct | pctTone }}">{{ state.pct | signedPct }}</span>{% endif %}
+                        </span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
