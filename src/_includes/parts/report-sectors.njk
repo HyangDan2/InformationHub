@@ -23,7 +23,7 @@
                             <span class="stock-badge tone-{{ state.tone }}">{{ state.status }}</span>
                         </span>
                         <span class="stock-name">{{ stock.en if stock else code }}</span>
-                        <span class="stock-ko">{{ stock.ko if stock else "" }}{% if stock and stock.ko != stock.en %} · {% endif %}{{ stock.field if stock else "" }}</span>
+                        <span class="stock-ko">{% if stock and stock.ko != stock.en %}{{ stock.ko }} · {% endif %}{{ stock.field if stock else "" }}</span>
                         {% if state.note %}<span class="stock-note">{{ state.note }}</span>{% endif %}
                         <span class="stock-price">
                             {% if state.close %}<span class="stock-close">{{ state.close | num(2) }}</span>{% endif %}

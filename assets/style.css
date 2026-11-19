@@ -1030,3 +1030,72 @@ a.channel-card:hover .channel-open { color: var(--accent-hover); }
 @media (max-width: 720px) {
     .brief-row-titlerow { gap: 6px; }
 }
+
+/* ---------- the visuals sit inside .md-body: reset its Korean body type ---------- */
+.md-body .viz,
+.md-body .sector-map,
+.md-body .watch-timeline { font-size: 14px; line-height: 1.5; color: var(--text-body); }
+.md-body .viz ul,
+.md-body .viz ol,
+.md-body .sector-map ul,
+.md-body .sector-map ol,
+.md-body .watch-timeline { margin: 0; padding: 0; list-style: none; }
+.md-body .viz li,
+.md-body .sector-map li,
+.md-body .watch-timeline li { margin: 0; }
+.md-body .viz li::marker,
+.md-body .sector-map li::marker { color: transparent; }
+.md-body .viz p,
+.md-body .sector-map p,
+.md-body .watch-timeline p { margin: 0 0 6px; font-size: inherit; line-height: inherit; }
+.md-body .viz h3,
+.md-body .sector-map h3,
+.md-body .watch-timeline h3 { margin: 0; padding: 0; border: 0; font-size: 13.5px; line-height: 1.4; letter-spacing: -.015em; }
+.md-body .viz-kicker { font-size: 10px; letter-spacing: .18em; }
+.md-body .viz-lede { margin: 0 0 14px; font-size: 12.5px; }
+.md-body .viz-caption { margin: 10px 0 0; font-size: 11.5px; line-height: 1.65; }
+.md-body .viz-note { font-size: 9.5px; }
+.md-body .viz-card-head h3 { font-size: 13.5px; }
+.md-body .kpi-name { font-size: 9.5px; }
+.md-body .kpi-value { font-size: clamp(18px, 2vw, 23px); line-height: 1.15; }
+.md-body .kpi-value-sm { font-size: 16.5px; }
+.md-body .delta-badge { font-size: 10.5px; line-height: 1.4; }
+.md-body .kpi-abs { font-size: 10.5px; line-height: 1.5; }
+.md-body .div-label,
+.md-body .bar-label { font-size: 12.5px; line-height: 1.4; }
+.md-body .div-value,
+.md-body .bar-value { font-size: 11.5px; line-height: 1.4; }
+.md-body .div-label code,
+.md-body .stock-top code { padding: 0; border: 0; background: none; font-size: 10px; }
+.md-body .stock-badge { font-size: 9px; line-height: 1.5; }
+.md-body .stock-name { font-size: 12.5px; line-height: 1.4; }
+.md-body .stock-ko { font-size: 10.5px; line-height: 1.45; }
+.md-body .stock-note { font-size: 11.5px; line-height: 1.55; }
+.md-body .stock-close,
+.md-body .stock-pct { font-size: 11px; line-height: 1.4; }
+.md-body .sector-head h3 { font-size: 13.5px; line-height: 1.35; }
+.md-body .sector-index { font-size: 10px; line-height: 1.4; }
+.md-body .watch-tag { font-size: 9px; line-height: 1.5; }
+.md-body .watch-title { font-size: 14px; line-height: 1.45; }
+.md-body .watch-detail { margin: 0; font-size: 12.5px; line-height: 1.7; }
+.md-body .watch-step { font-size: 12px; line-height: 1.4; }
+.md-body .watch-when { font-size: 10px; line-height: 1.5; }
+.md-body .bar-label em { font-size: 9.5px; }
+.md-body .bar-value em { font-size: 9px; }
+
+@media (max-width: 720px) {
+    .md-body .viz,
+    .md-body .sector-map,
+    .md-body .watch-timeline { font-size: 13.5px; }
+    .md-body .kpi-value { font-size: 17px; }
+    .md-body .kpi-value-sm { font-size: 14.5px; }
+    .md-body .div-label,
+    .md-body .bar-label { font-size: 11.5px; }
+    .md-body .div-value,
+    .md-body .bar-value { font-size: 10.5px; }
+    .md-body .watch-title { font-size: 13.5px; }
+    .md-body .watch-detail { font-size: 12px; }
+}
+.md-body .stock-card { color: inherit; text-decoration: none; }
+.md-body .stock-card:hover,
+.md-body .stock-card:focus-visible { text-decoration: none; }
