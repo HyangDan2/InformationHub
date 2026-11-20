@@ -22,14 +22,14 @@ spotlight:
       caption: "Q3 grew 86% year over year and 33% sequentially. Q4 is the company's $34.8bn guidance."
       rows:
         - { label: "Q3 2025", sub: "Year-ago quarter", value: 15.95, digits: 2, note: "actual" }
-        - { label: "Q4 2025", sub: "Prior quarter", value: 18.02, digits: 2, note: "actual" }
+        - { label: "Q4 2025", sub: "FY2025 close", value: 18.02, digits: 2, note: "actual" }
         - { label: "Q1 2026", sub: "Fiscal Q1", value: 19.31, digits: 2, note: "actual" }
         - { label: "Q2 2026", sub: "Fiscal Q2", value: 22.19, digits: 2, note: "actual" }
         - { label: "Q3 2026", sub: "This quarter", value: 29.59, digits: 2, note: "actual", subject: true }
         - { label: "Q4 2026", sub: "Guidance", value: 34.80, digits: 2, note: "guided" }
     - title: "Annual AI semiconductor revenue"
       unit: "USD bn"
-      caption: "The plan is to double three years running, from $20bn in fiscal 2025 to $230bn in fiscal 2028. Broadcom says it has secured the supply for 2027 and 2028."
+      caption: "The plan runs from $20bn in fiscal 2025 to $58bn in 2026 — 2.9 times — then doubles in 2027 and again in 2028. Broadcom says it has secured the supply for both years."
       rows:
         - { label: "FY2025", sub: "Actual", value: 20.0, digits: 1, note: "+65%" }
         - { label: "FY2026", sub: "Guidance", value: 58.0, digits: 1, note: "+186%", subject: true }
