@@ -219,7 +219,7 @@ The third was the Fed. The October minutes confirmed officials are confident abo
 
 Money did not leave only equities. The 10-year Treasury yield fell to <strong>4.932% (-12bp)</strong>, the 2-year to 4.634% (-14bp) and the 30-year to 5.316% (-8bp). Gold fell <strong>2.8% to $3,518.50 an ounce</strong>, its lowest since September 2025 and down 9.5% on the week, its worst in eight months. Silver lost 3.8% to $41.12, 66% below January's record of $121.64. Bitcoin broke below $59,000 and about $1.5bn of leveraged crypto positions were liquidated in 24 hours. Crude was the exception: WTI settled at <strong>$83.98 (+0.93%)</strong>, though it lost 5.2% on the week.
 
-Sector direction was unambiguous. Technology fell 7.1% and consumer discretionary 2.9%, while consumer staples and healthcare rose. Walmart (+1.5%), Costco (+0.8%), Johnson & Johnson and Procter & Gamble (each about +1%), General Mills (+5%) and McCormick (+4%) drew the money that wanted out of AI. Seventy-one of the 101 stocks in the Nasdaq-100 are now in bear markets, including all 20 semiconductor and memory names.
+Sector direction was unambiguous. Technology fell 7.1% and consumer discretionary 2.9%, while consumer staples and healthcare rose. Walmart (+1.5%), Costco (+0.8%), Johnson & Johnson and Procter & Gamble (each about +1%), General Mills (up 5% intraday) and McCormick (+4%) drew the money that wanted out of AI. Seventy-one of the 101 stocks in the Nasdaq-100 are now in bear markets, including all 20 semiconductor and memory names.
 
 In Asia, Korea and Japan each fell more than 5% and Taiwan's Taiex lost 17% on the week, its worst since 1990; Samsung closed down about 7% and SK Hynix about 6%. The previous US session simply moved east.
 
