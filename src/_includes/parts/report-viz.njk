@@ -19,7 +19,7 @@
         </div>
         {% endfor %}
         {% if market.turnover %}
-        <div class="kpi-card kpi-card-wide" style="grid-column: span {{ 2 if market.semisInflow else 4 }}">
+        <div class="kpi-card kpi-card-wide{% if not market.semisInflow %} kpi-card-full{% endif %}">
             <span class="kpi-name">{{ v.turnover }}</span>
             <strong class="kpi-value kpi-value-sm">{{ market.turnover }}</strong>
             {% if market.turnoverChange %}<span class="kpi-foot"><span class="kpi-abs">{{ market.turnoverChange }}</span></span>{% endif %}
