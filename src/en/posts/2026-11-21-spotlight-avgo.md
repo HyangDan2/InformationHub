@@ -37,11 +37,11 @@ spotlight:
         - { label: "FY2028", sub: "Outlook", value: 230.0, digits: 1, note: "double" }
     - title: "Q3 revenue mix"
       unit: "USD bn"
-      caption: "AI is now 56% of revenue, up from 49% in Q2. The rest of semiconductors (broadband, wireless, server storage) were $4.1bn; infrastructure software was $8.8bn."
+      caption: "AI is now 56% of revenue, up from 49% in Q2. The rest of the semiconductor business (broadband, wireless, server storage) was $4.1bn; infrastructure software was $8.8bn."
       rows:
         - { label: "AI semis", sub: "XPU and AI networking", value: 16.7, digits: 1, note: "56%", subject: true }
         - { label: "Non-AI semis", sub: "Broadband, wireless, storage", value: 4.1, digits: 1, note: "14%" }
-        - { label: "Infrastructure software", sub: "VMware and more", value: 8.8, digits: 1, note: "30%" }
+        - { label: "Software", sub: "VMware, VCF", value: 8.8, digits: 1, note: "30%" }
 watchItems:
   - tag: "Earnings"
     tone: "next"
