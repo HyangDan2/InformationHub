@@ -223,7 +223,7 @@ Sector direction was unambiguous. Technology fell 7.1% and consumer discretionar
 
 In Asia, Korea and Japan each fell more than 5% and Taiwan's Taiex lost 17% on the week, its worst since 1990; Samsung closed down about 7% and SK Hynix about 6%. The previous US session simply moved east.
 
-The VIX jumped <strong>30.59% to 37.14</strong>, touching 40.03 during the session — the first time since late March it has traded well above 30. The won closed at <strong>1,345.92 per dollar (+0.89%)</strong>.
+The VIX jumped <strong>30.59% to 37.14</strong>, touching 40.03 during the session, the first time it has traded well above 30 since late March. The won closed at <strong>1,345.92 per dollar (+0.89%)</strong>.
 
 ## Mega-caps, semis and single-name movers
 
