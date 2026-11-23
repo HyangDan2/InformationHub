@@ -35,8 +35,8 @@
     <meta name="twitter:image" content="{{ site.ogImage }}">
     <script>try{var h=localStorage.getItem('hd2-theme');document.documentElement.setAttribute('data-theme',h==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}</script>
     <link rel="stylesheet" href="{{ '/assets/hd2-theme.css' | url }}?v=20261120-info2">
-    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261124-themeshare" defer></script>
-    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261124-themeshare">
+    <script src="{{ '/assets/hd2-theme.js' | url }}?v=20261124-themeshare2" defer></script>
+    <link rel="stylesheet" href="{{ '/assets/style.css' | url }}?v=20261124-themeshare2">
     <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}?v=20261120-info2">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | url }}?v=20261120-info2">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | url }}?v=20261120-info2">
@@ -122,9 +122,16 @@
                 <a class="nav-tab" href="{{ site.nav.about }}">About</a>
             </nav>
             <div class="header-actions">
-                <button id="hd2ThemeToggle" class="hd2-theme-toggle hd2-theme-toggle--header" type="button" aria-pressed="false" aria-label="{{ t.a11y.themeToggle }}" title="{{ t.a11y.themeToggle }}">
-                    <svg class="hd2-theme-ic" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.7v2.3M12 19v2.3M2.7 12h2.3M19 12h2.3M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"/></svg>
-                    <svg class="hd2-theme-ic" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M20.4 14.4A8.6 8.6 0 0 1 9.6 3.6a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                <button id="hd2ThemeToggle" class="hd2-theme-toggle hd2-theme-toggle--header" type="button" role="switch" aria-checked="false" aria-label="{{ t.a11y.themeToggle }}" title="{{ t.a11y.themeToggle }}">
+                    <span class="hd2-theme-track" aria-hidden="true">
+                        <span class="hd2-theme-slot">
+                            <svg class="hd2-theme-ic" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.7v2.3M12 19v2.3M2.7 12h2.3M19 12h2.3M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"/></svg>
+                        </span>
+                        <span class="hd2-theme-slot">
+                            <svg class="hd2-theme-ic" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M20.4 14.4A8.6 8.6 0 0 1 9.6 3.6a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                        </span>
+                        <span class="hd2-theme-thumb"></span>
+                    </span>
                 </button>
                 <button class="menu-button" type="button" aria-label="{{ t.a11y.openMenu }}" aria-expanded="false" aria-controls="mobile-drawer">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -236,14 +243,19 @@
         </div>
     </footer>
     <button id="hd2ShareToggle" class="hd2-share-toggle" type="button" aria-label="{{ t.a11y.share }}" title="{{ t.a11y.share }}" data-copied-label="{{ t.a11y.shareCopied }}">
-        <svg class="hd2-share-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.3 14.7a4.2 4.2 0 0 0 5.9 0l2.5-2.5a4.2 4.2 0 0 0-5.9-5.9l-1.2 1.2"/><path d="M14.7 9.3a4.2 4.2 0 0 0-5.9 0l-2.5 2.5a4.2 4.2 0 0 0 5.9 5.9l1.2-1.2"/></svg>
+        <svg class="hd2-share-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9.16 10.44 14.84 7M9.16 13.56l5.68 3.44" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="17.4" cy="5.4" r="2.9" fill="currentColor"/>
+            <circle cx="6.6" cy="12" r="2.9" fill="currentColor"/>
+            <circle cx="17.4" cy="18.6" r="2.9" fill="currentColor"/>
+        </svg>
     </button>
     <div id="hd2Toast" class="hd2-toast" role="status" aria-live="polite" aria-atomic="true">
         <svg class="hd2-toast-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6.5 9.4 17.1 4 11.7"/></svg>
         <span class="hd2-toast-text"></span>
     </div>
     <script src="{{ '/assets/visit-badge.js' | url }}?v=20261120-visits" defer></script>
-    <script src="{{ '/assets/hd2-share.js' | url }}?v=20261124-themeshare" defer></script>
+    <script src="{{ '/assets/hd2-share.js' | url }}?v=20261124-themeshare2" defer></script>
     <script>window.INFO_HUB_BASE = "{{ ('/en/' if pageLang == 'en' else '/') | url }}";window.INFO_HUB_LANG = "{{ pageLang }}";</script>
     {% if pageScript %}<script src="{{ pageScript | url }}?v=20261120-info2" defer></script>{% endif %}
     <script src="{{ '/assets/info-lang.js' | url }}?v=20261120-info2" defer></script>

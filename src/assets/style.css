@@ -663,42 +663,95 @@ body.drawer-open .hd2-share-toggle { opacity: 0; pointer-events: none; }
     --hd2-toggle-shadow: 0 12px 30px rgb(0 0 0 / 52%);
 }
 
-/* ---------- theme toggle in the top bar (InformationHub) ---------- */
-/* The shared button is fixed bottom-right by default; in this hub it sits at the
-   end of the header nav on PC, 8px left of the hamburger on narrow screens. */
+/* ---------- theme toggle in the top bar: sun/moon slide switch ---------- */
+/* The shared button is fixed bottom-right and shows one icon at a time. Here it
+   becomes a 56×30 capsule track: both glyphs stay laid out in the track and a
+   24px thumb slides under the active one (sun = light, moon = dark). The rules
+   below out-specify hd2-theme.css's show-one-icon rules on purpose. */
 .hd2-theme-toggle.hd2-theme-toggle--header {
-    position: static;
+    position: relative;
     right: auto;
     bottom: auto;
-    width: 36px;
-    height: 36px;
+    display: inline-flex;
+    flex: none;
+    width: 56px;
+    height: 30px;
+    padding: 0;
     border: 1px solid var(--border);
     border-radius: 999px;
-    background: var(--surface);
+    background: var(--surface-2);
     color: var(--text-body);
     box-shadow: none;
     backdrop-filter: none;
-    flex: none;
 }
 .hd2-theme-toggle.hd2-theme-toggle--header:hover {
     border-color: var(--accent);
-    color: var(--accent-text);
-    background: var(--accent-soft);
+    background: var(--surface-2);
+    color: var(--text-body);
 }
-.hd2-theme-toggle.hd2-theme-toggle--header .hd2-theme-ic { width: 17px; height: 17px; stroke-width: 1.8; }
-[data-theme="dark"] .hd2-theme-toggle.hd2-theme-toggle--header {
+.hd2-theme-toggle--header .hd2-theme-track {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+    border-radius: inherit;
+}
+.hd2-theme-toggle--header .hd2-theme-slot {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+html[data-theme] .hd2-theme-toggle--header .hd2-theme-track .hd2-theme-ic {
+    display: block;
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: color .2s ease;
+}
+.hd2-theme-toggle--header .hd2-theme-ic[data-icon="sun"],
+.hd2-theme-toggle--header .hd2-theme-ic[data-icon="moon"] { color: var(--text-secondary); }
+html[data-theme="light"] .hd2-theme-toggle--header .hd2-theme-ic[data-icon="sun"] { color: var(--accent-hover); }
+html[data-theme="dark"] .hd2-theme-toggle--header .hd2-theme-ic[data-icon="moon"] { color: var(--accent-hover); }
+.hd2-theme-toggle--header .hd2-theme-thumb {
+    position: absolute;
+    z-index: 0;
+    top: 2px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
     background: var(--surface);
-    border-color: var(--border);
+    box-shadow: 0 1px 2px rgb(29 25 43 / 16%), 0 3px 8px rgb(29 25 43 / 10%);
+    transition: transform .26s cubic-bezier(.34, .1, .22, 1), background-color .2s ease, box-shadow .2s ease;
+}
+html[data-theme="dark"] .hd2-theme-toggle--header .hd2-theme-thumb {
+    transform: translateX(24px);
+    background: #3B4A7E;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 48%), 0 0 0 1px rgb(167 139 250 / 22%);
+}
+html[data-theme="dark"] .hd2-theme-toggle.hd2-theme-toggle--header {
+    background: #141C33;
+    border-color: #2C3A63;
     color: var(--text-body);
     box-shadow: none;
 }
-[data-theme="dark"] .hd2-theme-toggle.hd2-theme-toggle--header:hover {
+html[data-theme="dark"] .hd2-theme-toggle.hd2-theme-toggle--header:hover {
     border-color: var(--accent);
-    color: var(--accent-text);
-    background: var(--accent-soft);
+    background: #141C33;
+    color: var(--text-body);
 }
 
-/* ---------- floating share (link) button ---------- */
+/* ---------- floating share button (1안: Soft Iris solid + white node icon) ---------- */
 .hd2-share-toggle {
     position: fixed;
     z-index: 60;
@@ -707,25 +760,36 @@ body.drawer-open .hd2-share-toggle { opacity: 0; pointer-events: none; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     margin: 0;
     padding: 0;
-    border: 1px solid var(--border);
+    border: 1px solid rgb(255 255 255 / 18%);
     border-radius: 999px;
-    background: var(--surface);
-    color: var(--text-body);
-    box-shadow: 0 10px 26px rgb(29 25 43 / 16%);
+    background: #7C5CFF;
+    color: #FFFFFF;
+    box-shadow: 0 10px 24px rgb(124 92 255 / 34%), 0 2px 6px rgb(29 25 43 / 18%);
     -webkit-tap-highlight-color: transparent;
-    backdrop-filter: blur(10px);
-    transition: transform .18s ease, background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+    transition: transform .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.hd2-share-toggle:hover { border-color: var(--accent); color: var(--accent-text); background: var(--accent-soft); }
+.hd2-share-toggle:hover {
+    background: #8B6EFF;
+    border-color: rgb(255 255 255 / 30%);
+    box-shadow: 0 14px 30px rgb(124 92 255 / 44%), 0 3px 8px rgb(29 25 43 / 20%);
+    transform: translateY(-2px);
+}
 .hd2-share-toggle:active { transform: scale(.94); }
-.hd2-share-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.hd2-share-ic { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-[data-theme="dark"] .hd2-share-toggle { background: rgb(18 25 46 / 92%); border-color: #344472; box-shadow: 0 12px 30px rgb(0 0 0 / 52%); }
-[data-theme="dark"] .hd2-share-toggle:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-text); }
+.hd2-share-toggle:focus-visible { outline: 3px solid #7C5CFF; outline-offset: 3px; }
+.hd2-share-ic { display: block; width: 22px; height: 22px; }
+html[data-theme="dark"] .hd2-share-toggle {
+    background: #7C5CFF;
+    border-color: rgb(255 255 255 / 24%);
+    box-shadow: 0 12px 28px rgb(124 92 255 / 42%), 0 0 0 1px rgb(167 139 250 / 16%);
+}
+html[data-theme="dark"] .hd2-share-toggle:hover {
+    background: #8F74FF;
+    box-shadow: 0 16px 34px rgb(124 92 255 / 52%), 0 0 0 1px rgb(196 181 253 / 22%);
+}
 
 /* ---------- link-copy toast ---------- */
 .hd2-toast {
@@ -763,7 +827,9 @@ body.drawer-open .hd2-share-toggle { opacity: 0; pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
     .hd2-share-toggle,
+    .hd2-share-toggle:hover,
     .hd2-share-toggle:active { transition: none; transform: none; }
+    .hd2-theme-toggle--header .hd2-theme-thumb { transition: none; }
     .hd2-toast { transition: none; transform: translate(-50%, 0); }
 }
 
