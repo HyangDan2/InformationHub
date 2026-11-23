@@ -223,7 +223,7 @@ The trigger came before the bell. Nvidia's board reinstated Jensen Huang as chie
 
 Nvidia closed at <strong>$165.05 (+31.48%)</strong>, its best day since May 2003, after trading as high as $170.55. Its market value rose by roughly $980 billion, bringing it back near $4 trillion. It still sits below the $173.73 close of the day before Huang resigned and about 21% below where it traded a month ago. This was not an earnings or order-book move; it was a restoration of confidence in management.
 
-Ten of eleven S&P 500 sectors rose. Technology led at 9.5%, followed by communication services at 5.7%, consumer discretionary at 4.8% and industrials at 4.1%. Energy was the only decliner at -1.4%. At one point 433 of 503 index members were higher as buyers returned to the names that had been sold all last week.
+Ten of eleven S&P 500 sectors rose. Technology led at 9.5%, followed by communication services at 5.7%, consumer discretionary at 4.8% and industrials at 4.1%. Energy was the only decliner at -1.4%. At one point 433 of 503 index members were higher as buyers returned to the names that had been sold all last week. After the bell, Agilent rose 7% in extended trading on guidance above consensus.
 
 Bonds and currencies moved the other way. The 10-year Treasury yield finished at <strong>4.92% (+0.8bp)</strong> after touching 4.984%, the 2-year rose 4.9bp to 4.662% and the 30-year slipped 0.7bp to 5.295%. A $69 billion two-year auction drew bids of 2.65 times the amount offered. Money leaving havens was the simple explanation.
 
@@ -293,9 +293,17 @@ CoreWeave closed at <strong>$48.33 (+22.32%)</strong>, Nebius rose about 20%, De
 
 <strong>$87.64 (-1.43%)</strong>, effectively the only AI-linked name to fall. It traded as low as $84.79 before paring the loss. After touching $115 on its first day and falling 8.5% on Friday, this was a third day of adjustment, and it sits 5.6% above its $83 offer price. Falling on a day when every other AI name surged is the signal: the market is treating Anthropic as a company that has to prove its revenue forecasts, not as a hardware-cycle beneficiary.
 
+### CRWD · CrowdStrike / ZS · Zscaler
+
+CrowdStrike fell around 9%, the worst performer in the S&P 500, while its target Zscaler rose 16-18%. CrowdStrike agreed to buy Zscaler in an all-stock deal the companies valued at about <strong>$43.9 billion</strong>. Zscaler holders get 1.135 CrowdStrike shares per share, or $260.41, a 34% premium to Friday's close. Combined, the two expect roughly $10 billion in annual recurring revenue. The acquirer's stock fell, which is the usual response and held even on a day like this.
+
+### BA · Boeing
+
+<strong>Up about 4%</strong> after President Trump told CNBC he expects China to buy another 250 Boeing jets, on top of the 200 agreed at the May summit.
+
 ### UNH · UnitedHealth / DIS · Walt Disney
 
-UnitedHealth fell <strong>1.17% to $335.87</strong> and Disney rose <strong>2.00% to $120.34</strong>. The only defensive in the index was where profit-taking showed up on a 5% day. Disney simply followed the risk-on move.
+UnitedHealth fell <strong>1.17% to $335.87</strong> and Disney rose <strong>2.00% to $120.34</strong>. The only defensive in the index was where profit-taking showed up on a 5% day. Disney simply followed the risk-on move. Gold's rebound lifted Newmont and Gold Fields more than 7%, copper strength took Freeport-McMoRan up nearly 8%, and International Paper fell 4% on its plan to spin off and list its EMEA packaging business as DS Smith.
 
 ## What to check next
 
