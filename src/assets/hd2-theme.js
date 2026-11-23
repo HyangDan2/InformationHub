@@ -9,7 +9,9 @@
    value before the first paint (no flash), links /assets/hd2-theme.css and
    loads this file with `defer`. Everything else is handled here:
 
-     · the fixed bottom-right toggle button (44px, safe-area aware)
+     · the toggle button: a page may place its own <button id="hd2ThemeToggle">
+       (InformationHub puts it in the header bar); otherwise this file adds the
+       fixed bottom-right 44px button (safe-area aware)
      · <meta name="theme-color"> kept in step with the theme
      · cross-tab sync through the `storage` event
      · window.HD2Theme.get() / .set(theme) / .toggle() for page-level controls
@@ -101,13 +103,7 @@
     moon: '<path d="M20.4 14.4A8.6 8.6 0 0 1 9.6 3.6a8.6 8.6 0 1 0 10.8 10.8z"/>'
   };
 
-  function buildButton() {
-    if (document.getElementById('hd2ThemeToggle')) return;
-    var el = document.createElement('button');
-    el.type = 'button';
-    el.id = 'hd2ThemeToggle';
-    el.className = 'hd2-theme-toggle';
-
+  function addIcons(el) {
     var svgNs = 'http://www.w3.org/2000/svg';
     ['sun', 'moon'].forEach(function (name) {
       var svg = document.createElementNS(svgNs, 'svg');
@@ -119,12 +115,26 @@
       svg.innerHTML = ICONS[name];
       el.appendChild(svg);
     });
+  }
+
+  function buildButton() {
+    var el = document.getElementById('hd2ThemeToggle');
+
+    if (!el) {
+      el = document.createElement('button');
+      el.type = 'button';
+      el.id = 'hd2ThemeToggle';
+      el.className = 'hd2-theme-toggle';
+      document.body.appendChild(el);
+    }
+
+    /* a page that places the button itself may ship the icons too */
+    if (!el.querySelector('.hd2-theme-ic')) addIcons(el);
 
     el.addEventListener('click', function () {
       apply(current() === 'dark' ? 'light' : 'dark', { persist: true });
     });
 
-    document.body.appendChild(el);
     button = el;
     paintButton(current());
   }

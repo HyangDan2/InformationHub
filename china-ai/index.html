@@ -29,8 +29,8 @@
     <meta name="twitter:image" content="https://hyangdan2.github.io/InformationHub/og-image.png?v=20261121-og">
     <script>try{var h=localStorage.getItem('hd2-theme');document.documentElement.setAttribute('data-theme',h==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}</script>
     <link rel="stylesheet" href="/InformationHub/assets/hd2-theme.css?v=20261120-info2">
-    <script src="/InformationHub/assets/hd2-theme.js?v=20261120-info2" defer></script>
-    <link rel="stylesheet" href="/InformationHub/assets/style.css?v=20261121-nav15">
+    <script src="/InformationHub/assets/hd2-theme.js?v=20261124-themeshare" defer></script>
+    <link rel="stylesheet" href="/InformationHub/assets/style.css?v=20261124-themeshare">
     <link rel="icon" type="image/svg+xml" href="/InformationHub/assets/favicon.svg?v=20261120-info2">
     <link rel="icon" type="image/png" sizes="32x32" href="/InformationHub/assets/favicon-32x32.png?v=20261120-info2">
     <link rel="apple-touch-icon" sizes="180x180" href="/InformationHub/assets/apple-touch-icon.png?v=20261120-info2">
@@ -116,6 +116,10 @@
                 <a class="nav-tab" href="https://hyangdan2.github.io/about/">About</a>
             </nav>
             <div class="header-actions">
+                <button id="hd2ThemeToggle" class="hd2-theme-toggle hd2-theme-toggle--header" type="button" aria-pressed="false" aria-label="다크 모드로 전환 (네이비 &amp; 라벤더)" title="다크 모드로 전환 (네이비 &amp; 라벤더)">
+                    <svg class="hd2-theme-ic" data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.7v2.3M12 19v2.3M2.7 12h2.3M19 12h2.3M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"/></svg>
+                    <svg class="hd2-theme-ic" data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M20.4 14.4A8.6 8.6 0 0 1 9.6 3.6a8.6 8.6 0 1 0 10.8 10.8z"/></svg>
+                </button>
                 <button class="menu-button" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-drawer">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -705,7 +709,15 @@
             <a href="https://github.com/HyangDan2/InformationHub">GitHub <span aria-hidden="true">↗</span></a>
         </div>
     </footer>
+    <button id="hd2ShareToggle" class="hd2-share-toggle" type="button" aria-label="이 페이지 링크 공유" title="이 페이지 링크 공유" data-copied-label="링크가 복사되었어요">
+        <svg class="hd2-share-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.3 14.7a4.2 4.2 0 0 0 5.9 0l2.5-2.5a4.2 4.2 0 0 0-5.9-5.9l-1.2 1.2"/><path d="M14.7 9.3a4.2 4.2 0 0 0-5.9 0l-2.5 2.5a4.2 4.2 0 0 0 5.9 5.9l1.2-1.2"/></svg>
+    </button>
+    <div id="hd2Toast" class="hd2-toast" role="status" aria-live="polite" aria-atomic="true">
+        <svg class="hd2-toast-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6.5 9.4 17.1 4 11.7"/></svg>
+        <span class="hd2-toast-text"></span>
+    </div>
     <script src="/InformationHub/assets/visit-badge.js?v=20261120-visits" defer></script>
+    <script src="/InformationHub/assets/hd2-share.js?v=20261124-themeshare" defer></script>
     <script>window.INFO_HUB_BASE = "/InformationHub/";window.INFO_HUB_LANG = "ko";</script>
     <script src="/InformationHub/assets/info-kinds.js?v=20261120-info2" defer></script>
     <script src="/InformationHub/assets/info-lang.js?v=20261120-info2" defer></script>
