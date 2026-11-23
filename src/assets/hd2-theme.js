@@ -72,7 +72,13 @@
   function paintButton(theme) {
     if (!button) return;
     var text = label(theme);
-    button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    var isDark = theme === 'dark';
+    /* a slide switch reports its position with aria-checked, not aria-pressed */
+    if (button.getAttribute('role') === 'switch') {
+      button.setAttribute('aria-checked', isDark ? 'true' : 'false');
+    } else {
+      button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    }
     button.setAttribute('aria-label', text);
     button.setAttribute('title', text);
   }
@@ -128,8 +134,10 @@
       document.body.appendChild(el);
     }
 
-    /* a page that places the button itself may ship the icons too */
-    if (!el.querySelector('.hd2-theme-ic')) addIcons(el);
+    /* a page that places the button itself may ship the icons too; the
+       InformationHub slider lays both glyphs out in its own track */
+    var isSlider = !!el.querySelector('.hd2-theme-track');
+    if (!isSlider && !el.querySelector('.hd2-theme-ic')) addIcons(el);
 
     el.addEventListener('click', function () {
       apply(current() === 'dark' ? 'light' : 'dark', { persist: true });
