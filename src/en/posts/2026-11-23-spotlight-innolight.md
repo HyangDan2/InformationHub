@@ -1,5 +1,5 @@
 ---
-title: "China AI Spotlight · Zhongji Innolight — a CNY 600 buyback cap against a CNY 417 share price"
+title: "China AI Spotlight · Zhongji Innolight — a CNY 600 buyback cap, a CNY 417 price"
 date: 2026-11-23T20:00:00+09:00
 reportKind: "spotlight"
 summary: "Q3 revenue of CNY 27.769bn (+171.8%) and net profit of CNY 8.587bn (+173.7%). In nine months it sold 1.8 times all of last year. Yet the shares sit at CNY 417.20, less than half their August level, and on Monday the board said it would pay up to CNY 600 to buy CNY 2–4bn of them. Here is the 2027 order book that sits between the company's price and the market's."
@@ -114,7 +114,7 @@ Zhongji Innolight (中际旭创, `300308.SZ`) makes high-speed optical transceiv
 
 What it sells is the part that turns light into electricity and back. Thousands of accelerators in one rack cannot pass data to each other over copper at the distance and speed required; 800G and 1.6T modules fill that gap. In the first half of 2026, 99.0% of revenue came from optical modules, and the mix kept shifting toward 800G and 1.6T. The company also designs its own silicon photonics chips, a choice that has become one of the drivers of this year's margin expansion.
 
-In the chain, this company sits at **optical interconnect**. Above it are DSPs (Broadcom, Marvell), EML and CW light sources, and silicon photonics; below it are the hyperscalers — Nvidia, Google, Microsoft, Amazon and Meta are the names most often cited, though the company does not disclose per-customer orders. What is disclosed is concentration: 94.8% of first-half revenue came from overseas (CNY 39.615bn), the US accounts for roughly 60%, the top five customers for 81.9% and the largest for 25.1%.
+In the chain, this company sits at **optical interconnect**. Above it are DSPs (Broadcom, Marvell), EML and CW light sources, and silicon photonics; below it are the hyperscalers — Nvidia, Google, Microsoft, Amazon and Meta are the names most often cited, though the company does not disclose per-customer orders. What is disclosed is concentration: 94.8% of first-half revenue came from overseas (CNY 39.615bn), with the US roughly 60%. On 2025 disclosures, the top five customers were 81.9% of revenue and the largest single customer 25.1%.
 
 On 2025 numbers, module sales were USD 5.333bn, a 21–23% global share, with about 40% in 800G and more than 50% in 1.6T. Share rises with each generation, because faster parts are harder to qualify and to yield, and only a few suppliers have already crossed that line. The advantage is real but conditional: it weakens the moment a customer adds a second source to save money. That is precisely why the stock fell 12.69% in a single day in early November on order-cut rumours.
 

@@ -212,7 +212,7 @@ One caveat is worth stating. Monday's rebound was built from policy and flows, n
 
 ### 688072 · Piotech
 
-**CNY 508.30 (−3.73%)**. It opened higher at 522.72 and then fell to **488.64**. Turnover of CNY 3.483bn was the smallest of our eleven. The day's news was arguably positive: the CSRC approved the CNY 2.5bn acquisition of Wuxi Shangji Semiconductor via a share issue, and chairman Lü Guangquan proposed another CNY 200–300m buyback. The stock still could not escape the equipment-sector pullback. Nine-month revenue was CNY 5.220bn (+23.70%), but Q3 revenue grew only 1.84% year on year and operating cash flow was −CNY 35.6m. The catalysts piled up; the numbers lagged.
+**CNY 508.30 (−3.73%)**. It opened higher at 522.72 and then fell to **488.64**. Turnover of CNY 3.483bn was the smallest of our eleven. The day's news was arguably positive: the CSRC approved the CNY 2.5bn acquisition of Wuxi Shangji Semiconductor via a share issue, and chairman Lü Guangquan proposed another CNY 200–300m buyback. The stock still could not escape the equipment-sector pullback. Nine-month revenue was CNY 5.220bn (+23.70%), but Q3 revenue of CNY 2.308bn grew only 1.84% year on year and operating cash flow was −CNY 35.6m. The catalysts piled up; the numbers lagged.
 
 ### 603986 · GigaDevice
 
