@@ -37,6 +37,9 @@ const ko = {
     infoSections: "Info 채널",
     language: "언어",
     languageSwitch: "언어 바꾸기",
+    themeToggle: "다크 모드로 전환 (네이비 & 라벤더)",
+    share: "이 페이지 링크 공유",
+    shareCopied: "링크가 복사되었어요",
   },
 
   kind: {
@@ -253,6 +256,9 @@ const en = {
     infoSections: "Info channels",
     language: "Language",
     languageSwitch: "Change language",
+    themeToggle: "Switch to dark mode (Navy & Lavender)",
+    share: "Share this page link",
+    shareCopied: "Link copied",
   },
 
   kind: {
