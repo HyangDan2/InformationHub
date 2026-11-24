@@ -225,11 +225,11 @@ After the bell the tape belonged to hardware. Dell reported $54.94 billion of re
 
 ### MSFT · Microsoft
 
-<strong>$496.13 (+0.74%)</strong>. The best of the M7 on a day when chips broke. It traded above $500 at one point. There was no company news; money simply moved toward platforms that own their models and cloud. UBS Global Wealth Management's Mark Haefele wrote that the volatility in global tech "does not signal that the structural AI investment story has broken," while expecting "greater differentiation between established platforms with visible monetization and strong balance sheets, and companies dependent on debt, scarce capacity, or continued speculative growth." Tuesday was a preview of that differentiation.
+<strong>$496.13 (+0.74%)</strong>. One of only two M7 names to rise on a day when chips broke. It traded above $500 at one point. There was no company news; money simply moved toward platforms that own their models and cloud. UBS Global Wealth Management's Mark Haefele wrote that the volatility in global tech "does not signal that the structural AI investment story has broken," while expecting "greater differentiation between established platforms with visible monetization and strong balance sheets, and companies dependent on debt, scarce capacity, or continued speculative growth." Tuesday was a preview of that differentiation.
 
 ### AAPL · Apple
 
-<strong>$354.07 (+1.43%)</strong>. The stock that fell least last week rose second-most in the M7. Its distance from the AI capex debate explains both. The memory cost problem has not gone away: Micron confirmed rising DRAM contract prices in its September 3 report, and the squeeze on device makers will show up in fourth-quarter numbers.
+<strong>$354.07 (+1.43%)</strong>. The stock that fell least last week rose the most in the M7 on Tuesday. Its distance from the AI capex debate explains both. The memory cost problem has not gone away: Micron confirmed rising DRAM contract prices in its late-September report, and the squeeze on device makers will show up in fourth-quarter numbers.
 
 ### GOOGL · Alphabet
 
