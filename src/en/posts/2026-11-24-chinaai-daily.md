@@ -2,7 +2,7 @@
 title: "China AI Daily Report · November 24"
 date: 2026-11-24T19:00:00+09:00
 reportKind: "daily"
-summary: "Jensen Huang's reinstatement sent US semis soaring overnight, but A-shares loaded the gain into the opening print and gave it back all day. Shanghai rose 0.27%, ChiNext touched +4% before closing 0.05% lower, and only the STAR 50 held on, up 1.81%. Optical modules and PCB names fell 8–11% from their opening levels, while domestic chips such as Cambricon (+6.03%), SMIC (+4.04%) and Hua Hong (+10.36%) kept their gains to the close."
+summary: "Jensen Huang's reinstatement sent US semis soaring overnight, but A-shares loaded the gain into the opening print and gave it back all day. Shanghai rose 0.27%, ChiNext touched +4% before closing 0.05% lower, and only the STAR 50 held on, up 1.81%. Optical modules and PCB names gave back 8–10% from their intraday highs, while domestic chips such as Cambricon (+6.03%), SMIC (+4.04%) and Hua Hong (+10.36%) kept their gains to the close."
 tickers: ["688256", "688041", "300308", "300502", "688981", "600183", "688072", "603986", "688008", "688521", "688825"]
 market:
   indices:
@@ -113,8 +113,8 @@ watchItems:
     when: "Late November–December"
   - tag: "Flows"
     tone: "down"
-    title: "A gap-up that gave back 8–11% in one session"
-    detail: "Zhongji Innolight ran to 464.67 (+11.4%) and closed at 417.00 (−0.05%); Eoptolink went from 198.88 to 180.01. The two names alone traded CNY 53.5bn. The issue is that this money reversed within the day. Whether margin balances in optical modules and PCB hold, and whether turnover stays above CNY 20bn on November 25–27, decides if this was a rebound or a distribution."
+    title: "A gap-up that gave back 9–10% in one session"
+    detail: "Zhongji Innolight ran to 464.67 (+11.4%) and closed at 417.00 (−0.05%), 10.3% below its high; Eoptolink went from 198.88 to 180.01, 9.5% off its high. The two names alone traded CNY 53.5bn. The issue is that this money reversed within the day. Whether margin balances in optical modules and PCB hold, and whether turnover stays above CNY 20bn on November 25–27, decides if this was a rebound or a distribution."
     when: "November 25–27"
   - tag: "Earnings"
     tone: "next"
@@ -213,11 +213,11 @@ Flows were heavy. Main funds bought <strong>CNY 8.57bn</strong> of electronics, 
 
 ### 688256 · Cambricon
 
-<strong>CNY 970.00 (+6.03%)</strong> on <strong>CNY 14.321bn</strong> of turnover and a 2.38% free-float turnover rate. It effectively carried the STAR 50 on its own. The stock gapped up on the Nvidia news, extended to more than 6% in the morning and held near its high even as the index slid in the afternoon. Main funds bought a net CNY 1.082bn (7.55% of turnover), while faster money sold a net CNY 1.076bn. There was no new company filing. The move combined the overnight US rally, Bernstein's 50% share call and expectations that tighter BIS rules push domestic buyers toward local chips. The stock had reclaimed CNY 1,000 on November 12, fallen to 875 after the November 16 export-control revision, and recovered to 970 in two sessions. The structural case and risks are in our November 20 feature → [Cambricon spotlight]({{ '/en/posts/2026-11-20-spotlight-cambricon/' | url }}).
+<strong>CNY 970.00 (+6.03%)</strong> on <strong>CNY 14.321bn</strong> of turnover and a 2.38% free-float turnover rate. It was one of the main supports for the STAR 50. The stock gapped up on the Nvidia news, extended to more than 6% in the morning and held near its high even as the index slid in the afternoon. Main funds bought a net CNY 1.082bn (7.55% of turnover), while faster money sold a net CNY 1.076bn. There was no new company filing. The move combined the overnight US rally, Bernstein's 50% share call and expectations that tighter BIS rules push domestic buyers toward local chips. The stock had reclaimed CNY 1,000 on November 12, sank to an intraday 875.90 on November 23 after the November 16 export-control revision, and returned to 970 on Tuesday. The structural case and risks are in our November 20 feature → [Cambricon spotlight]({{ '/en/posts/2026-11-20-spotlight-cambricon/' | url }}).
 
 ### 688041 · Hygon
 
-<strong>CNY 163.01 (−0.60%)</strong>. It opened at 169.92 (+3.6%), ran to <strong>171.99</strong>, then slid to 162.50 and closed negative — a fourth straight decline. Turnover was CNY 5.464bn at a 1.41% turnover rate, among the lightest of our eleven names. The news was supportive: on November 20 the company said its supply chain is stable, CPU and DCU demand keeps expanding, and next-generation development is on schedule. The problem is positioning. Institutional money has been leaving since the October high, so every bounce meets supply. No further execution has been disclosed on the CNY 500–800m buyback since CNY 235m was spent on November 19. See the November 19 feature → [Hygon spotlight]({{ '/en/posts/2026-11-19-spotlight-hygon/' | url }}).
+<strong>CNY 163.01 (−0.60%)</strong>. It opened at 169.92 (+3.6%), ran to <strong>171.99</strong>, then slid to 162.50 and closed negative — a fourth straight decline. Turnover was CNY 5.464bn at a 1.41% turnover rate, among the lightest of our eleven names. The news was supportive: on November 20 the company said its supply chain is stable, CPU and DCU demand keeps expanding, and next-generation development is on schedule. The problem is positioning. Trading has thinned since the October high, so every bounce meets supply. No further execution has been disclosed on the CNY 500–800m buyback since CNY 235m was spent on November 19. See the November 19 feature → [Hygon spotlight]({{ '/en/posts/2026-11-19-spotlight-hygon/' | url }}).
 
 ### 300308 · Zhongji Innolight
 
@@ -233,7 +233,7 @@ Flows were heavy. Main funds bought <strong>CNY 8.57bn</strong> of electronics, 
 
 ### 600183 · Shengyi Technology
 
-<strong>CNY 61.60 (+1.40%)</strong>. It opened <strong>limit-up at 66.83</strong> and slid to <strong>61.20</strong>, giving back 8.4% from the opening print. Turnover was CNY 7.913bn at a 5.09% turnover rate. The gap came from Citi's China industrial survey published on November 23 — the CCL bottleneck sits in AI glass cloth and high-end copper foil, prices keep rising through 2027 and only balance in 2028 — plus Kingboard Laminates' eighth price increase this year and November increases for M6-and-below products. The afternoon slide tracked the broader AI hardware unwind. Q3 revenue was CNY 14.182bn (+78.76%), net profit CNY 3.44bn (+238.40%) and gross margin 41.63%, another quarterly record. We unpack price, earnings and the share price in today's feature → [Shengyi Technology spotlight]({{ '/en/posts/2026-11-24-spotlight-shengyi/' | url }}).
+<strong>CNY 61.60 (+1.40%)</strong>. It opened <strong>limit-up at 66.83</strong> and slid as far as <strong>61.20</strong>, 8.4% below that opening print, before closing 7.8% lower at 61.60. Turnover was CNY 7.913bn at a 5.09% turnover rate. The gap came from Citi's China industrial survey published on November 23 — the CCL bottleneck sits in AI glass cloth and high-end copper foil, prices keep rising through 2027 and only balance in 2028 — plus Kingboard Laminates' eighth price increase this year and November increases for M6-and-below products. The afternoon slide tracked the broader AI hardware unwind. Q3 revenue was CNY 14.182bn (+78.76%), net profit CNY 3.44bn (+238.40%) and gross margin 41.63%, another quarterly record. We unpack price, earnings and the share price in today's feature → [Shengyi Technology spotlight]({{ '/en/posts/2026-11-24-spotlight-shengyi/' | url }}).
 
 ### 688072 · Piotech
 
@@ -245,7 +245,7 @@ Flows were heavy. Main funds bought <strong>CNY 8.57bn</strong> of electronics, 
 
 ### 688008 · Montage Technology
 
-<strong>CNY 133.17 (+0.73%)</strong>. It opened at 143.00 (+8.06%), reached 143.29 and fell back to <strong>133.00</strong>. Its Hong Kong line (06809) jumped 11.61% early before paring most of the gain. The catalyst is deeper AMD cooperation: the two will expand work across memory interface, PCIe interconnect, CXL memory expansion and pooling, and clocking for next-generation AI infrastructure, and Montage's key interconnect chips have passed interoperability validation on AMD's sixth-generation EPYC platform. A 6.76m-share cancellation (0.55% of capital) and a CNY 300–500m second buyback with a CNY 280 cap also eased supply pressure. Q3 revenue was CNY 2.079bn (+46.0%) and net profit CNY 1.240bn (+162.0%), both records; Q4 interconnect order backlog is CNY 2.50–2.79bn.
+<strong>CNY 133.17 (+0.73%)</strong>. It opened at 143.00 (+8.06%), reached 143.29 and fell back to <strong>133.00</strong>. Its Hong Kong line (06809) jumped 11.61% early before paring most of the gain. The catalyst is deeper AMD cooperation: the two will expand work across memory interface, PCIe interconnect, CXL memory expansion and pooling, and clocking for next-generation AI infrastructure, and Montage's key interconnect chips have passed interoperability validation on AMD's sixth-generation EPYC platform. A proposed 6.76m-share cancellation (0.55% of capital, still subject to shareholder approval) and a CNY 300–500m second buyback with a CNY 280 cap also eased supply pressure. Q3 revenue was CNY 2.079bn (+46.0%) and net profit CNY 1.240bn (+162.0%), both records; Q4 interconnect order backlog is CNY 2.50–2.79bn.
 
 ### 688521 · VeriSilicon
 
