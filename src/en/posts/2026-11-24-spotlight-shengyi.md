@@ -143,7 +143,7 @@ The two divisions look like this. CCL revenue in the first half was CNY 12.357bn
 
 ## Today's move and the competitive picture
 
-On November 24 Shengyi **opened limit-up at CNY 66.83**, a full 10% above the previous close of 60.75. It then slid to <strong>CNY 61.20</strong> and closed at **CNY 61.60 (+1.40%)**, giving back 8.4% from the opening print. Turnover was CNY 7.913bn at a 5.09% turnover rate, the busiest of the past five sessions. The market value is CNY 149.6bn and the trailing price-to-earnings ratio 16.68.
+On November 24 Shengyi **opened limit-up at CNY 66.83**, a full 10% above the previous close of 60.75. It then slid as far as <strong>CNY 61.20</strong> — 8.4% below the opening print — and closed at **CNY 61.60 (+1.40%)**, 7.8% under it. Turnover was CNY 7.913bn at a 5.09% turnover rate, the busiest of the past five sessions. The market value is CNY 149.6bn and the trailing price-to-earnings ratio 16.68.
 
 The catalyst arrived late on November 23. Citi published a China industrial survey arguing that the CCL bottleneck sits in AI-grade glass cloth and high-end copper foil, that prices keep rising through 2027 and only balance once new capacity arrives in 2028. Around the same time Kingboard Laminates issued its eighth price increase of the year (October 13, 15% on products using 2116-and-below thin cloth), and Panasonic told customers it would raise some CCL prices by 200% from 2027. The Global Electronics Association warned on November 20 that the constraint is not finished PCB capacity but glass fibre, resin, copper foil and equipment, lasting at least through the first half of 2027.
 
