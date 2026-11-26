@@ -91,7 +91,7 @@ sources:
     url: "https://static.cninfo.com.cn/finalpage/2026-04-24/1225172598.PDF"
   - label: "中国经营报 — 11/09 광모듈 3사 3분기 비교"
     url: "http://dianzibao.cb.com.cn/html/2026-11/09/content_342000.htm"
-  - label: "21世纪经济报道 — 08/26 상반기 해외 매출 97.92%·2분기环比"
+  - label: "21世纪经济报道 — 08/26 상반기 해외 매출 97.92%·2분기 순차"
     url: "https://www.21jingji.com/article/20260826/7b78cdd8c4404072ebe4a67432fb91a0.html"
   - label: "西南证券 — 2026 중보 점평(2분기 125.72억·마진 48.46%)"
     url: "https://pdf.dfcfw.com/pdf/H3_AP202609151829392357_1.pdf"
