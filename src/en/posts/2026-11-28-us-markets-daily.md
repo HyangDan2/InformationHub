@@ -203,7 +203,7 @@ Other assets reflected the same risk appetite. Gold futures rose more than 2% ba
 
 Korea mirrored the previous night's reversal in New York. The Kospi rose <strong>4.34% (204.47 points) to 4,915.68</strong>, reclaiming 4,900 for the first time in three sessions, and the Kosdaq jumped <strong>8.13% (53.28 points) to 708.99</strong>. Foreigners bought a net <strong>1.13 trillion won</strong> of Kospi shares. The won closed onshore at <strong>1,337.9</strong> per dollar, 4.8 won stronger, after touching 1,347.1. Samsung Electronics dividend repatriation supported the dollar at the margin, but foreign equity buying was larger. The Nikkei rose 2.1%. With New York adding a second leg on Friday, Korea gets a friendlier open on Monday.
 
-## US Markets by name
+## US Markets stock by stock
 
 ### NVDA · Nvidia
 
