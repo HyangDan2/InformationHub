@@ -243,7 +243,7 @@ Korea mirrored the previous night's reversal in New York. The Kospi rose <strong
 
 ### MU · Micron
 
-<strong>$646.95 (+7.60%)</strong>. The best of the large chipmakers. It traded down to $608.26 and up to $650.97 before closing, giving it a market capitalisation of <strong>$734.2 billion</strong>. It has now recovered almost all of the pullback that followed the 19% surge on November 24. The question is how the push for 25-45% higher memory contract prices settles between cost and margin; December 17's fiscal first-quarter report and the $61.5 billion guide are the test. Sandisk, Seagate and Western Digital all rising more than 7% shows money entering memory and storage as a group.
+<strong>$646.95 (+7.60%)</strong>. The best of the large chipmakers. It traded as high as $650.97 before closing, giving it a market capitalisation of <strong>$734.2 billion</strong>. It has now recovered almost all of the pullback that followed the 19% surge on November 24. The question is how the push for 25-45% higher memory contract prices settles between cost and margin; December 17's fiscal first-quarter report and the $61.5 billion guide are the test. Sandisk, Seagate and Western Digital all rising more than 7% shows money entering memory and storage as a group.
 
 ### TSM · TSMC
 

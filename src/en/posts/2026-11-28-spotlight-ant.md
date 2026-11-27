@@ -4,7 +4,7 @@ date: 2026-11-28T06:50:00+09:00
 channel: "us-markets"
 navSection: "us-markets"
 reportKind: "spotlight"
-summary: "Six sessions into its life as a public company, Anthropic had fallen below its offer price. On Friday it rose 10.98% to $91.88 and closed above $83 for the first time since Monday. Third-quarter revenue was $16.96 billion, up 47% on the prior quarter and 1,127% from a year earlier, and the October run rate was $81 billion. The same quarter returned an operating loss of $567 million as compute costs climbed back to 58% of revenue. Committed compute spend is $900.9 billion, of which $70.7 billion is due within twelve months. Market capitalisation is about $1.2 trillion on outstanding shares and about $1.7 trillion fully diluted."
+summary: "Four sessions into its life as a public company, Anthropic fell below its offer price. On Friday it rose 10.98% to $91.88 and closed above $83 for the first time since Monday. Third-quarter revenue was $16.96 billion, up 47% on the prior quarter and 1,127% from a year earlier, and the October run rate was $81 billion. The same quarter returned an operating loss of $567 million as compute costs climbed back to 58% of revenue. Committed compute spend is $900.9 billion, of which $70.7 billion is due within twelve months. Market capitalisation is about $1.2 trillion on outstanding shares and about $1.7 trillion fully diluted."
 tickers: ["ANT", "GOOGL", "AMZN", "MSFT", "NVDA", "META", "SPCX"]
 spotlight:
   snapshot:
